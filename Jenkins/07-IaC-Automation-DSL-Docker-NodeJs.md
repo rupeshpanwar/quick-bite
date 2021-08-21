@@ -61,7 +61,7 @@
 <img width="1253" alt="image" src="https://user-images.githubusercontent.com/75510135/130307792-b0012be2-d7d0-4600-b663-f9f3d90227e9.png">
 <img width="1253" alt="image" src="https://user-images.githubusercontent.com/75510135/130307795-c5a186ae-d7f7-4206-b60c-4e0afdc3ccaa.png">
 <img width="1253" alt="image" src="https://user-images.githubusercontent.com/75510135/130307800-eaf82c04-c7a5-48a3-b063-54e4aff9ff85.png">
-
+- then on project dashboard , click on build now , docker image will be published to Dockerhub , that can be used to run NodeJs application
 
 
 
