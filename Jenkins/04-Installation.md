@@ -165,3 +165,12 @@ Download the package from https://jenkins.io/download/ and follow the instructio
 
 # common plugins
 <img width="1279" alt="image" src="https://user-images.githubusercontent.com/75510135/130312253-5456fcd5-d902-4043-922f-b2cf173e7e98.png">
+# configure Docker 
+- global tool configuration
+<img width="1279" alt="image" src="https://user-images.githubusercontent.com/75510135/130314920-9c34c730-4801-47fe-986f-4a901fa9d6dd.png">
+<img width="1279" alt="image" src="https://user-images.githubusercontent.com/75510135/130314929-a42489c5-f4cd-4d01-8eb0-73659f59e298.png">
+
+# image to install Jenkins
+                                                 docker run   -u root   --name jenkins   -d   -p 8080:8080   -v jenkins-data:/var/jenkins_home   -v /var/run/docker.sock:/var/run/docker.sock   jenkins/jenkins:lts-slim
+                                                 docker ps
+                                                docker exec -it 7d0041a98e1a cat /var/jenkins_home/secrets/initialAdminPassword
