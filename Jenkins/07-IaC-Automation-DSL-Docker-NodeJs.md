@@ -1,3 +1,4 @@
+**First Seed Project should be created , please refer https://github.com/rupeshpanwar/quick-bite/blob/main/Jenkins/06-IaC-Automation-DSL-NodeJs.md
 - https://jenkinsci.github.io/job-dsl-plugin/
 - Install below plugin
 <img width="1253" alt="image" src="https://user-images.githubusercontent.com/75510135/130307714-62123818-f84d-4e6a-ab87-4165b152341f.png">
