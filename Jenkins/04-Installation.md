@@ -181,3 +181,9 @@ Download the package from https://jenkins.io/download/ and follow the instructio
                                                           jenkins/jenkins:lts-slim
                                                  docker ps
                                                 docker exec -it 7d0041a98e1a cat /var/jenkins_home/secrets/initialAdminPassword
+
+# Set Env variables
+- Manage Jenkins, click on Configure system
+<img width="1552" alt="image" src="https://user-images.githubusercontent.com/75510135/130315857-46e9a9d8-9a36-427f-8d5d-6adf80576b05.png">
+- Under Global properties , set the env variable
+<img width="1041" alt="image" src="https://user-images.githubusercontent.com/75510135/130315852-89fa1f26-3dd9-404f-83d8-b52896e1222e.png">
