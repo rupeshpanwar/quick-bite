@@ -163,3 +163,5 @@ Download the package from https://jenkins.io/download/ and follow the instructio
 <img width="1438" alt="image" src="https://user-images.githubusercontent.com/75510135/130102011-f69c1c6f-dcaf-40d9-b6ad-bc151062894a.png">
 <img width="891" alt="image" src="https://user-images.githubusercontent.com/75510135/130104088-7f50c7b3-7164-4888-a89e-f4e02e729dae.png">
 
+# common plugins
+<img width="1279" alt="image" src="https://user-images.githubusercontent.com/75510135/130312253-5456fcd5-d902-4043-922f-b2cf173e7e98.png">
