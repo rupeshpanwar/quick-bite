@@ -58,3 +58,8 @@
 <img width="1265" alt="image" src="https://user-images.githubusercontent.com/75510135/130338294-aa7899ae-830c-460f-8290-9745a0d4bf62.png">
 <img width="1265" alt="image" src="https://user-images.githubusercontent.com/75510135/130338299-1273ff8e-40ae-48e2-8c7d-a4b00d6f5dbb.png">
 
+**Git path 
+- find git installation path
+- $ which git 
+- under global tool configuration
+<img width="1214" alt="image" src="https://user-images.githubusercontent.com/75510135/130442373-cf2be68b-8964-474b-99f5-a441e403d8b7.png">
