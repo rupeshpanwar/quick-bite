@@ -26,7 +26,16 @@
 <img width="766" alt="image" src="https://user-images.githubusercontent.com/75510135/130083491-eadad9ec-1204-4d37-a33f-3a465797e43b.png">
 <img width="783" alt="image" src="https://user-images.githubusercontent.com/75510135/130083601-02736d44-474e-40be-a64d-c986250a0077.png">
 
+# Jenkins on AWS
+<img width="817" alt="image" src="https://user-images.githubusercontent.com/75510135/130626039-4d537a90-06fc-408d-b750-fb12fc1a3dc7.png">
+<img width="829" alt="image" src="https://user-images.githubusercontent.com/75510135/130626108-14038ac7-5c8d-49c3-8ce9-98db04dc8840.png">
+<img width="823" alt="image" src="https://user-images.githubusercontent.com/75510135/130626335-a761e0f9-5c85-4728-96a4-7cc2f850aa35.png">
+<img width="829" alt="image" src="https://user-images.githubusercontent.com/75510135/130626529-837dc3c1-f49a-455b-806e-e43bd8adf279.png">
+<img width="833" alt="image" src="https://user-images.githubusercontent.com/75510135/130626725-81c43b26-b4db-4de5-818f-7257c89a3539.png">
+<img width="667" alt="image" src="https://user-images.githubusercontent.com/75510135/130626886-3fb72f48-4d08-4c9e-ba6e-e23976ab4caf.png">
+<img width="831" alt="image" src="https://user-images.githubusercontent.com/75510135/130627043-187e9fca-28b2-4e4d-99b0-f2c27e00da4b.png">
 
-
+<img width="853" alt="image" src="https://user-images.githubusercontent.com/75510135/130627265-01e6644d-75ca-4bbb-984b-8e9d5b2d2b51.png">
+<img width="824" alt="image" src="https://user-images.githubusercontent.com/75510135/130627361-f0bbd943-b990-4b04-b4f7-234ee4ed6d91.png">
 
 
