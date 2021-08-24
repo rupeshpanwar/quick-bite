@@ -111,3 +111,27 @@
 <img width="1261" alt="image" src="https://user-images.githubusercontent.com/75510135/130617914-5631f654-2d7d-47fe-8399-56733c487ede.png">
 - if no jenkinsfile is available then create the pipeline using wizard
 <img width="1261" alt="image" src="https://user-images.githubusercontent.com/75510135/130618122-c96eb8be-9d63-4948-81d6-b62f190ae8cc.png">
+
+
+# SSH-Agent
+<img width="808" alt="image" src="https://user-images.githubusercontent.com/75510135/130618977-036dab91-c52a-4198-832b-bd61202c9f26.png">
+<img width="785" alt="image" src="https://user-images.githubusercontent.com/75510135/130619112-6147512b-40bb-42f4-bd64-b19f2e80dd0c.png">
+- configuration
+<img width="835" alt="image" src="https://user-images.githubusercontent.com/75510135/130619364-88ca9d35-15de-4c5f-b4ae-069973c5881b.png">
+<img width="753" alt="image" src="https://user-images.githubusercontent.com/75510135/130619458-7a933466-a25a-4478-81ca-19b2404d10c1.png">
+<img width="833" alt="image" src="https://user-images.githubusercontent.com/75510135/130619533-a9aaecfe-5889-425c-8c0c-6d1af255dc4b.png">
+- install SSH plugin
+<img width="799" alt="image" src="https://user-images.githubusercontent.com/75510135/130622192-e21f0000-27f2-4afb-8198-e89a5790145d.png">
+<img width="777" alt="image" src="https://user-images.githubusercontent.com/75510135/130622292-e8f30715-5529-414d-844a-c0ce2dec9263.png">
+
+                    node {
+                      stage('do something with git') {  
+                        sshagent (credentials: ['github-key']) {
+                          // get the last commit id from a repository you own
+                          sh 'git ls-remote -h --refs git@github.com:wardviaene/jenkins-course.git master |awk "{print $1}"'
+                        }
+                      }
+                    }
+<img width="534" alt="image" src="https://user-images.githubusercontent.com/75510135/130622707-c5e30472-8fe5-4631-b723-657279c17443.png">
+- in case of issue regarding ssh key
+<img width="545" alt="image" src="https://user-images.githubusercontent.com/75510135/130622894-72b533e6-6cd7-4e27-9451-8075837b6d18.png">
