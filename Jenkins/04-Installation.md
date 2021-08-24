@@ -1,6 +1,17 @@
 
 <img width="593" alt="image" src="https://user-images.githubusercontent.com/75510135/130084486-cc0111d7-b3f5-4ed8-b027-d6ec1cba19fd.png">
 <img width="759" alt="image" src="https://user-images.githubusercontent.com/75510135/130084928-3fba5006-e038-45e3-ae68-9e7af635b0d7.png">
+<img width="822" alt="image" src="https://user-images.githubusercontent.com/75510135/130627450-3f48dc42-3ae1-43a5-9069-eacbb148e395.png">
+# Jenkins on AWS Installation process
+<img width="822" alt="image" src="https://user-images.githubusercontent.com/75510135/130627564-73aebbd5-7b37-4337-ae8c-5e959d4a18de.png">
+<img width="842" alt="image" src="https://user-images.githubusercontent.com/75510135/130627666-47327c32-395b-4a81-bf11-fc0d8ba638a1.png">
+<img width="830" alt="image" src="https://user-images.githubusercontent.com/75510135/130627707-3d7212b4-1fa4-4da8-95cf-af1994a81066.png">
+<img width="824" alt="image" src="https://user-images.githubusercontent.com/75510135/130627749-8665472d-7936-4b29-aa64-25cd23310b23.png">
+<img width="849" alt="image" src="https://user-images.githubusercontent.com/75510135/130627909-fd957e04-dab9-4877-9083-62ccf19028aa.png">
+<img width="829" alt="image" src="https://user-images.githubusercontent.com/75510135/130627941-bbf3ee8a-6f39-4be1-ae5f-50cd66f6b743.png">
+<img width="838" alt="image" src="https://user-images.githubusercontent.com/75510135/130628002-d11c39c9-f024-4dcf-aae6-5d4f328af587.png">
+
+
 
 # DigitalOcean Installation Procedure
 This is just a summary
