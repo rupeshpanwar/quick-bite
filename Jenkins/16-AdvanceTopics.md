@@ -97,3 +97,17 @@
 <img width="407" alt="image" src="https://user-images.githubusercontent.com/75510135/130538911-2279c5a2-a019-4660-a6f4-c70b7d1acbbd.png">
 <img width="376" alt="image" src="https://user-images.githubusercontent.com/75510135/130538964-b58ca6b2-2a91-4552-ac5e-227e2c98e769.png">
 <img width="786" alt="image" src="https://user-images.githubusercontent.com/75510135/130539014-21e4b82c-ccf8-4d22-83b3-0ddea1514b88.png">
+
+
+# BlueOcean
+<img width="820" alt="image" src="https://user-images.githubusercontent.com/75510135/130616977-1c0a257c-8a86-461f-86ec-34ba04cf8a4a.png">
+<img width="785" alt="image" src="https://user-images.githubusercontent.com/75510135/130617075-9f7b9549-0bc1-4ed9-b2ad-a66826fdafc1.png">
+<img width="575" alt="image" src="https://user-images.githubusercontent.com/75510135/130617202-bbeac1e7-6349-4afb-87ca-55b899510c11.png">
+<img width="1261" alt="image" src="https://user-images.githubusercontent.com/75510135/130617298-abe04573-add4-45b6-bd4a-8eb04ec91b57.png">
+<img width="1261" alt="image" src="https://user-images.githubusercontent.com/75510135/130617346-385b6697-527a-4b2b-a1a1-becc57bbd4cd.png">
+- create new pipeline
+<img width="1261" alt="image" src="https://user-images.githubusercontent.com/75510135/130617799-7765be19-3bfe-4c60-a23c-880c274f2894.png">
+<img width="1261" alt="image" src="https://user-images.githubusercontent.com/75510135/130617838-4012cc81-d460-412b-a844-80e2aefa026c.png">
+<img width="1261" alt="image" src="https://user-images.githubusercontent.com/75510135/130617914-5631f654-2d7d-47fe-8399-56733c487ede.png">
+- if no jenkinsfile is available then create the pipeline using wizard
+<img width="1261" alt="image" src="https://user-images.githubusercontent.com/75510135/130618122-c96eb8be-9d63-4948-81d6-b62f190ae8cc.png">
