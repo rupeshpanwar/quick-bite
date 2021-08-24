@@ -1,4 +1,4 @@
-# setup Jenkin
+# Setup Jenkin
 - refer terraform code to spin the VPC and a medium size vm
 https://github.com/rupeshpanwar/terraform-vpc.git 
 - if you want to skip installation then pull jenkins images, spin a container,  on a docker running vm , rupeshpanwar/jenkin-on-docker:v1
