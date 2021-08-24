@@ -41,4 +41,37 @@
                       networks:
                         jenkins:
   
- 
+ - download & install docker-compose
+ - chmod +x /usr/local/bin/docker-compose
+
+- docker-compose up
+- sonarqube default admin/admin
+# Push the code to SonarQube
+<img width="1214" alt="image" src="https://user-images.githubusercontent.com/75510135/130536091-ccee4a5a-0b79-4c48-947c-a483f4558113.png">
+- generate a tocken at SOnarqube
+<img width="458" alt="image" src="https://user-images.githubusercontent.com/75510135/130536144-45d480d5-f6ea-4bc0-a9a0-2e3407bcee80.png">
+<img width="1214" alt="image" src="https://user-images.githubusercontent.com/75510135/130536271-3bfa9623-de1e-464a-b4c0-02418a77ae4d.png">
+<img width="1214" alt="image" src="https://user-images.githubusercontent.com/75510135/130536372-ac0b293e-07a7-4dfe-b8e1-64b1bbbcdc94.png">
+                          node {
+                              def myGradleContainer = docker.image('gradle:jdk8-alpine')
+                              myGradleContainer.pull()
+
+                              stage('prep') {
+                                  git url: 'https://github.com/wardviaene/gs-gradle.git'
+                              }
+
+                              stage('build') {
+                                myGradleContainer.inside("-v ${env.HOME}/.gradle:/home/gradle/.gradle") {
+                                  sh 'cd complete && /opt/gradle/bin/gradle build'
+                                }
+                              }
+
+                              stage('sonar-scanner') {
+                                def sonarqubeScannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                                withCredentials([string(credentialsId: 'sonar', variable: 'sonarLogin')]) {
+                                  sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=${sonarLogin} -Dsonar.projectName=gs-gradle -Dsonar.projectVersion=${env.BUILD_NUMBER} -Dsonar.projectKey=GS -Dsonar.sources=complete/src/main/ -Dsonar.tests=complete/src/test/ -Dsonar.language=java -Dsonar.java.binaries=."
+                                }
+                              }
+                          }
+                          
+  
