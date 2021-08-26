@@ -198,3 +198,36 @@ Download the package from https://jenkins.io/download/ and follow the instructio
 <img width="1552" alt="image" src="https://user-images.githubusercontent.com/75510135/130315857-46e9a9d8-9a36-427f-8d5d-6adf80576b05.png">
 - Under Global properties , set the env variable
 <img width="1041" alt="image" src="https://user-images.githubusercontent.com/75510135/130315852-89fa1f26-3dd9-404f-83d8-b52896e1222e.png">
+
+
+# Setup EC2 for Jenkins
+- add storage, open ports on EC2 instance
+<img width="612" alt="image" src="https://user-images.githubusercontent.com/75510135/130880286-6403b63b-fed7-4a32-a116-6242f9b9cd9b.png">
+<img width="582" alt="image" src="https://user-images.githubusercontent.com/75510135/130880316-eda1c0af-3499-48ff-9cb2-f17d79b794a4.png">
+<img width="627" alt="image" src="https://user-images.githubusercontent.com/75510135/130880410-614aecb3-291f-44cf-8746-bc73606bf6be.png">
+<img width="666" alt="image" src="https://user-images.githubusercontent.com/75510135/130880423-25b2ce66-2e29-43cb-b199-a74ac1d99f55.png">
+<img width="586" alt="image" src="https://user-images.githubusercontent.com/75510135/130880464-452a6408-d6ab-4d16-928a-b669ff08c9a1.png">
+<img width="618" alt="image" src="https://user-images.githubusercontent.com/75510135/130880494-f6b1b9ca-5352-4561-ae9d-e45b31adf08b.png">
+<img width="657" alt="image" src="https://user-images.githubusercontent.com/75510135/130880511-5084fae2-a738-4ad9-8363-fd85ccae3069.png">
+<img width="611" alt="image" src="https://user-images.githubusercontent.com/75510135/130880538-8f2b5a9e-9e7f-4d28-86b6-c2a8352b3da2.png">
+<img width="504" alt="image" src="https://user-images.githubusercontent.com/75510135/130880563-ce46e9bf-4ccd-411c-bf94-59a601522fe2.png">
+<img width="603" alt="image" src="https://user-images.githubusercontent.com/75510135/130880579-6eb314ca-2c08-454b-9e64-0451304d6ca4.png">
+<img width="396" alt="image" src="https://user-images.githubusercontent.com/75510135/130880604-b1c827a1-def0-475b-860a-4822559cf45b.png">
+<img width="476" alt="image" src="https://user-images.githubusercontent.com/75510135/130880621-e1915dc3-07f1-4571-af66-c40409c6265a.png">
+<img width="611" alt="image" src="https://user-images.githubusercontent.com/75510135/130880635-cb027110-6592-43ce-90c1-679d553a2689.png">
+
+# install using shell script
+                        yum update
+                        #install java
+                        yum install java-1.8.0-openjdk-devel
+                        java -version
+                        javac
+                        #download jenkins
+                        sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+                        #import key
+                        sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+                        #install jenkins
+                        yum install jenkins -y
+                        systemctl start jenkins
+                        systemctl status jenkins
+                        cat /var/lib/jenkins/secrets/initialAdminPassword
