@@ -15,7 +15,13 @@
       7. Create Bastion EC2 instance
       8. Create Terraform Workspace
       9. Create resource prefix
+      10. Common tagging
  
+3. AWS
+      1. Create a CI policy/user
+4. CI (jenkins)
+      1. Configure credentials for CI-Deployment
+
 
 
 # AWS
@@ -33,13 +39,17 @@
 ```
 
 # Terraform
-1. S3 bucket # to hold tfstate file
-2. Dynamo DB # to create lock for tfstate file
-3. Create ECR # to hold application docker images 
-4. Prepare gitignore
-5. Provider and backend initialization
-6. Setting up docker-compose
-
+      1. S3 bucket # to hold tfstate file
+      2. Dynamo DB # to create lock for tfstate file
+      3. Create ECR # to hold application docker images 
+      4. Prepare gitignore
+      5. Provider and backend initialization
+      6. Setting up docker-compose
+      7. Create Bastion EC2 instance
+      8. Create Terraform Workspace
+      9. Create resource prefix
+      10. Common tagging
+ 
 - S3 bucket # to hold tfstate file
 <img width="784" alt="image" src="https://user-images.githubusercontent.com/75510135/131430207-4e3ebfd8-96a7-4aae-b398-979f30febebc.png">
 <img width="875" alt="image" src="https://user-images.githubusercontent.com/75510135/131430361-f1cbbfe5-034f-4756-b048-8f0984f884ad.png">
@@ -148,3 +158,142 @@ resource "aws_instance" "bastion" {
 }
 
 ```
+
+- Common tagging
+```
+01- main.tf
+terraform {
+  backend "s3" {
+    bucket         = "devops-dev-tfstate"
+    key            = "devops-infra.tfstate"
+    region         = "ap-south-1"
+    encrypt        = true
+    dynamodb_table = "devops-dev-tfstate-lock"
+    profile        = "rupesh"
+  }
+}
+
+provider "aws" {
+  region = "ap-south-1"
+}
+
+locals {
+    prefix = "${var.prefix}-${terraform.workspace}"
+    common_tags = {
+      Environment = terraform.workspace
+      Project = var.project
+      Owner = var.contact
+      ManagedBy = "Terraform"
+    }
+}
+
+
+02-variables.tf 
+variable "prefix" {
+    default = "project-short-name"
+}
+
+variable "project" {
+    default = "projectname"
+}
+
+variable "contact" {
+    default = "rpanwar@msystechnologies.com"
+}
+
+
+03-bastions.tf
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-2.0.*-x86_64-gp2"]
+  }
+  owners = ["amazon"]
+}
+
+resource "aws_instance" "bastion" {
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t2.micro"
+
+  tags = merge(
+    local.common_tags,
+    map("Name","${local.prefix}-bastion")
+  )
+
+}
+```
+# AWS
+- Create a CI policy/user
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "TerraformRequiredPermissions",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ec2:*"
+            ],
+            "Resource": "*"
+        },
+        {
+          "Sid": "AllowListS3StateBucket",
+          "Effect": "Allow",
+          "Action": "s3:ListBucket",
+          "Resource": "arn:aws:s3:::devops-tfstate"
+        },
+        {
+          "Sid": "AllowS3StateBucketAccess",
+          "Effect": "Allow",
+          "Action": ["s3:GetObject", "s3:PutObject"],
+          "Resource": "arn:aws:s3:::devops-tfstate/*"
+        },
+        {
+            "Sid": "LimitEC2Size",
+            "Effect": "Deny",
+            "Action": "ec2:RunInstances",
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "ForAnyValue:StringNotLike": {
+                    "ec2:InstanceType": [
+                        "t2.micro"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "AllowECRAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:*"
+            ],
+            "Resource": "arn:aws:ecr:us-east-1:*:repository/devops-ecr"
+        },
+        {
+            "Sid": "AllowStateLockingAccess",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:PutItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:GetItem"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:*:*:table/devops-tfstate-lock"
+            ]
+        }
+    ]
+}
+
+```
+- create ci user to deploy n attach the newly created policy
+<img width="977" alt="image" src="https://user-images.githubusercontent.com/75510135/131491895-8cc13a25-2754-4435-90ad-008b51024dee.png">
+<img width="801" alt="image" src="https://user-images.githubusercontent.com/75510135/131491991-e192730e-8df3-4948-b637-7e8da4544233.png">
+
+- Configure credentials in Jenkins
+- Set the access keys as Variables in your CI tool
+<img width="806" alt="image" src="https://user-images.githubusercontent.com/75510135/131493921-00681c73-533c-4822-b21c-9db87e0c7c6e.png">
+
+
