@@ -1,7 +1,4 @@
-- quick ref
-- https://github.com/DevOpsPlayground/Hands-on-with-Jenkins-Terraform-and-AWS
-- https://gitlab.com/LondonAppDev/recipe-app-api-devops-starting-code
-- https://gitlab.com/LondonAppDev/recipe-app-api-devops-course-material
+
 # Steps
 1. AWS
       1. Create IAM user/policy
