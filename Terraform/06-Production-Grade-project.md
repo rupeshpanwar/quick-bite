@@ -70,8 +70,20 @@ provider "aws" {
 
 ```
 - Setting up docker-compose
+- ref# https://github.com/rupeshpanwar/DevOps-Terraform-ECS.md/blob/main/docker-compose.yml
+- run the cmd to initiate
+```
+$ docker-compose -f Infrastructure/docker-compose.yml run --rm terraform init
+```
 
-
+- create a bastion ec2 machine
+```
+https://github.com/rupeshpanwar/DevOps-Terraform-ECS.md/blob/main/02-bastion.tf
+```
+- format the terraform code by 
+```
+ $ docker-compose -f Infrastructure/docker-compose.yml run --rm terraform init
+```
 
 
 
