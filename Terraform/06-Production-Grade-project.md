@@ -12,6 +12,9 @@
       4. Prepare gitignore
       5. Provider and backend initialization
       6. Setting up docker-compose
+      7. Create Bastion EC2 instance
+      8. Create Terraform Workspace
+      9. Create resource prefix
  
 
 
@@ -85,5 +88,63 @@ https://github.com/rupeshpanwar/DevOps-Terraform-ECS.md/blob/main/02-bastion.tf
  $ docker-compose -f Infrastructure/docker-compose.yml run --rm terraform init
 ```
 
+- Create Terraform Workspace
+- to list the tf workspace
+```
+$ docker-compose -f Infrastructure/docker-compose.yml run --rm terraform workspace list
+```
+
+- create dev workspace
+```
+$ docker-compose -f Infrastructure/docker-compose.yml run --rm terraform workspace new dev
+```
+- create resource prefix
+```
+01- main.tf
+terraform {
+  backend "s3" {
+    bucket         = "devops-dev-tfstate"
+    key            = "devops-infra.tfstate"
+    region         = "ap-south-1"
+    encrypt        = true
+    dynamodb_table = "devops-dev-tfstate-lock"
+    profile        = "rupesh"
+  }
+}
+
+provider "aws" {
+  region = "ap-south-1"
+}
+
+locals {
+    prefix = "${var.prefix}-${terraform.workspace}"
+}
 
 
+02-variables.tf
+variable "prefix" {
+    default = "projectname"
+}
+
+
+03-bastion.tf
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-2.0.*-x86_64-gp2"]
+  }
+  owners = ["amazon"]
+}
+
+resource "aws_instance" "bastion" {
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "${local.prefix}-bastion"
+  }
+
+}
+
+```
