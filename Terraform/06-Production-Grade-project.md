@@ -21,7 +21,12 @@
       1. Create a CI policy/user
 4. CI (jenkins)
       1. Configure credentials for CI-Deployment
-
+5. Terraform
+      1. Create VPC
+      2. Create Public Subnet
+      3. Create Routing Table
+      4. Create Igw
+      5. Create EIP & Nat Gateway
 
 
 # AWS
@@ -296,4 +301,136 @@ resource "aws_instance" "bastion" {
 - Set the access keys as Variables in your CI tool
 <img width="806" alt="image" src="https://user-images.githubusercontent.com/75510135/131493921-00681c73-533c-4822-b21c-9db87e0c7c6e.png">
 
+# Terraform
+- Create VPC
+ <img width="657" alt="image" src="https://user-images.githubusercontent.com/75510135/131958261-df79b59e-6feb-4861-9c1d-75186a2174ae.png">
 
+- refer subnet cheatsheet https://www.aelius.com/njh/subnet_sheet.html
+```
+resource "aws_vpc" "main" {
+  cidr_block           = "10.1.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+
+  tags = merge(
+    local.common_tags,
+    map("Name", "${local.prefix}-vpc")
+  )
+}
+
+resource "aws_internet_gateway" "main" {
+  vpc_id = aws_vpc.main.id
+
+  tags = merge(
+    local.common_tags,
+    map("Name", "${local.prefix}-main")
+  )
+}
+
+data "aws_region" "current" {}
+```
+
+- Create Public Subnet
+```
+resource "aws_subnet" "public_a" {
+  cidr_block              = "10.1.1.0/24"
+  map_public_ip_on_launch = true
+  vpc_id                  = aws_vpc.main.id
+  availability_zone       = "${data.aws_region.current.name}a"
+
+  tags = merge(
+    local.common_tags,
+    map("Name", "${local.prefix}-public-a")
+  )
+}
+
+resource "aws_subnet" "public_b" {
+  cidr_block              = "10.1.2.0/24"
+  map_public_ip_on_launch = true
+  vpc_id                  = aws_vpc.main.id
+  availability_zone       = "${data.aws_region.current.name}b"
+
+  tags = merge(
+    local.common_tags,
+    map("Name", "${local.prefix}-public-b")
+  )
+}
+```
+
+- Create Routing Table
+```
+resource "aws_route_table" "public_b" {
+  vpc_id = aws_vpc.main.id
+
+  tags = merge(
+    local.common_tags,
+    map("Name", "${local.prefix}-public-b")
+  )
+}
+
+resource "aws_route_table_association" "public_b" {
+  subnet_id      = aws_subnet.public_b.id
+  route_table_id = aws_route_table.public_b.id
+}
+
+```
+
+- Create Igw
+```
+
+resource "aws_route" "public_internet_access_a" {
+  route_table_id         = aws_route_table.public_a.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.main.id
+}
+
+
+
+resource "aws_route" "public_internet_access_b" {
+  route_table_id         = aws_route_table.public_b.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.main.id
+}
+```
+
+- Create EIP & Nat Gateway
+```
+resource "aws_eip" "public_a" {
+  vpc = true
+
+  tags = merge(
+    local.common_tags,
+    map("Name", "${local.prefix}-public-a")
+  )
+}
+
+resource "aws_nat_gateway" "public_a" {
+  allocation_id = aws_eip.public_a.id
+  subnet_id     = aws_subnet.public_a.id
+
+  tags = merge(
+    local.common_tags,
+    map("Name", "${local.prefix}-public-a")
+  )
+}
+
+resource "aws_eip" "public_b" {
+  vpc = true
+
+  tags = merge(
+    local.common_tags,
+    map("Name", "${local.prefix}-public-b")
+  )
+}
+
+
+resource "aws_nat_gateway" "public_b" {
+  allocation_id = aws_eip.public_b.id
+  subnet_id     = aws_subnet.public_b.id
+
+  tags = merge(
+    local.common_tags,
+    map("Name", "${local.prefix}-public-b")
+  )
+}
+```
