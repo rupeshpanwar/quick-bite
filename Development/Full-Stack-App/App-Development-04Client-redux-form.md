@@ -73,3 +73,24 @@ export default Dashboard;
 <img width="1117" alt="image" src="https://user-images.githubusercontent.com/75510135/131845714-5304825e-104d-4a68-926f-8150ce0d4dfe.png">
 <img width="1117" alt="image" src="https://user-images.githubusercontent.com/75510135/131845738-8ea854d6-2e68-49e2-a006-ca904fa6fd0e.png">
 
+- submit survey
+<img width="954" alt="image" src="https://user-images.githubusercontent.com/75510135/131937557-eab98e17-124f-4c70-a257-ac221bc8dfd6.png">
+<img width="954" alt="image" src="https://user-images.githubusercontent.com/75510135/131937573-25aeac30-7350-4b2f-8489-23c2c97cd881.png">
+- dumping form value
+<img width="954" alt="image" src="https://user-images.githubusercontent.com/75510135/131940712-3c5cc09f-18ca-45db-9c3b-87aebbac2242.png">
+- fixing the property name
+<img width="427" alt="image" src="https://user-images.githubusercontent.com/75510135/131940998-6fcebdeb-14d9-4153-9181-c5f04dca5236.png">
+<img width="954" alt="image" src="https://user-images.githubusercontent.com/75510135/131941559-62e18a02-a2af-4b18-a1fe-4ffa1b260f3b.png">
+- posting the survey
+<img width="351" alt="image" src="https://user-images.githubusercontent.com/75510135/131941615-8ec2b4a2-58e8-4779-9b89-0fdfbabf2743.png">
+<img width="954" alt="image" src="https://user-images.githubusercontent.com/75510135/131943989-4d2d62c0-b20b-495e-ab41-540243d331c0.png">
+- redirect on Submit survey
+<img width="519" alt="image" src="https://user-images.githubusercontent.com/75510135/131944951-373be950-a250-4be7-9b58-81aded7b8e9b.png">
+
+<img width="492" alt="image" src="https://user-images.githubusercontent.com/75510135/131945145-392e941a-384d-4ad0-9463-2f06ed56de97.png">
+
+<img width="636" alt="image" src="https://user-images.githubusercontent.com/75510135/131945179-4023fd30-91cd-4f55-a1c2-f2c29e9ae46d.png">
+<img width="691" alt="image" src="https://user-images.githubusercontent.com/75510135/131945208-ae044854-56c0-41dc-8a13-3c0dab7cd85c.png">
+- Redirect on Submit
+<img width="954" alt="image" src="https://user-images.githubusercontent.com/75510135/131945903-e95d73f3-984b-4247-a7a6-a0dec89e66d0.png">
+<img width="954" alt="image" src="https://user-images.githubusercontent.com/75510135/131945928-85829285-fd02-4f45-b867-ae7df4aba7f5.png">
