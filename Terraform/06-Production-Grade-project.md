@@ -30,7 +30,16 @@
       6. Create Private Subnet
       7. Create Routing Table(for private subnet)
       8. Create Igw(for private subnet)
-
+6. AWS 
+      1. Update IAM Policy for RDS
+      2. create database.tf for RDS
+      3. set env vars for RDS
+      4. Update Bastion server
+      5. Modify CI user so TF has permission to update bastion
+      6. modify ssh key to authenticate with bastion server from local host
+      7. add user data script to install dependencies on bastion server for administration
+      8. add instance profile to bastion server to access resources in AWS(ECR)
+      9. add bastion server to public subnet
 
 
 # AWS
@@ -529,3 +538,223 @@ resource "aws_route" "public_internet_access_b" {
 }
 
 ```
+
+# AWS 
+- Update IAM Policy for RDS
+                        "rds:DeleteDBSubnetGroup",
+                        "rds:CreateDBInstance",
+                        "rds:CreateDBSubnetGroup",
+                        "rds:DeleteDBInstance",
+                        "rds:DescribeDBSubnetGroups",
+                        "rds:DescribeDBInstances",
+                        "rds:ListTagsForResource",
+                        "rds:ModifyDBInstance",
+                        "iam:CreateServiceLinkedRole",
+                        "rds:AddTagsToResource"
+
+- RDS database.tf file
+```
+resource "aws_db_subnet_group" "main" {
+  name = "${local.prefix}-main"
+  subnet_ids = [
+    aws_subnet.private_a.id,
+    aws_subnet.private_b.id
+  ]
+
+  tags = merge(
+    local.common_tags,
+    map("Name", "${local.prefix}-main")
+  )
+}
+
+resource "aws_security_group" "rds" {
+  description = "Allow access to the RDS database instance."
+  name        = "${local.prefix}-rds-inbound-access"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    protocol  = "tcp"
+    from_port = 5432
+    to_port   = 5432
+  }
+
+  tags = local.common_tags
+}
+
+resource "aws_db_instance" "main" {
+  identifier              = "${local.prefix}-db"
+  name                    = "recipe"
+  allocated_storage       = 20
+  storage_type            = "gp2"
+  engine                  = "postgres"
+  engine_version          = "11.4"
+  instance_class          = "db.t2.micro"
+  db_subnet_group_name    = aws_db_subnet_group.main.name
+  password                = var.db_password
+  username                = var.db_username
+  backup_retention_period = 0
+  multi_az                = false
+  skip_final_snapshot     = true
+  vpc_security_group_ids  = [aws_security_group.rds.id]
+
+  tags = merge(
+    local.common_tags,
+    map("Name", "${local.prefix}-main")
+  )
+}
+```
+- update vars for RDS
+```
+# vars for RDS instance
+variable "db_username" {
+  description = "Username for the RDS Postgres instance"
+}
+
+variable "db_password" {
+  description = "Password for the RDS postgres instance"
+}
+```
+
+- output for RDS
+```
+output "db_host" {
+  value = aws_db_instance.main.address
+}
+
+```
+
+- for username / password for RDS
+- create sample.tfvars
+```
+db_username = ''
+db_password = ''
+```
+
+- update env vars in Jenkins for RDS
+<img width="1081" alt="image" src="https://user-images.githubusercontent.com/75510135/132328196-66f17e67-5557-4715-999b-ce21f275e39b.png">
+
+- Update Bastion server
+<img width="738" alt="image" src="https://user-images.githubusercontent.com/75510135/132332034-02b8758e-d23a-473a-ba75-b30b1abf196d.png">
+
+- Modify CI user so TF has permission to update bastion
+```
+"iam:CreateRole",
+"iam:GetInstanceProfile",
+"iam:DeletePolicy",
+"iam:DetachRolePolicy",
+"iam:GetRole",
+"iam:AddRoleToInstanceProfile",
+"iam:ListInstanceProfilesForRole",
+"iam:ListAttachedRolePolicies",
+"iam:DeleteRole",
+"iam:TagRole",
+"iam:PassRole",
+"iam:GetPolicyVersion",
+"iam:GetPolicy",
+"iam:CreatePolicyVersion",
+"iam:DeletePolicyVersion",
+"iam:CreateInstanceProfile",
+"iam:DeleteInstanceProfile",
+"iam:ListPolicyVersions",
+"iam:AttachRolePolicy",
+"iam:CreatePolicy",
+"iam:RemoveRoleFromInstanceProfile"
+
+```
+
+- modify ssh key to authenticate with bastion server from local host
+```
+$ cat ~/.ssh/id_rsa.pub
+```
+- import the public key into EC2 
+<img width="1112" alt="image" src="https://user-images.githubusercontent.com/75510135/132336680-a2f2447e-1e2a-4b7a-a316-8e923714723b.png">
+
+
+- add user data script to install dependencies on bastion server for administration(templates/bastion/user-data.sh)
+```
+#!/bin/bash
+
+sudo yum update -y
+sudo amazon-linux-extras install -y docker
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+sudo usermod -aG docker ec2-user
+
+```
+- update bastion.tf
+```
+resource "aws_instance" "bastion" {
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t2.micro"
+  user_data =  file("./templates/bastion/user-data.sh")
+  
+  tags = merge(
+    local.common_tags,
+    map("Name","${local.prefix}-bastion")
+  )
+
+}
+```
+
+- add instance profile to bastion server to access resources in AWS(ECR)
+**instance profile is something we can assign to our bastion instance to give it IAM role
+- add instance-profile-policy.json
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": "sts:AssumeRole",
+        "Principal": {
+          "Service": "ec2.amazonaws.com"
+        },
+        "Effect": "Allow"
+      }
+    ]
+  }
+  
+ ```
+ - update bastion.tf
+ ```
+ data "aws_ami" "amazon_linux" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-2.0.*-x86_64-gp2"]
+  }
+  owners = ["amazon"]
+}
+
+resource "aws_iam_role" "bastion" {
+  name               = "${local.prefix}-bastion"
+  assume_role_policy = file("./templates/bastion/instance-profile-policy.json")
+
+  tags = local.common_tags
+}
+
+resource "aws_iam_role_policy_attachment" "bastion_attach_policy" {
+  role       = aws_iam_role.bastion.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+}
+
+resource "aws_iam_instance_profile" "bastion" {
+  name = "${local.prefix}-bastion-instance-profile"
+  role = aws_iam_role.bastion.name
+}
+
+
+resource "aws_instance" "bastion" {
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t2.micro"
+  user_data =  file("./templates/bastion/user-data.sh")
+  iam_instance_profile = aws_iam_instance_profile.bastion.name
+  tags = merge(
+    local.common_tags,
+    map("Name","${local.prefix}-bastion")
+  )
+
+}
+```
+- add bastion server to public subnet
+- add TF output to determine bastion hostname
+
