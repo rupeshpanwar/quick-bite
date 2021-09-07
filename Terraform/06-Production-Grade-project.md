@@ -671,6 +671,8 @@ $ cat ~/.ssh/id_rsa.pub
 
 
 - add user data script to install dependencies on bastion server for administration(templates/bastion/user-data.sh)
+<img width="376" alt="image" src="https://user-images.githubusercontent.com/75510135/132339304-58b16448-2750-40b8-a90b-604dbb9c0dea.png">
+
 ```
 #!/bin/bash
 
@@ -697,7 +699,7 @@ resource "aws_instance" "bastion" {
 ```
 
 - add instance profile to bastion server to access resources in AWS(ECR)
-**instance profile is something we can assign to our bastion instance to give it IAM role
+**instance profile is something we can assign to our bastion instance to give it IAM role**
 - add instance-profile-policy.json
 ```
 {
@@ -756,5 +758,30 @@ resource "aws_instance" "bastion" {
 }
 ```
 - add bastion server to public subnet
+- add var for bastion key 
+```
+variable "bastion_key_name" {
+    default = "devops-bastion"
+}
+```
+- update bastion.tf for ssh key and public subnet
+```
+resource "aws_instance" "bastion" {
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t2.micro"
+  user_data =  file("./templates/bastion/user-data.sh")
+  iam_instance_profile = aws_iam_instance_profile.bastion.name
+  
+  subnet_id = aws_subnet.public_a.id
+  key_name  = var.bastion_key_name
+  
+  tags = merge(
+    local.common_tags,
+    map("Name","${local.prefix}-bastion")
+  )
+
+}
+```
+
 - add TF output to determine bastion hostname
 
