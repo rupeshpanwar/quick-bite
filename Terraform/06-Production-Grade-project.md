@@ -40,7 +40,12 @@
       7. add user data script to install dependencies on bastion server for administration
       8. add instance profile to bastion server to access resources in AWS(ECR)
       9. add bastion server to public subnet
-
+7. Terraform
+      1. Create ECS Cluster
+      2. Define a Task role to give ECS access to other AWS resources
+      3. Add a cloud watch log group to keep log output for containers
+      4. Add container definition(CPU,memory)
+      5. Create task definition to assign to ECS Service
 
 # AWS
 - Create IAM user/policy
@@ -782,6 +787,192 @@ resource "aws_instance" "bastion" {
 
 }
 ```
+- Add Security group to allow inbound access port 22(ssh), outbound access 443/80, outbound access 5432(postgres)
+```
+resource "aws_security_group" "bastion" {
+  description = "Control bastion inbound and outbound access"
+  name        = "${local.prefix}-bastion"
+  vpc_id      = aws_vpc.main.id
 
+  ingress {
+    protocol    = "tcp"
+    from_port   = 22
+    to_port     = 22
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    protocol    = "tcp"
+    from_port   = 443
+    to_port     = 443
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    protocol    = "tcp"
+    from_port   = 80
+    to_port     = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port = 5432
+    to_port   = 5432
+    protocol  = "tcp"
+    cidr_blocks = [
+      aws_subnet.private_a.cidr_block,
+      aws_subnet.private_b.cidr_block,
+    ]
+  }
+
+  tags = local.common_tags
+}
+
+```
+- update bastion.tf to include security group
+```
+resource "aws_instance" "bastion" {
+  ami           = data.aws_ami.amazon_linux.id
+  instance_type = "t2.micro"
+  user_data =  file("./templates/bastion/user-data.sh")
+  iam_instance_profile = aws_iam_instance_profile.bastion.name
+  
+  subnet_id = aws_subnet.public_a.id
+  key_name  = var.bastion_key_name
+  
+ ** vpc_security_group_ids = [
+    aws_security_group.bastion.id
+  ]
+**
+  tags = merge(
+    local.common_tags,
+    map("Name","${local.prefix}-bastion")
+  )
+
+}
+
+```
+- update database.tf to include access only from securitygroup of bastion
+```
+
+resource "aws_security_group" "rds" {
+  description = "Allow access to the RDS database instance."
+  name        = "${local.prefix}-rds-inbound-access"
+  vpc_id      = aws_vpc.main.id
+
+  security_groups = [
+      aws_security_group.bastion.id
+    ]
+
+  ingress {
+    protocol  = "tcp"
+    from_port = 5432
+    to_port   = 5432
+  }
+
+  tags = local.common_tags
+}
+
+```
 - add TF output to determine bastion hostname
 
+# Terraform 
+- Create ECS cluster to group components
+<img width="576" alt="image" src="https://user-images.githubusercontent.com/75510135/132460032-4c352e8e-65b5-402e-8676-998cedc9e205.png">
+- update CI for ECS 
+```
+"logs:CreateLogGroup",
+"logs:DeleteLogGroup",
+"logs:DescribeLogGroups",
+"logs:ListTagsLogGroup",
+"logs:TagLogGroup",
+"ecs:DeleteCluster",
+"ecs:CreateService",
+"ecs:UpdateService",
+"ecs:DeregisterTaskDefinition",
+"ecs:DescribeClusters",
+"ecs:RegisterTaskDefinition",
+"ecs:DeleteService",
+"ecs:DescribeTaskDefinition",
+"ecs:DescribeServices",
+"ecs:CreateCluster"
+
+```
+<img width="1007" alt="image" src="https://user-images.githubusercontent.com/75510135/132461536-f6d99e4f-c99f-4265-a6b8-250de8e37a91.png">
+- create cluster, ecs.tf
+```
+resource "aws_ecs_cluster" "main" {
+  name = "${local.prefix}-cluster"
+
+  tags = local.common_tags
+}
+```
+- Define a Task role(assume-role-policy.json) to give ECS access to other AWS resources(like to fetch image from ECR, put logs into log stream, to start a service)
+<img width="282" alt="image" src="https://user-images.githubusercontent.com/75510135/132471378-8e153423-aa2d-4d81-98ab-a116c41de0e5.png">
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": "sts:AssumeRole",
+        "Principal": {
+          "Service": "ecs-tasks.amazonaws.com"
+        },
+        "Effect": "Allow"
+      }
+    ]
+  }
+  ```
+  - task-exec-role.json
+  ```
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+- update ecs.tf for IMA role_policy
+# ... existing code ...
+
+resource "aws_iam_policy" "task_execution_role_policy" {
+  name        = "${local.prefix}-task-exec-role-policy"
+  path        = "/"
+  description = "Allow retrieving images and adding to logs"
+  policy      = file("./templates/ecs/task-exec-role.json")
+}
+
+resource "aws_iam_role" "task_execution_role" {
+  name               = "${local.prefix}-task-exec-role"
+  assume_role_policy = file("./templates/ecs/assume-role-policy.json")
+}
+
+resource "aws_iam_role_policy_attachment" "task_execution_role" {
+  role       = aws_iam_role.task_execution_role.name
+  policy_arn = aws_iam_policy.task_execution_role_policy.arn
+}
+
+resource "aws_iam_role" "app_iam_role" {
+  name               = "${local.prefix}-api-task"
+  assume_role_policy = file("./templates/ecs/assume-role-policy.json")
+
+  tags = local.common_tags
+}
+
+
+  
+- Add a cloud watch log group to keep log output for containers
+- Add container definition(CPU,memory)
+- Create task definition to assign to ECS Service 
