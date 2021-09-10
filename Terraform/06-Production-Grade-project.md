@@ -945,7 +945,6 @@ resource "aws_ecs_cluster" "main" {
 }
 ```
 - update ecs.tf for IMA role_policy
-# ... existing code ...
 
 resource "aws_iam_policy" "task_execution_role_policy" {
   name        = "${local.prefix}-task-exec-role-policy"
@@ -974,5 +973,118 @@ resource "aws_iam_role" "app_iam_role" {
 
   
 - Add a cloud watch log group to keep log output for containers
-- Add container definition(CPU,memory)
+```
+
+resource "aws_cloudwatch_log_group" "ecs_task_logs" {
+  name = "${local.prefix}-api"
+
+  tags = local.common_tags
+}
+```
+- Add container definition(CPU,memory),container-definitions.json.tpl, json file containing container details(image register/tag,memory, env vars) to run on AWS
+```
+[
+    {
+        "name": "api",
+        "image": "${app_image}",
+        "essential": true,
+        "memoryReservation": 256,
+        "environment": [
+            {"name": "DJANGO_SECRET_KEY", "value": "${django_secret_key}"},
+            {"name": "DB_HOST", "value": "${db_host}"},
+            {"name": "DB_NAME", "value": "${db_name}"},
+            {"name": "DB_USER", "value": "${db_user}"},
+            {"name": "DB_PASS", "value": "${db_pass}"},
+            {"name": "ALLOWED_HOSTS", "value": "${allowed_hosts}"}
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "${log_group_name}",
+                "awslogs-region": "${log_group_region}",
+                "awslogs-stream-prefix": "api"
+            }
+        },
+        "portMappings": [
+            {
+                "containerPort": 9000,
+                "hostPort": 9000
+            }
+        ],
+        "mountPoints": [
+            {
+                "readOnly": false,
+                "containerPath": "/vol/web",
+                "sourceVolume": "static"
+            }
+        ]
+    },
+    {
+        "name": "proxy",
+        "image": "${proxy_image}",
+        "essential": true,
+        "portMappings": [
+            {
+                "containerPort": 8000,
+                "hostPort": 8000
+            }
+        ],
+        "memoryReservation": 256,
+        "environment": [
+            {"name": "APP_HOST", "value": "127.0.0.1"},
+            {"name": "APP_PORT", "value": "9000"},
+            {"name": "LISTEN_PORT", "value": "8000"}
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "${log_group_name}",
+                "awslogs-region": "${log_group_region}",
+                "awslogs-stream-prefix": "proxy"
+            }
+        },
+        "mountPoints": [
+            {
+                "readOnly": true,
+                "containerPath": "/vol/static",
+                "sourceVolume": "static"
+            }
+        ]
+    }
+]
+
+```
+ 
 - Create task definition to assign to ECS Service 
+```
+- variables.tf
+# vars for ECS
+
+variable "ecr_image_api" {
+  description = "ECR Image for API"
+  default     = "202791543801.dkr.ecr.ap-south-1.amazonaws.com/dev-banner-management:latest"
+}
+
+```
+
+```
+- ecs.tf
+data "template_file" "api_container_definitions" {
+  template = file("templates/ecs/container-definitions.json.tpl")
+
+  vars = {
+    app_image         = var.ecr_image_api
+    proxy_image       = var.ecr_image_proxy
+    django_secret_key = var.django_secret_key
+    db_host           = aws_db_instance.main.address
+    db_name           = aws_db_instance.main.name
+    db_user           = aws_db_instance.main.username
+    db_pass           = aws_db_instance.main.password
+    log_group_name    = aws_cloudwatch_log_group.ecs_task_logs.name
+    log_group_region  = data.aws_region.current.name
+    allowed_hosts     = "*"
+  }
+}
+
+```
+
