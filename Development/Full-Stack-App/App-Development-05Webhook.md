@@ -34,4 +34,27 @@
 <img width="807" alt="image" src="https://user-images.githubusercontent.com/75510135/132275627-bf8bbb7e-3992-4f5b-b1f2-345ebce8e898.png">
 <img width="930" alt="image" src="https://user-images.githubusercontent.com/75510135/132275867-7543895e-27e5-4b29-8277-64ce5dd866c1.png">
 
+- refactor
+<img width="901" alt="image" src="https://user-images.githubusercontent.com/75510135/132607628-9164037c-748a-499b-8848-a59d143e526c.png">
+<img width="903" alt="image" src="https://user-images.githubusercontent.com/75510135/132607818-f3a2bd43-bcaf-4879-8cc9-0a884ae235ce.png">
+<img width="935" alt="image" src="https://user-images.githubusercontent.com/75510135/132608206-9c5cada8-360e-4325-88f6-259e437b3918.png">
+<img width="416" alt="image" src="https://user-images.githubusercontent.com/75510135/132608344-1f7b440f-0c6a-4d16-b45c-c1f01359b0a4.png">
+- finding the exact survey
+ <img width="483" alt="image" src="https://user-images.githubusercontent.com/75510135/132936418-fff132f7-c39e-4e73-b304-83ef2a10ecd2.png">
+
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/75510135/132936396-8007a02d-ca7c-461d-8f3f-f8d80a256fd0.png">
+<img width="715" alt="image" src="https://user-images.githubusercontent.com/75510135/133010401-e6e2ee7f-fb4f-4307-8d20-aa0933e66b48.png">
+<img width="891" alt="image" src="https://user-images.githubusercontent.com/75510135/133010520-eff82263-d176-4c2f-b78f-080ba72ceb43.png">
+<img width="916" alt="image" src="https://user-images.githubusercontent.com/75510135/133010900-1c556292-59ae-4e11-9a9b-77b132a7c775.png">
+
+<img width="619" alt="image" src="https://user-images.githubusercontent.com/75510135/133011109-d0ea1689-f21f-4bc7-8dfe-e2c137052b09.png">
+- fetching list of surveys
+<img width="565" alt="image" src="https://user-images.githubusercontent.com/75510135/133011581-3d925f39-dbe5-4f12-a477-a45be2424b92.png">
+
+<img width="617" alt="image" src="https://user-images.githubusercontent.com/75510135/133011625-6af0566d-cdd7-418e-98fa-04d286ee34ae.png">
+<img width="875" alt="image" src="https://user-images.githubusercontent.com/75510135/133116561-d51b2c02-b9af-4b11-9d35-ccab61039dc5.png">
+<img width="818" alt="image" src="https://user-images.githubusercontent.com/75510135/133118362-155ff1e4-f681-44c7-8586-9e1906b562b1.png">
+<img width="851" alt="image" src="https://user-images.githubusercontent.com/75510135/133118809-064d0ce4-53bb-4ad4-ac9d-30bd0a9e3501.png">
+
+
 
