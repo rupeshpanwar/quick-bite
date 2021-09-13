@@ -46,6 +46,8 @@
       3. Add a cloud watch log group to keep log output for containers
       4. Add container definition(CPU,memory)
       5. Create task definition to assign to ECS Service
+8. Post-deployment processing
+      1. Login into bastion host
 
 # AWS
 - Create IAM user/policy
@@ -1166,3 +1168,21 @@ resource "aws_security_group" "rds" {
   tags = local.common_tags
 }
 ```
+
+# Post-deployment processing
+- Login into bastion host
+- ssh@hostip
+- login into ECR
+```
+$(aws ecr get-login --no-include-email  --region ap-south-1 )
+```
+
+# ELB
+- to scale up tasks in ECS service, zero downtime deployment, distribute tasks running in different availablity zones
+<img width="588" alt="image" src="https://user-images.githubusercontent.com/75510135/132820632-2956b78c-aff3-46c0-bff6-8ee6813aa7ab.png">
+
+- create IAM policy
+```
+"elasticloadbalancing:*"
+```
+- create load balancer , target group and listener, allow task to register with LB
