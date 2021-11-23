@@ -459,6 +459,30 @@ kubectl describe service <servicename>
 
 <img width="1011" alt="image" src="https://user-images.githubusercontent.com/75510135/143010586-99573f85-3837-4c12-aee6-085826bc90ab.png">
 
+<img width="793" alt="image" src="https://user-images.githubusercontent.com/75510135/143041375-d9bcb40f-ba05-47c8-a509-fa1e782c9e14.png">
+<img width="958" alt="image" src="https://user-images.githubusercontent.com/75510135/143041670-e67962ad-7a83-4dd1-956f-b8dd583533dd.png">
+<img width="898" alt="image" src="https://user-images.githubusercontent.com/75510135/143041903-381cd5be-a637-44a1-981a-00c5ad6bf23b.png">
+<img width="885" alt="image" src="https://user-images.githubusercontent.com/75510135/143041974-1e7fc9d1-0427-46d8-95d1-0a8741fdad78.png">
+<img width="931" alt="image" src="https://user-images.githubusercontent.com/75510135/143042127-2e25df6f-7032-49f5-b76f-2b48a2c8cc13.png">
+<img width="864" alt="image" src="https://user-images.githubusercontent.com/75510135/143042437-f996aa8a-13b2-44ff-9925-dc5015098dc8.png">
+
+<img width="672" alt="image" src="https://user-images.githubusercontent.com/75510135/143042829-989c1ac8-a0a3-4033-9f47-25fdcb97851c.png">
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/75510135/143043046-ce97204c-3fd6-4fe1-b5ad-559346ddf732.png">
+<img width="943" alt="image" src="https://user-images.githubusercontent.com/75510135/143043667-458f9c56-4801-4bed-bf24-19e25cc587c7.png">
+
+<img width="776" alt="image" src="https://user-images.githubusercontent.com/75510135/143043755-f48060fe-49e2-429b-b030-374280739793.png">
+<img width="576" alt="image" src="https://user-images.githubusercontent.com/75510135/143043833-35d603b1-9e0d-403c-a830-7a7ebead2161.png">
+<img width="974" alt="image" src="https://user-images.githubusercontent.com/75510135/143044020-73ea8be3-811a-4220-8550-bcab5ed03f33.png">
+<img width="705" alt="image" src="https://user-images.githubusercontent.com/75510135/143044132-6f40ce15-c2ae-4ea7-832f-b361f1576600.png">
+<img width="1011" alt="image" src="https://user-images.githubusercontent.com/75510135/143044210-e2405276-fe99-4dfe-b672-3b6fbf0f7dc1.png">
+
+<img width="622" alt="image" src="https://user-images.githubusercontent.com/75510135/143044262-4aa9a2d2-05f7-4d4e-bcba-574d7a313dbc.png">
+
+<img width="440" alt="image" src="https://user-images.githubusercontent.com/75510135/143044468-c2c6b8ce-670e-4a52-ac38-85cb3003454d.png">
+<img width="292" alt="image" src="https://user-images.githubusercontent.com/75510135/143044859-e8b22ce5-5cf1-4b44-8e46-da4d3453c123.png">
+<img width="1024" alt="image" src="https://user-images.githubusercontent.com/75510135/143044999-d6062c94-2fb8-4f6a-ba1f-38082d89317a.png">
+
+
 
 
 
