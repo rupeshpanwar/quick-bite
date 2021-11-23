@@ -412,7 +412,7 @@ kubectl describe service <servicename>
 
 <img width="858" alt="image" src="https://user-images.githubusercontent.com/75510135/142971161-e15c14bc-fe4d-4cc8-8edc-45f2e89a1d98.png">
 
-
+-
 
 
 
