@@ -414,6 +414,56 @@ kubectl describe service <servicename>
 
 -
 
+<img width="862" alt="image" src="https://user-images.githubusercontent.com/75510135/142992061-086dfa5b-9687-4af5-b90f-468b97a275d2.png">
+<img width="1007" alt="image" src="https://user-images.githubusercontent.com/75510135/142992205-b76d78dd-3c85-4c03-ba19-56381f12f7cc.png">
+<img width="786" alt="image" src="https://user-images.githubusercontent.com/75510135/142993475-bfdc0b49-1612-46c6-aa8b-f4cecf3ddf85.png">
+
+<img width="484" alt="image" src="https://user-images.githubusercontent.com/75510135/143003684-12661b9a-1275-45c3-b5e5-15f839aa5c48.png">
+<img width="707" alt="image" src="https://user-images.githubusercontent.com/75510135/143004013-438f83fd-59a6-46b9-9f6c-4d12b218590f.png">
+<img width="954" alt="image" src="https://user-images.githubusercontent.com/75510135/143004297-5c34dd3f-ff86-4945-a232-db4e694372f7.png">
+- create role
+<img width="516" alt="image" src="https://user-images.githubusercontent.com/75510135/143005709-e644d77d-bfb9-4f15-a8de-14125d3cb2c8.png">
+
+<img width="341" alt="image" src="https://user-images.githubusercontent.com/75510135/143006105-690c0ec3-f8c2-4aa4-84d2-fa4f9ca1710d.png">
+<img width="607" alt="image" src="https://user-images.githubusercontent.com/75510135/143006139-8818f3e9-53a4-4e8d-80d1-fd83766e30cd.png">
+<img width="821" alt="image" src="https://user-images.githubusercontent.com/75510135/143006208-bd68a025-1a2b-42a8-bee2-279508f63f70.png">
+<img width="616" alt="image" src="https://user-images.githubusercontent.com/75510135/143006339-71fd500a-4997-4bbe-9790-e7cfe516086b.png">
+<img width="924" alt="image" src="https://user-images.githubusercontent.com/75510135/143006547-90d42aa0-e701-46af-b92d-ef693e968b77.png">
+
+<img width="839" alt="image" src="https://user-images.githubusercontent.com/75510135/143007309-32a7b0e4-8027-420c-9407-1bb6c9e2a9f0.png">
+
+<img width="899" alt="image" src="https://user-images.githubusercontent.com/75510135/143008053-ba5972d0-bd44-4ae6-8598-4489e1dcdb64.png">
+<img width="567" alt="image" src="https://user-images.githubusercontent.com/75510135/143008373-bc1c98b4-b9cc-45f3-8aa3-c10f8e84daef.png">
+
+- Monitoring 
+<img width="876" alt="image" src="https://user-images.githubusercontent.com/75510135/143008896-cc2114d6-3416-4937-95e1-d62b33e313af.png">
+
+<img width="720" alt="image" src="https://user-images.githubusercontent.com/75510135/143009066-9ce62dde-e5e7-486a-b81e-3a8e6a94a608.png">
+
+<img width="1021" alt="image" src="https://user-images.githubusercontent.com/75510135/143009192-cd8e1bc8-8855-4682-9d83-41cebc211989.png">
+<img width="1034" alt="image" src="https://user-images.githubusercontent.com/75510135/143009344-29c954e4-bd9c-4c44-b21e-b02cd9b0bdac.png">
+<img width="708" alt="image" src="https://user-images.githubusercontent.com/75510135/143009424-5cdfae5d-b1d1-4d17-9899-eb72979dcc76.png">
+
+<img width="1028" alt="image" src="https://user-images.githubusercontent.com/75510135/143009750-601b84bf-2259-477b-a1a4-0a4c8bb3ab16.png">
+<img width="1028" alt="image" src="https://user-images.githubusercontent.com/75510135/143009943-e078c500-c4de-45d7-974a-c8e24dc2b4e4.png">
+
+<img width="1043" alt="image" src="https://user-images.githubusercontent.com/75510135/143010091-f5f694b6-2cdb-4b92-9b6e-36748ca9a3f5.png">
+
+<img width="859" alt="image" src="https://user-images.githubusercontent.com/75510135/143010138-eef6382a-2711-4c30-8a17-5e4f5d21fa95.png">
+
+<img width="914" alt="image" src="https://user-images.githubusercontent.com/75510135/143010291-472a59f5-3742-4d31-8cfe-05a74f7d462e.png">
+
+<img width="738" alt="image" src="https://user-images.githubusercontent.com/75510135/143010422-97aebddf-e03c-4a93-bfee-d7e5d76bde47.png">
+
+<img width="428" alt="image" src="https://user-images.githubusercontent.com/75510135/143010510-cbdc2113-7b53-44a7-be2e-9867955e3403.png">
+
+<img width="1011" alt="image" src="https://user-images.githubusercontent.com/75510135/143010586-99573f85-3837-4c12-aee6-085826bc90ab.png">
+
+
+
+
+
+
 
 
 
