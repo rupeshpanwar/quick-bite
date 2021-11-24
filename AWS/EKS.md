@@ -27,6 +27,37 @@
 <img width="890" alt="image" src="https://user-images.githubusercontent.com/75510135/142800437-5acb5f2d-cbe5-4a91-bb99-ad7265130c7e.png">
 
 - eksctl
+```
+pip3 install --user awscli
+    cat ~/aws/credentials
+    cat ~/.aws/credentials
+    vi ~/.aws/credentials
+    cat ~/.aws/credentials
+    vi ~/.aws/credentials
+    curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" |      tar xz -C /tmp
+    brew eksctl
+    brew tap weaveworks/tap
+    brew install weaveworks/tap/eksctl
+    xcode-select --install
+    brew upgrade eksctl && brew link --overwrite eksctl
+    eksctl version
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    brew tap weaveworks/tap
+    brew install weaveworks/tap/eksctl
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    brew tap weaveworks/tap
+    brew upgrade eksctl && brew link --overwrite eksctl
+    eksctl version
+    sudo mv /tmp/eksctl /usr/local/bin
+    curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/darwin/amd64/kubectl
+    curl -o kubectl.sha256 https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/darwin/amd64/kubectl.sha256
+    openssl sha1 -sha256 kubectl
+    chmod +x ./kubectl
+    mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+    echo 'export PATH=$PATH:$HOME/bin' >> ~/.bash_profile
+    kubectl version --short --client
+    
+    
 <img width="1049" alt="image" src="https://user-images.githubusercontent.com/75510135/142800777-e3ba3e1e-0fb0-40c7-84ec-4eaa9b8f1b01.png">
 <img width="851" alt="image" src="https://user-images.githubusercontent.com/75510135/142801140-26447004-e08d-4993-b3e5-ad3961bd91d0.png">
 https://eksctl.io/
