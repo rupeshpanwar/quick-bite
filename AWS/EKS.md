@@ -481,6 +481,170 @@ kubectl describe service <servicename>
 <img width="440" alt="image" src="https://user-images.githubusercontent.com/75510135/143044468-c2c6b8ce-670e-4a52-ac38-85cb3003454d.png">
 <img width="292" alt="image" src="https://user-images.githubusercontent.com/75510135/143044859-e8b22ce5-5cf1-4b44-8e46-da4d3453c123.png">
 <img width="1024" alt="image" src="https://user-images.githubusercontent.com/75510135/143044999-d6062c94-2fb8-4f6a-ba1f-38082d89317a.png">
+<img width="899" alt="image" src="https://user-images.githubusercontent.com/75510135/143150285-cf853f8f-cb42-4859-8e86-595996b3e458.png">
+<img width="1019" alt="image" src="https://user-images.githubusercontent.com/75510135/143150412-f281655e-9104-470c-bc47-f1b02f5f466f.png">
+<img width="586" alt="image" src="https://user-images.githubusercontent.com/75510135/143150490-538112c7-5648-44e2-84a3-e336ee108d50.png">
+<img width="438" alt="image" src="https://user-images.githubusercontent.com/75510135/143150560-fc1b6308-92c0-4036-b6e6-b81bc66a5658.png">
+# deploy mysql
+## create secret which stores mysql pw, to be injected as env var into container
+```
+kubectl create secret generic mysql-pass --from-literal=password=eks-course-mysql-pw --namespace=ns-eks-course
+```
+check:
+```
+kubectl get secrets --namespace=ns-eks-course
+```
+
+## launch mysql deployment
+```
+kubectl apply -f deploy-mysql.yaml --namespace=ns-eks-course
+```
+## checks
+* persistent volumes
+* persistent volume claims
+* pods
+```
+kubectl get pv --namespace=ns-eks-course
+kubectl get pvc --namespace=ns-eks-course
+kubectl get pods -o wide --namespace=ns-eks-course
+```
+* EBS volumes
+goto AWS mgm console => EC2 => Elastic Block store => volumes
+<img width="986" alt="image" src="https://user-images.githubusercontent.com/75510135/143151280-956dc3da-59c8-4adc-9938-5bf5004b5729.png">
+
+<img width="958" alt="image" src="https://user-images.githubusercontent.com/75510135/143151383-84dec44e-7438-4431-8560-1fdc790fc6b0.png">
+
+- Stateful set
+<img width="909" alt="image" src="https://user-images.githubusercontent.com/75510135/143151632-442a44bd-7276-496b-8958-4eb886dc1841.png">
+<img width="984" alt="image" src="https://user-images.githubusercontent.com/75510135/143151718-dbf38ea1-79a0-4d05-8d18-de84d2cd7750.png">
+<img width="585" alt="image" src="https://user-images.githubusercontent.com/75510135/143151770-ea784ff7-f3b9-47f4-9266-fcc795481c86.png">
+<img width="537" alt="image" src="https://user-images.githubusercontent.com/75510135/143151958-28948442-347b-495e-96f1-d2d517726291.png">
+<img width="430" alt="image" src="https://user-images.githubusercontent.com/75510135/143151999-da1974c9-a0a7-4cef-bd1e-73b0f8cb9305.png">
+<img width="1033" alt="image" src="https://user-images.githubusercontent.com/75510135/143153151-a81c4251-f527-468f-b141-1a60afa7ab2c.png">
+<img width="790" alt="image" src="https://user-images.githubusercontent.com/75510135/143153261-2eeba5b5-7456-4b3b-97d7-8d026a773ac6.png">
+<img width="904" alt="image" src="https://user-images.githubusercontent.com/75510135/143153611-4ec0dd73-ba11-45dd-aabe-ac8833bee9c7.png">
+<img width="554" alt="image" src="https://user-images.githubusercontent.com/75510135/143153677-4e483115-232c-4310-8153-4800f50608f8.png">
+<img width="639" alt="image" src="https://user-images.githubusercontent.com/75510135/143153708-3db308fd-947a-44a9-953b-63b4811b2d5a.png">
+<img width="562" alt="image" src="https://user-images.githubusercontent.com/75510135/143153785-8a91bcbc-58c9-4cc9-a6e4-71e2bc1489ad.png">
+<img width="1027" alt="image" src="https://user-images.githubusercontent.com/75510135/143153869-276a71c7-9121-4894-8ed1-cb6a93ac8b0e.png">
+<img width="1030" alt="image" src="https://user-images.githubusercontent.com/75510135/143153964-8d085e59-385b-41c3-98ad-f71072b71801.png">
+<img width="1020" alt="image" src="https://user-images.githubusercontent.com/75510135/143154173-2ecb8a4f-f52c-49b3-9f3f-ef0e7cb0679c.png">
+<img width="726" alt="image" src="https://user-images.githubusercontent.com/75510135/143154431-addecacf-f92b-4e63-9239-d21cc8a9d9ec.png">
+<img width="830" alt="image" src="https://user-images.githubusercontent.com/75510135/143154456-ae6c61f9-0a9b-44c8-a730-9c3c2fc6c9d1.png">
+<img width="770" alt="image" src="https://user-images.githubusercontent.com/75510135/143154665-53bb4fe2-8699-4085-a9f7-f62ce553d3c1.png">
+<img width="718" alt="image" src="https://user-images.githubusercontent.com/75510135/143164437-671a9130-672b-4588-b39b-ecbc1fc323a5.png">
+<img width="922" alt="image" src="https://user-images.githubusercontent.com/75510135/143164571-dd450928-6a78-4daa-aaaf-e59741568ed9.png">
+<img width="899" alt="image" src="https://user-images.githubusercontent.com/75510135/143164956-d3cbe5a4-8480-4221-8f55-dd700823c2db.png">
+<img width="681" alt="image" src="https://user-images.githubusercontent.com/75510135/143165777-b3b1c0f2-2dba-49bd-a04b-c2e1214816e0.png">
+<img width="849" alt="image" src="https://user-images.githubusercontent.com/75510135/143166082-73a5971c-59fd-4e17-8840-b8eeaf8d4b63.png">
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/75510135/143166341-4e483dec-6bb6-42df-a6dd-d055071eeb42.png">
+<img width="899" alt="image" src="https://user-images.githubusercontent.com/75510135/143166640-1acc459d-79f5-462d-b109-ae0086fd5132.png">
+<img width="898" alt="image" src="https://user-images.githubusercontent.com/75510135/143166826-50e53f46-be5d-4c74-a631-3d69418c4829.png">
+<img width="845" alt="image" src="https://user-images.githubusercontent.com/75510135/143166962-ef56e2fa-39ae-48fb-94bf-81e29c4ded2f.png">
+<img width="1000" alt="image" src="https://user-images.githubusercontent.com/75510135/143167470-0c5df753-8be7-4f75-857e-d7dc0a337a9a.png">
+<img width="1019" alt="image" src="https://user-images.githubusercontent.com/75510135/143168850-b98bc6e2-b3ca-437f-b419-b687d16d8cd7.png">
+- login into worker node
+<img width="914" alt="image" src="https://user-images.githubusercontent.com/75510135/143168912-895e92ca-591a-422c-99f5-bc9ead93db30.png">
+
+<img width="704" alt="image" src="https://user-images.githubusercontent.com/75510135/143169035-35826a85-1415-47d7-a37c-c4421493f33a.png">
+<img width="964" alt="image" src="https://user-images.githubusercontent.com/75510135/143169152-74142c8c-31e7-4d04-80a3-37c5624bf9c5.png">
+<img width="535" alt="image" src="https://user-images.githubusercontent.com/75510135/143169213-34d37853-6152-4c48-bd17-0dc7270682be.png">
+# click through AWS console to create EFS
+login to AWS console and search for service _EFS_   
+click through wizard , use our course VPC and all 3 AZs
+*specify the security group of your EC2-worker-nodes, to be applied to EFS as well*
+
+# add amazon-efs-utils
+install the package *amazon-efs-utils* on all worker nodes
+
+
+```
+ssh -i <<eks-course.pem>> ec2-user@<<ec2-workernode>> "sudo yum install -y amazon-efs-utils"
+```
+# create namespace
+```
+kubectl create namespace ns-eks-course-efs
+```
+<img width="627" alt="image" src="https://user-images.githubusercontent.com/75510135/143169475-55092bf6-1730-4dcf-aa57-0a2e9282bb34.png">
+<img width="928" alt="image" src="https://user-images.githubusercontent.com/75510135/143169523-c8c68fcd-b9e5-47f5-8e80-59c0ff127ef5.png">
+<img width="664" alt="image" src="https://user-images.githubusercontent.com/75510135/143169543-7c1e9f5c-c60f-432d-8ce8-e8fce32136d2.png">
+<img width="444" alt="image" src="https://user-images.githubusercontent.com/75510135/143169792-70f63298-73df-45dc-816e-4b15c7226f3f.png">
+<img width="708" alt="image" src="https://user-images.githubusercontent.com/75510135/143169828-5023b1b1-de46-435c-83d3-4fe5503c6e79.png">
+<img width="527" alt="image" src="https://user-images.githubusercontent.com/75510135/143169896-6808fe1d-2be9-46e1-a34f-f2420b67a09f.png">
+<img width="909" alt="image" src="https://user-images.githubusercontent.com/75510135/143170007-cdb4ba5f-79de-4fa6-a933-41a12a365f2e.png">
+# create storage
+The steps to execute are:  
+
+1. add RBAC to access EFS
+2. create EFS provisioner  
+replace your *EFS-ID* and *EFS-DNS name* in file _create-efs-provisioner.yaml_
+3. create PVCs
+
+The corresponding commands are:  
+```
+kubectl apply -f create-rbac.yaml --namespace=ns-eks-course-efs
+kubectl apply -f create-efs-provisioner.yaml --namespace=ns-eks-course-efs
+kubectl apply -f create-storage.yaml --namespace=ns-eks-course-efs
+```
+<img width="1007" alt="image" src="https://user-images.githubusercontent.com/75510135/143170133-c04ce32b-2958-47b7-bc3d-774d933cb60b.png">
+- on worker node
+<img width="869" alt="image" src="https://user-images.githubusercontent.com/75510135/143170325-480e2153-98af-4617-b089-f242059b6498.png">
+<img width="876" alt="image" src="https://user-images.githubusercontent.com/75510135/143170389-9dd7e70f-7b8b-46cc-9140-ec491376cebe.png">
+# deploy mysql
+## create secret which stores mysql pw, to be injected as env var into container
+```
+kubectl create secret generic mysql-pass --from-literal=password=eks-course-mysql-pw --namespace=ns-eks-course-efs
+```
+check:
+```
+kubectl get secrets --namespace=ns-eks-course-efs
+```
+
+## launch mysql deployment
+```
+kubectl apply -f deploy-mysql.yaml --namespace=ns-eks-course-efs
+```
+## checks
+* persistent volumes
+* persistent volume claims
+* pods
+```
+kubectl get pv --namespace=ns-eks-course-efs
+kubectl get pvc --namespace=ns-eks-course-efs
+kubectl get pods -o wide --namespace=ns-eks-course-efs
+```
+<img width="660" alt="image" src="https://user-images.githubusercontent.com/75510135/143171013-59f64416-1ca5-469f-abc7-e3e0abe1d5e8.png">
+<img width="992" alt="image" src="https://user-images.githubusercontent.com/75510135/143172237-44f353e0-1d2e-47bc-a5af-818d0eb95996.png">
+<img width="621" alt="image" src="https://user-images.githubusercontent.com/75510135/143172458-2e621f79-e204-4ae8-8f8a-e5a664f5ecbf.png">
+<img width="651" alt="image" src="https://user-images.githubusercontent.com/75510135/143172667-f376002d-2958-4395-9d50-832dfb81e452.png">
+<img width="371" alt="image" src="https://user-images.githubusercontent.com/75510135/143172699-773b1686-e212-41a6-b95f-1a3a844ee3c5.png">
+<img width="743" alt="image" src="https://user-images.githubusercontent.com/75510135/143172624-90618d21-b7fd-48a1-a213-9e2c62929943.png">
+<img width="1014" alt="image" src="https://user-images.githubusercontent.com/75510135/143172756-70062b97-ac16-4ae6-b4ef-097edde2fd0f.png">
+<img width="1021" alt="image" src="https://user-images.githubusercontent.com/75510135/143172851-12cd396a-b8a4-4447-9367-c7ba421e5e49.png">
+<img width="349" alt="image" src="https://user-images.githubusercontent.com/75510135/143173037-9098f8a6-9638-46a6-814b-2a1b212396f8.png">
+<img width="665" alt="image" src="https://user-images.githubusercontent.com/75510135/143173353-d7e0cc6e-ef75-41cc-ba3d-1389d1dbc3e8.png">
+<img width="989" alt="image" src="https://user-images.githubusercontent.com/75510135/143173434-bc95403a-2976-428e-b38b-acd8347166f9.png">
+
+# deploy wordpress
+```
+kubectl apply -f deploy-wordpress.yaml --namespace=ns-eks-course-efs
+```
+get URL of the app:
+```
+kubectl describe service wordpress --namespace=ns-eks-course-efs | grep Ingress
+```
+or goto AWS console => EC2
+
+```
+<img width="534" alt="image" src="https://user-images.githubusercontent.com/75510135/143173622-cb3ce586-d7b6-4667-b1e8-af31ea78f59f.png">
+<img width="442" alt="image" src="https://user-images.githubusercontent.com/75510135/143173801-ed56be93-ec44-472a-8087-383ad68cf0be.png">
+<img width="1016" alt="image" src="https://user-images.githubusercontent.com/75510135/143173855-f81009b7-319c-41e4-93ec-36bd5f82f9bc.png">
+<img width="1006" alt="image" src="https://user-images.githubusercontent.com/75510135/143174050-de58794e-886a-4581-9882-0021bbb209c4.png">
+<img width="1032" alt="image" src="https://user-images.githubusercontent.com/75510135/143173985-937f13ff-0812-49f5-af7b-36cd9d8a8d5b.png">
+<img width="1020" alt="image" src="https://user-images.githubusercontent.com/75510135/143176068-ea7cd708-79a9-4b0a-b25e-22fd9d150a32.png">
+
+
+
 
 
 
