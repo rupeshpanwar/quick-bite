@@ -56,7 +56,7 @@ pip3 install --user awscli
     mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
     echo 'export PATH=$PATH:$HOME/bin' >> ~/.bash_profile
     kubectl version --short --client
-    
+  ```  
     
 <img width="1049" alt="image" src="https://user-images.githubusercontent.com/75510135/142800777-e3ba3e1e-0fb0-40c7-84ec-4eaa9b8f1b01.png">
 <img width="851" alt="image" src="https://user-images.githubusercontent.com/75510135/142801140-26447004-e08d-4993-b3e5-ad3961bd91d0.png">
