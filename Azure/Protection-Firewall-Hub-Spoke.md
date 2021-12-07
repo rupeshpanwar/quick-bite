@@ -174,6 +174,59 @@
 2. one to gateway subnet in hub and another to spoke subnet
 <img width="716" alt="image" src="https://user-images.githubusercontent.com/75510135/144968743-237cbee4-d42c-4092-9305-62ef4a08cd94.png">
 
+3. Create Route Table
+<img width="784" alt="image" src="https://user-images.githubusercontent.com/75510135/144975223-aeb15f9a-7fde-4897-8cc9-2eb2b1c322aa.png">
+<img width="640" alt="image" src="https://user-images.githubusercontent.com/75510135/144975356-72cdc424-fa61-4bc3-a9ed-28958f5579bf.png">
+- now add route of Spoke
+<img width="706" alt="image" src="https://user-images.githubusercontent.com/75510135/144975464-ac812f7f-d18e-44a5-b913-003452d29989.png">
+- pick private address of firwall
+<img width="724" alt="image" src="https://user-images.githubusercontent.com/75510135/144975557-1c7c2309-f341-442f-b606-c6337a39a7e8.png">
+
+<img width="343" alt="image" src="https://user-images.githubusercontent.com/75510135/144975420-8dc2fbb4-c960-40e7-afae-6641af07c757.png">
+<img width="563" alt="image" src="https://user-images.githubusercontent.com/75510135/144975735-be535598-2a20-4af7-9ead-de14df1b69c4.png">
+
+- associate the hubnet / subnet and associate with Route Table
+<img width="564" alt="image" src="https://user-images.githubusercontent.com/75510135/144975882-d38cf0f3-f8f7-4bd5-930f-3db5f23abb5b.png">
+<img width="767" alt="image" src="https://user-images.githubusercontent.com/75510135/144975946-25ffeeee-8330-4fdf-a066-3cd535a90634.png">
+
+4. Create another Route Table to route the traffice to company
+<img width="769" alt="image" src="https://user-images.githubusercontent.com/75510135/144976008-a1ec4d9a-b980-4222-bd5a-40cb81e01b24.png">
+<img width="616" alt="image" src="https://user-images.githubusercontent.com/75510135/144976054-9115dabd-4496-4c57-be90-6b8aca64f4ea.png">
+- add route to reach traffic to Company device(internet)
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/75510135/144976168-befe12b7-fa97-4b4e-9828-67808cce987d.png">
+<img width="567" alt="image" src="https://user-images.githubusercontent.com/75510135/144976267-946cd7c1-e30d-41b2-9f12-776fe15e79d9.png">
+<img width="739" alt="image" src="https://user-images.githubusercontent.com/75510135/144976649-fd0053b5-f788-4ea3-8d88-0de8324309fc.png">
+<img width="550" alt="image" src="https://user-images.githubusercontent.com/75510135/144976684-9c77714b-ed20-4174-916c-b340f3665ade.png">
+- attach spoke network/subnet here
+<img width="805" alt="image" src="https://user-images.githubusercontent.com/75510135/144976770-7e105637-9faf-455a-80be-b457076034c1.png">
+<img width="620" alt="image" src="https://user-images.githubusercontent.com/75510135/144976803-6153efcc-9ce0-4747-b2d2-e4ae96cf5964.png">
+- Firewall rules to be updated to allow the flow of traffic
+<img width="768" alt="image" src="https://user-images.githubusercontent.com/75510135/144976860-2f6050e2-d437-410b-a5fe-484a61ce1b2e.png">
+# Part 7 - Firewall Manager
+- click on firewall manager
+<img width="731" alt="image" src="https://user-images.githubusercontent.com/75510135/144976958-7bb0e0d5-b4f0-4179-8471-61384368679c.png">
+<img width="726" alt="image" src="https://user-images.githubusercontent.com/75510135/144977040-b60d3189-c1dd-4514-a54f-5e5d20573934.png">
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/75510135/144977117-7bb8dc21-22e4-482b-8fa1-70d42aeaec60.png">
+<img width="572" alt="image" src="https://user-images.githubusercontent.com/75510135/144977174-3b2174ac-0b67-47a7-9f5f-c249231deb9c.png">
+<img width="660" alt="image" src="https://user-images.githubusercontent.com/75510135/144977216-5cd7c75e-fa51-4a09-8399-7f431d152658.png">
+- add a rule for spoke
+<img width="805" alt="image" src="https://user-images.githubusercontent.com/75510135/144977296-f5dcad9e-7036-4345-894d-cb9b57504c1a.png">
+<img width="790" alt="image" src="https://user-images.githubusercontent.com/75510135/144977339-e21e3bdb-5bda-4f7f-bafc-d9831a565ddc.png">
+<img width="782" alt="image" src="https://user-images.githubusercontent.com/75510135/144977389-5f7f8a6e-7dde-4107-9e28-ed086087f8e5.png">
+- Associate Firewall policy to Vnet(Hub Network)
+<img width="798" alt="image" src="https://user-images.githubusercontent.com/75510135/144977512-ea4795f1-4b2e-4e93-92f8-7111fe2b609e.png">
+<img width="806" alt="image" src="https://user-images.githubusercontent.com/75510135/144977555-508b2a3c-1115-46bb-9faf-08f958fc8e99.png">
+
+
+
+
+
+
+
+
+
+
+
 
 
 
