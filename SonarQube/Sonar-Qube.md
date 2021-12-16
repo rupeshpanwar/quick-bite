@@ -96,7 +96,8 @@
 <img width="499" alt="image" src="https://user-images.githubusercontent.com/75510135/146299839-3fb9df68-a803-46ca-8ec6-fc01c5ec1a97.png">
 - take mvn path from Jenkins server
 <img width="954" alt="image" src="https://user-images.githubusercontent.com/75510135/146299996-32cd5a7e-62d5-4f95-b486-cb4c511b1774.png">
-```Jenkinsfile
+```
+Jenkinsfile
 pipeline{
     agent any
     environment {
