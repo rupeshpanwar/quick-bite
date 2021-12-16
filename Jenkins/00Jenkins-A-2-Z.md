@@ -1,6 +1,29 @@
 <img width="182" alt="image" src="https://user-images.githubusercontent.com/75510135/146309808-cf5a3fec-df05-4392-a5b8-4048684c955c.png">
 <img width="486" alt="image" src="https://user-images.githubusercontent.com/75510135/146309839-699d20a2-76e1-4c68-be84-b6d1a7deb2d4.png">
 <img width="803" alt="image" src="https://user-images.githubusercontent.com/75510135/146315441-807e0826-80c2-43c8-8f6f-04951187952c.png">
+# Global Vars
+<img width="987" alt="image" src="https://user-images.githubusercontent.com/75510135/146348991-ede866ca-c05c-4c1d-ac8a-e84fc7203a81.png">
+- https://github.com/rupeshpanwar/pipeline-stage-when-changeRequest.git
+- https://github.com/pipelineascodecourse/pipeline-stage-options-skipdefaultcheckout.git
+- https://github.com/pipelineascodecourse/simple_java_project.git
+- https://github.com/rupeshpanwar/source_code.git
+- https://github.com/pipelineascodecourse/scripted-when-changeRequest.git
+- https://github.com/pipelineascodecourse/pipeline-stage-when-changelog.git
+- https://github.com/pipelineascodecourse/pipeline-shared-lib.git
+- https://github.com/pipelineascodecourse/simple_java_project_with_sonarqube.git
+- https://github.com/pipelineascodecourse/simple_java_project_with_jacoco.git
+- https://github.com/pipelineascodecourse/pipeline-options-checkoutToSubdirectory.git
+- https://github.com/pipelineascodecourse/scripted-when-changeset.git
+- https://github.com/pipelineascodecourse/scripted-when-changelog.git
+- https://github.com/pipelineascodecourse/scripted-when-buildingTag_and_tag.git
+- https://github.com/pipelineascodecourse/scripted-when-branch.git
+- https://github.com/pipelineascodecourse/pipeline-agent-dockerfile-filename.git
+- https://github.com/pipelineascodecourse/pipeline-agent-dockerfile-dir.git
+- https://github.com/pipelineascodecourse/pipeline-agent-dockerfile.git
+- https://github.com/pipelineascodecourse/pipeline-options-overrideIndexTriggers.git
+- https://github.com/pipelineascodecourse/pipeline-stage-when-buildingTag-tag.git
+- https://github.com/pipelineascodecourse/pipeline-stage-when-changeset.git
+- https://github.com/pipelineascodecourse/pipeline-stage-when-branch.git
 
 # Basic pipeline
 <img width="350" alt="image" src="https://user-images.githubusercontent.com/75510135/146310489-52b847ab-34d3-4127-9b33-8d45e681544e.png">
@@ -243,5 +266,70 @@
 <img width="381" alt="image" src="https://user-images.githubusercontent.com/75510135/146341021-659f57c1-79ee-4611-9b0f-b8370234a9cd.png">
 <img width="656" alt="image" src="https://user-images.githubusercontent.com/75510135/146341085-2d8e4b8d-fc49-4011-9616-eeeae4b2420c.png">
 <img width="578" alt="image" src="https://user-images.githubusercontent.com/75510135/146341149-19c82139-2300-444d-ad1a-c0779a544e0e.png">
-# User Input
+# Stage => User Input
 <img width="394" alt="image" src="https://user-images.githubusercontent.com/75510135/146341230-c14cdea8-881a-4196-ae84-4bd4da686289.png">
+<img width="531" alt="image" src="https://user-images.githubusercontent.com/75510135/146345678-6becf13f-29aa-4ff3-a7d1-92cab8bc7598.png">
+<img width="461" alt="image" src="https://user-images.githubusercontent.com/75510135/146345807-32cd3033-e0a6-4740-a056-a6a90ce0b0c7.png">
+<img width="706" alt="image" src="https://user-images.githubusercontent.com/75510135/146345897-b95c01f3-9d71-450c-9f57-88a5157cc1a6.png">
+<img width="706" alt="image" src="https://user-images.githubusercontent.com/75510135/146346090-9258d3a0-0daa-4f74-88cf-79839da12c23.png">
+- create dummy user
+<img width="448" alt="image" src="https://user-images.githubusercontent.com/75510135/146346218-0c4d2ddd-8491-45b0-91a3-fdfaf3e80c97.png">
+<img width="416" alt="image" src="https://user-images.githubusercontent.com/75510135/146346304-968629fb-be36-49e5-a5ca-24ae1ccd71a6.png">
+<img width="838" alt="image" src="https://user-images.githubusercontent.com/75510135/146346358-07dd1962-eeaa-42d4-a68a-1fd2c2f7e2ec.png">
+<img width="760" alt="image" src="https://user-images.githubusercontent.com/75510135/146346698-33087c50-6b5a-446e-8fa1-9ee1b4f0a43b.png">
+<img width="681" alt="image" src="https://user-images.githubusercontent.com/75510135/146346832-4e3a88c3-493e-4382-8ad1-493c1fa684ce.png">
+<img width="881" alt="image" src="https://user-images.githubusercontent.com/75510135/146347120-b0972ced-ad1f-40aa-9df0-ca46afdba710.png">
+<img width="728" alt="image" src="https://user-images.githubusercontent.com/75510135/146347239-b9e17525-5c92-4192-9026-8626d7a480a5.png">
+<img width="816" alt="image" src="https://user-images.githubusercontent.com/75510135/146347273-216a88e1-3e22-4d43-bba2-5ec41012283e.png">
+<img width="435" alt="image" src="https://user-images.githubusercontent.com/75510135/146347400-d0fe5505-6ef1-4f45-83be-0ab00143d64b.png">
+# Stage => Post
+<img width="384" alt="image" src="https://user-images.githubusercontent.com/75510135/146347796-49d4b49d-e468-462e-9e91-829f250f4cca.png">
+<img width="433" alt="image" src="https://user-images.githubusercontent.com/75510135/146347836-c3142dce-de55-4725-ae43-aeccc98f01cb.png">
+<img width="749" alt="image" src="https://user-images.githubusercontent.com/75510135/146347893-a52c1d44-ae75-4d12-b7dc-67af2b23420e.png">
+<img width="462" alt="image" src="https://user-images.githubusercontent.com/75510135/146347954-ca2c44aa-97d3-4f8b-95f1-607b553612db.png">
+<img width="470" alt="image" src="https://user-images.githubusercontent.com/75510135/146348200-5e821ea8-cf6a-4e40-a074-e06cfa38c052.png">
+<img width="469" alt="image" src="https://user-images.githubusercontent.com/75510135/146348048-c9ab438a-ac92-4b35-9ce7-15895651a072.png">
+<img width="467" alt="image" src="https://user-images.githubusercontent.com/75510135/146348326-f35d6a28-90ab-47f6-a807-67563e1374a3.png">
+<img width="625" alt="image" src="https://user-images.githubusercontent.com/75510135/146348453-4b0235a7-a269-423f-9576-50be4314318b.png">
+<img width="516" alt="image" src="https://user-images.githubusercontent.com/75510135/146348504-985e21a0-fc40-460d-b898-29cfd78cb38b.png">
+- changed condition
+<img width="598" alt="image" src="https://user-images.githubusercontent.com/75510135/146348771-e953f5af-ae0b-4932-8055-b1525fe6317f.png">
+<img width="612" alt="image" src="https://user-images.githubusercontent.com/75510135/146348808-1ec99fe1-7f8b-4f09-8cf2-d85860b538d1.png">
+<img width="474" alt="image" src="https://user-images.githubusercontent.com/75510135/146349193-46b602b8-fc21-411f-9cd8-8e32e4f5bcb9.png">
+<img width="525" alt="image" src="https://user-images.githubusercontent.com/75510135/146349249-b02aef35-5459-4553-a4a6-d076424c4389.png">
+<img width="610" alt="image" src="https://user-images.githubusercontent.com/75510135/146349374-7a162a65-5296-4cad-8b4a-6c60bb5cbd04.png">
+<img width="475" alt="image" src="https://user-images.githubusercontent.com/75510135/146349441-5caaa5ab-c2b2-4203-92de-bede5b155762.png">
+<img width="544" alt="image" src="https://user-images.githubusercontent.com/75510135/146349495-eba4a46b-5b6a-4000-af99-0a6e828c81a1.png">
+<img width="694" alt="image" src="https://user-images.githubusercontent.com/75510135/146350211-46e34971-9012-473c-8231-f1645155e176.png">
+<img width="462" alt="image" src="https://user-images.githubusercontent.com/75510135/146350300-3b74f7f1-5d8c-45d5-a312-f4b599f7ac1c.png">
+<img width="623" alt="image" src="https://user-images.githubusercontent.com/75510135/146350416-5e1fbd6b-40ef-4d69-b3b1-2ff7708d3355.png">
+<img width="551" alt="image" src="https://user-images.githubusercontent.com/75510135/146350464-f82f7557-4f1c-44a3-8a9e-ec18cdb0277e.png">
+<img width="662" alt="image" src="https://user-images.githubusercontent.com/75510135/146350553-8935fc20-06b6-4146-bfc8-467e03fa6c30.png">
+<img width="469" alt="image" src="https://user-images.githubusercontent.com/75510135/146350812-5b19b35e-3c4b-4677-8e45-04b7719c3fa6.png">
+<img width="675" alt="image" src="https://user-images.githubusercontent.com/75510135/146351587-90382078-3a73-4553-bbd4-0297e888ab75.png">
+<img width="578" alt="image" src="https://user-images.githubusercontent.com/75510135/146351668-8375f080-0b26-4cb0-b28a-5945d0869d6d.png">
+<img width="469" alt="image" src="https://user-images.githubusercontent.com/75510135/146351696-fb93f2d3-81a5-484c-b931-3fb62e9a72cf.png">
+- cleanup
+<img width="636" alt="image" src="https://user-images.githubusercontent.com/75510135/146351809-2b028a72-84b9-4098-b30c-677cbb24b690.png">
+<img width="767" alt="image" src="https://user-images.githubusercontent.com/75510135/146351911-d3dae685-f860-47b2-887d-b5118248c880.png">
+<img width="518" alt="image" src="https://user-images.githubusercontent.com/75510135/146351998-970ddcb8-2db1-486a-8963-3acb4577616c.png">
+
+# Shell script output and status code
+<img width="453" alt="image" src="https://user-images.githubusercontent.com/75510135/146352991-39f7d2d8-215e-45d1-b1a0-044d845d3ccf.png">
+<img width="902" alt="image" src="https://user-images.githubusercontent.com/75510135/146353124-116bb342-6e4c-41a4-ba83-aacb15be6f31.png">
+<img width="935" alt="image" src="https://user-images.githubusercontent.com/75510135/146353156-563508a7-97b8-4a4e-91c3-360125b66a71.png">
+<img width="882" alt="image" src="https://user-images.githubusercontent.com/75510135/146353372-edf5af0d-264c-4db1-86ce-17f29516ed1c.png">
+<img width="891" alt="image" src="https://user-images.githubusercontent.com/75510135/146353442-a03a4d34-5488-4bf1-93c9-af569f11d4cd.png">
+<img width="512" alt="image" src="https://user-images.githubusercontent.com/75510135/146353495-9715f82b-51f2-4fe2-9d90-4243df501277.png">
+<img width="756" alt="image" src="https://user-images.githubusercontent.com/75510135/146353574-852d8eeb-f0cf-4ebf-9790-723e7dff8d64.png">
+<img width="880" alt="image" src="https://user-images.githubusercontent.com/75510135/146353624-ad99c781-6d0b-4c28-8418-291ae75494f2.png">
+
+# Create Env for shell script
+<img width="689" alt="image" src="https://user-images.githubusercontent.com/75510135/146353748-c2f5adcb-0d86-4ebe-ad12-d5fac34538a4.png">
+<img width="784" alt="image" src="https://user-images.githubusercontent.com/75510135/146353842-24516f89-b6d5-4626-b1c1-ff8a6d65f12a.png">
+<img width="782" alt="image" src="https://user-images.githubusercontent.com/75510135/146354034-63bb32bc-55b5-4328-b099-40dffcb07c60.png">
+<img width="1026" alt="image" src="https://user-images.githubusercontent.com/75510135/146354153-83ee5c23-bcfb-444b-bb23-f2c08a0772a1.png">
+<img width="1010" alt="image" src="https://user-images.githubusercontent.com/75510135/146354361-ef59315b-4e47-421a-96ea-7aebd34ecff5.png">
+<img width="801" alt="image" src="https://user-images.githubusercontent.com/75510135/146354459-e0bf1b2a-c9e3-4acb-9d70-279a95dd98f0.png">
+
+# Option, BuildDiscarder
