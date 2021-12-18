@@ -146,6 +146,52 @@
 # grovvyscript 
 <img width="360" alt="image" src="https://user-images.githubusercontent.com/75510135/146532112-6539565b-9908-4ee4-8a2b-1a9c9264e0c9.png">
 <img width="446" alt="image" src="https://user-images.githubusercontent.com/75510135/146532147-8a2a545c-cbd2-4b97-9f63-5360cef7ee63.png">
+# Global Library
+<img width="522" alt="image" src="https://user-images.githubusercontent.com/75510135/146643149-fd45139c-0efa-4e94-864d-3eae449e78ab.png">
+<img width="628" alt="image" src="https://user-images.githubusercontent.com/75510135/146643168-e7d2cef8-f754-4ea0-9a0b-7371a0a683e1.png">
+<img width="1015" alt="image" src="https://user-images.githubusercontent.com/75510135/146643212-963e2447-e697-4273-945b-93047ba1c1e1.png">
+<img width="635" alt="image" src="https://user-images.githubusercontent.com/75510135/146643221-f60d3c34-e7e6-404e-b2d1-9c1ac1d52b71.png">
+<img width="469" alt="image" src="https://user-images.githubusercontent.com/75510135/146643274-61ea2da8-972f-47fe-a9c9-0e2e825236e2.png">
+<img width="826" alt="image" src="https://user-images.githubusercontent.com/75510135/146643300-71e2512b-e782-47be-b900-b1b8697620cb.png">
+<img width="445" alt="image" src="https://user-images.githubusercontent.com/75510135/146643313-800c3080-af09-415d-82de-dec1498e8534.png">
+# Importing Lib
+<img width="530" alt="image" src="https://user-images.githubusercontent.com/75510135/146643487-593e4edb-70ed-4fb0-90a4-2683257d7416.png">
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/75510135/146643497-b0b5f78e-f3f0-421d-9282-cf5e8427adce.png">
+<img width="428" alt="image" src="https://user-images.githubusercontent.com/75510135/146643513-bf95a4a2-bd8e-47a5-9bef-5c5158bd5875.png">
+# Importing class
+<img width="364" alt="image" src="https://user-images.githubusercontent.com/75510135/146643588-acd1a8c8-e048-4f80-9708-7cfc90180804.png">
+<img width="533" alt="image" src="https://user-images.githubusercontent.com/75510135/146643594-14b0cb0c-9f9b-4a83-903d-cae7be7f1610.png">
+<img width="380" alt="image" src="https://user-images.githubusercontent.com/75510135/146643658-b6782e45-d254-44de-98d0-0045ffbc4808.png">
+<img width="847" alt="image" src="https://user-images.githubusercontent.com/75510135/146643667-38023a0e-952c-4c8d-98b1-7d8e5cec0d0b.png">
+# Import static lib
+<img width="505" alt="image" src="https://user-images.githubusercontent.com/75510135/146643710-793b6716-6883-49a7-978e-0b1fce4b63b4.png">
+<img width="549" alt="image" src="https://user-images.githubusercontent.com/75510135/146643737-419388df-d351-49f8-ad3d-54390bd2a4ff.png">
+<img width="430" alt="image" src="https://user-images.githubusercontent.com/75510135/146643785-ed0f7036-6057-4f70-9794-31f80f35c373.png">
+<img width="823" alt="image" src="https://user-images.githubusercontent.com/75510135/146643793-c3db3a28-19ec-4123-af92-87265c9badc2.png">
+<img width="617" alt="image" src="https://user-images.githubusercontent.com/75510135/146643805-4c7bff1f-7e7d-413a-aefd-6b982540e591.png">
+<img width="848" alt="image" src="https://user-images.githubusercontent.com/75510135/146643812-c1c21936-a78e-4273-ab54-d281818da87e.png">
+# Custom Steps
+<img width="538" alt="image" src="https://user-images.githubusercontent.com/75510135/146643835-f751f8a4-f5de-4dd4-ab38-dac3284ef3a9.png">
+<img width="615" alt="image" src="https://user-images.githubusercontent.com/75510135/146643864-7cb957ca-f282-4ab6-a97c-93a27640e951.png">
+<img width="654" alt="image" src="https://user-images.githubusercontent.com/75510135/146643886-51da03cf-1688-4dd8-8f2d-1d01b1c9f2f6.png">
+# Closurers
+<img width="509" alt="image" src="https://user-images.githubusercontent.com/75510135/146643963-c09c1bb0-1e3d-48bd-8a8d-54765ed40b49.png">
+<img width="519" alt="image" src="https://user-images.githubusercontent.com/75510135/146643981-d9d20005-0e1f-4d30-a8b6-b1986819f855.png">
+<img width="556" alt="image" src="https://user-images.githubusercontent.com/75510135/146644006-1fed125a-8d84-4b8a-b2c3-da38146fa3a2.png">
+# Importing 3rd party lib
+<img width="572" alt="image" src="https://user-images.githubusercontent.com/75510135/146644031-3c850a34-b99d-453a-b335-320647ccc3b4.png">
+<img width="547" alt="image" src="https://user-images.githubusercontent.com/75510135/146644060-f2470497-c60c-4177-b410-a282b23746cb.png">
+# Loading resources
+<img width="504" alt="image" src="https://user-images.githubusercontent.com/75510135/146644088-2f2fb16d-8c03-4a8d-b7e2-c8fe06c87afe.png">
+<img width="521" alt="image" src="https://user-images.githubusercontent.com/75510135/146644099-a7549254-f924-46ce-865f-4b20c8e9479f.png">
+<img width="507" alt="image" src="https://user-images.githubusercontent.com/75510135/146644115-ad7f8ade-53dd-4b21-8c43-e62a48c44cc8.png">
+# Define pipeline scrip in call method
+<img width="540" alt="image" src="https://user-images.githubusercontent.com/75510135/146644158-b3bd871d-c792-4748-9573-769eef4efd4f.png">
+<img width="523" alt="image" src="https://user-images.githubusercontent.com/75510135/146644222-f5292c80-5cdf-478c-81be-6d3f01cc01bc.png">
+<img width="564" alt="image" src="https://user-images.githubusercontent.com/75510135/146644247-f259fe4f-6786-43f8-975d-4c3f7f02fa83.png">
+<img width="656" alt="image" src="https://user-images.githubusercontent.com/75510135/146644255-e61666d1-f80c-4b7c-95f1-7cbdb64ce85b.png">
+<img width="395" alt="image" src="https://user-images.githubusercontent.com/75510135/146644262-c6b23c02-41a2-407f-beff-3e1d94113a4b.png">
+<img width="658" alt="image" src="https://user-images.githubusercontent.com/75510135/146644265-1e5e93b0-102a-434b-96b9-b65a46ac669d.png">
 
 
 
