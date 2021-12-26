@@ -67,7 +67,7 @@ kubectl attach --namespace=shpod -ti shpod
 
 kubectl exec --namespace=shpod -ti shpod -- bash -l
 
-LAB: Option 1: Setting up single node kubernetes with Minikube
+# LAB: Option 1: Setting up single node kubernetes with Minikube
 Single node k8s cluster with Minikube
 
 
@@ -138,3 +138,55 @@ Additional Commands
     minikube ip
     minikube get-k8s-versions
     minikube logs
+
+# LAB: Option 2: Provisioning 3 nodes for Kubernetes with Vagrant and VirtualBox
+
+Install VirtualBox and Vagrant
+
+
+    VirtualBox: https://www.virtualbox.org/wiki/Downloads
+
+    Vagrant:  https://www.vagrantup.com/downloads.html
+
+
+Provisioning Vagrant Nodes
+
+
+Clone repo if not already
+
+    git clone https://github.com/schoolofdevops/lab-setup.git
+     
+     
+
+Launch environments with Vagrant
+
+    cd lab-setup/kubernetes/vagrant-kube-cluster
+     
+    vagrant up
+     
+
+Login to nodes
+
+Open three different terminals to login to 3 nodes created with above command
+
+Terminal 1
+
+    vagrant ssh kube-01
+    sudo su
+     
+
+Terminal 2
+
+    vagrant ssh kube-02
+    sudo su
+
+Terminal 3
+
+    vagrant ssh kube-03
+    sudo su
+
+Once the environment is setup, follow Initialization of Master onwards from the following tutorial
+
+
+https://schoolofdevops.github.io/kubernetes-labguide/3_install_kubernetes/#initializing-master
+
