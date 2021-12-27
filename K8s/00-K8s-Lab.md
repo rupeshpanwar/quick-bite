@@ -646,3 +646,54 @@ Now that you are done experimenting with pod, delete it with the following comma
      
     kubectl get pods
 
+# LAB: Attaching a volume to the Pod
+Attach a Volume to the Pod
+
+Lets create a pod for database and attach a volume to it. To achieve this we will need to
+
+    create a volumes definition
+
+    attach volume to container using VolumeMounts property
+
+Local host volumes are of two types:
+* emptyDir
+* hostPath
+
+We will pick hostPath. Refer to this doc to read more about hostPath.
+
+File: db-pod.yaml
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: db
+      labels:
+        app: postgres
+        role: database
+        tier: back
+    spec:
+      containers:
+        - name: db
+          image: postgres:9.4
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+          - name: db-data
+            mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: db-data
+        hostPath:
+          path: /var/lib/pgdata
+          type: DirectoryOrCreate
+
+To create this pod,
+
+    kubectl apply -f db-pod.yaml
+     
+    kubectl describe pod db
+     
+    kubectl get events
+
+Exercise : Examine /var/lib/pgdata on the systems to check if the directory is been created and if the data is present.
+
+
