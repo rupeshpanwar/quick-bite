@@ -84,6 +84,183 @@ Creating a Deployment in 1.18: kubectl create deployment nginx --image nginx
 <img width="698" alt="image" src="https://user-images.githubusercontent.com/75510135/144865001-91376d62-8adc-4ace-8317-9d2146ddca4d.png">
 
 
+# LAB: Writing Pod Spec, Launching and Operating a Pod
+Deploying Pods
 
+
+Life of a pod
+
+    Pending : in progress
+
+    Running
+
+    Succeeded : successfully exited
+
+    Failed
+
+    Unknown
+
+
+Launching pods without YAML
+
+You could use generators to launch a pod by specifying just the image.
+
+For example, if you would like to launch a pod for redis, with image redis:alpine, the following command would work,
+
+    kubectl run redis --generator=run-pod/v1 --image=redis
+
+
+To list  and operate the pod 
+
+    kubectl get pods
+     
+    kubectl get pod -o wide
+     
+    kubectl describe pod redis 
+     
+    kubectl delete pod redis
+
+Resource Configs
+
+Each entity created with kubernetes is a resource including pod, service, deployments, replication controller etc. Resources can be defined as YAML or JSON. Here is the syntax to create a YAML specification.
+
+AKMS => Resource Configs Specs
+
+    apiVersion: v1
+    kind:
+    metadata:
+    spec:
+
+Spec Schema: https://kubernetes.io/docs/user-guide/pods/multi-container/
+
+To list supported version of apis
+
+    kubectl api-versions
+
+Writing Pod Spec
+
+Lets now create the Pod config by adding the kind and specs to scheme given in the file vote-pod.yaml as follows.
+
+Filename: k8s-code/pods/vote-pod.yaml
+
+    apiVersion:
+    kind: Pod
+    metadata:
+    spec:
+
+Lets edit this and add the pod specs
+
+Filename: k8s-code/pods/vote-pod.yaml
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: vote
+      labels:
+        app: python
+        role: vote
+        version: v1
+    spec:
+      containers:
+        - name: app
+          image: schoolofdevops/vote:v1
+     
+
+Use this link to refer to pod spec
+Launching and operating a Pod
+
+To launch a monitoring screen to see whats being launched, use the following command in a new terminal window where kubectl is configured.
+
+    watch -n 1  kubectl get pods,deploy,rs,svc
+     
+
+kubectl Syntax:
+
+    kubectl
+    kubectl apply --help
+    kubectl apply -f FILE
+
+To Launch pod using configs above,
+
+    kubectl apply -f vote-pod.yaml
+     
+
+To view pods
+
+    kubectl get pods
+     
+    kubectl get po -o wide
+     
+    kubectl get pods vote
+
+To get detailed info
+
+    kubectl describe pods vote
+
+[Output:]
+
+    Name:           vote
+    Namespace:      default
+    Node:           kube-3/192.168.0.80
+    Start Time:     Tue, 07 Feb 2017 16:16:40 +0000
+    Labels:         app=voting
+    Status:         Running
+    IP:             10.40.0.2
+    Controllers:    <none>
+    Containers:
+      vote:
+        Container ID:       docker://48304b35b9457d627b341e424228a725d05c2ed97cc9970bbff32a1b365d9a5d
+        Image:              schoolofdevops/vote:latest
+        Image ID:           docker-pullable://schoolofdevops/vote@sha256:3d89bfc1993d4630a58b831a6d44ef73d2be76a7862153e02e7a7c0cf2936731
+        Port:               80/TCP
+        State:              Running
+          Started:          Tue, 07 Feb 2017 16:16:52 +0000
+        Ready:              True
+        Restart Count:      0
+        Volume Mounts:
+          /var/run/secrets/kubernetes.io/serviceaccount from default-token-2n6j1 (ro)
+        Environment Variables:      <none>
+    Conditions:
+      Type          Status
+      Initialized   True
+      Ready         True
+      PodScheduled  True
+    Volumes:
+      default-token-2n6j1:
+        Type:       Secret (a volume populated by a Secret)
+        SecretName: default-token-2n6j1
+    QoS Class:      BestEffort
+    Tolerations:    <none>
+    Events:
+      FirstSeen     LastSeen        Count   From                    SubObjectPath           Type            Reason          Message
+      ---------     --------        -----   ----                    -------------           --------        ------          -------
+      21s           21s             1       {default-scheduler }                            Normal          Scheduled       Successfully assigned vote to kube-3
+      20s           20s             1       {kubelet kube-3}        spec.containers{vote}   Normal          Pulling         pulling image "schoolofdevops/vote:latest"
+      10s           10s             1       {kubelet kube-3}        spec.containers{vote}   Normal          Pulled          Successfully pulled image "schoolofdevops/vote:latest"
+      9s            9s              1       {kubelet kube-3}        spec.containers{vote}   Normal          Created         Created container with docker id 48304b35b945; Security:[seccomp=unconfined]
+      9s            9s              1       {kubelet kube-3}        spec.containers{vote}   Normal          Started         Started container with docker id 48304b35b945
+
+Commands to operate the pod
+
+    kubectl logs vote
+     
+    kubectl exec -it vote  sh
+     
+     
+
+Inside the container in a pod
+
+    ifconfig
+    cat /etc/issue
+    hostname
+    cat /proc/cpuinfo
+    ps aux
+
+Port Forwarding
+
+This works if you have setup kubectl on a local laptop.
+
+    kubectl port-forward --help
+    kubectl port-forward vote 8000:80
 
 
