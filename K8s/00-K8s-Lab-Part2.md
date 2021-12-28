@@ -1,6 +1,8 @@
 # Topics covered
 1. Service
-2. 
+2. Replicaset
+3. Deployment, upgrade, rollback
+4. 
 # LAB: Creating a Service and exposing it with NodePort
 
 Exposing Application with a Service
@@ -379,4 +381,230 @@ Sample Output
     NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
     vote   3         3         3            1           3m
     
-  
+  # Lab : Scale, Rollout and Rollback
+Scaling a deployment
+
+To scale a deployment in Kubernetes:
+
+    kubectl scale deployment/vote --replicas=12
+     
+    kubectl rollout status deployment/vote
+     
+
+Sample output:
+
+    Waiting for rollout to finish: 5 of 12 updated replicas are available...
+    Waiting for rollout to finish: 6 of 12 updated replicas are available...
+    deployment "vote" successfully rolled out
+
+You could also update the deployment by editing it.
+
+    kubectl edit deploy/vote
+
+[change replicas to 15 from the editor, save and observe]
+Rolling Updates in Action
+
+Now, update the deployment spec to apply
+
+file: vote-deploy.yaml
+
+    spec:
+    ...
+      replicas: 15
+    ...
+    labels:
+       app: python
+       role: vote
+       version: v3
+    ...
+    template:   
+      spec:
+        containers:
+          - name: app
+            image: schoolofdevops/vote:v3
+     
+
+apply
+
+    kubectl apply -f vote-deploy.yaml
+     
+    kubectl rollout status deployment/vote
+
+Observe rollout status and monitoring screen.
+
+    kubectl rollout history deploy/vote
+     
+    kubectl rollout history deploy/vote --revision=1
+     
+
+Undo and Rollback
+
+file: vote-deploy.yaml
+
+    spec:
+      containers:
+        - name: app
+          image: schoolofdevops/vote:rgjerdf
+     
+
+apply
+
+    kubectl apply -f vote-deploy.yaml
+     
+    kubectl rollout status
+     
+    kubectl rollout history deploy/vote
+     
+    kubectl rollout history deploy/vote --revision=xx
+
+where replace xxx with revisions
+
+Find out the previous revision with sane configs.
+
+To undo to a sane version (for example revision 3)
+
+    kubectl rollout undo deploy/vote --to-revision=3
+    
+ # MINI PROJECT : Deploy instavote app stack with Kubernetes
+Mini Project: Deploying Multi Tier Application Stack
+
+
+In this project , you would write definitions for deploying the vote application stack with all components/tiers which include,
+
+    vote ui
+
+    redis
+
+    worker
+
+    db
+
+    results ui
+
+Tasks
+
+    Create deployments for all applications
+
+    Define services for each tier applicable
+
+    Launch/apply the definitions
+
+Following table  depicts the state of readiness of the above services.
+
+
+
+
+Specs:
+
+    worker
+
+        image: schoolofdevops/worker:latest
+
+    results
+
+        image: schoolofdevops/vote-result
+
+        port: 80
+
+        service type: NodePort
+
+
+Deploying the sample application
+
+
+To create deploy the sample applications,
+
+    kubectl create -f projects/instavote/dev
+
+Sample output is like:
+
+    deployment "db" created
+    service "db" created
+    deployment "redis" created
+    service "redis" created
+    deployment "vote" created
+    service "vote" created
+    deployment "worker" created
+    deployment "results" created
+    service "results" created
+
+To Validate:
+
+    kubectl get svc -n instavote
+
+Sample Output is:
+
+    kubectl get service vote
+    NAME         CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+    vote   10.97.104.243   <pending>     80:31808/TCP   1h
+
+Here the port assigned is 31808, go to the browser and enter
+
+    masterip:31808
+
+alt text
+
+This will load the page where you can vote.
+
+To check the result:
+
+    kubectl get service result
+
+Sample Output is:
+
+    kubectl get service result
+    NAME      CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+    result    10.101.112.16   <pending>     80:32511/TCP   1h
+
+Here the port assigned is 32511, go to the browser and enter
+
+    masterip:32511
+
+alt text
+
+This is the page where you should see the results for the vote
+
+# Exercise
+
+1. Create an Nginx Deployment using kubectl with following properties.
+
+      1. Name: nginx-frontend
+      2. Labels: app=nginx, tier=frontend
+      3. Image: nginx:latest
+      3. Replicas: 3
+      4. ImagePullPolicy: Always
+
+2. For the above mentioned Deployment, change the image version from nginx:latest to nginx:1.12.0 using kubectl set image command
+
+3. For the above mentioned Deployment, undo the changes using kubectl rollout command and rollback to revision 1.
+
+4. Create a Deployment manifest with the following properties and apply it. If it fails, try to do rolling update the image version to 0.3.0
+
+      1. Name: web-app
+      2. Labels: env=prod, tier=web
+      3. Image: robotshop/rs-web:v1.0
+      4. Port: 8080
+      5. Restart Policy: Always
+
+5. For the following application, fix and fill in the missing details.
+
+    apiVersion: extensions/v1beta1
+    kind: deployment
+    metadata:
+      labels:
+      name: mysql
+    spec:
+      replicas: 1
+      template:
+        metadata:
+          labels:
+            app: mysql
+        spec:
+          containers:
+          - image: robotshop/rs-mysql-db:latest
+            name:
+            ports:
+            - Containerport: 3306
+          restartPolicy: xxxx
+          
+       
