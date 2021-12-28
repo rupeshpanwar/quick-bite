@@ -1,3 +1,11 @@
+# Topics covered
+1. Setup
+2. Visualizer
+3. Pods
+4. Replica sets
+
+
+
 # LAB: Option 1: Setting up single node kubernetes with Minikube
 Single node k8s cluster with Minikube
 
@@ -696,4 +704,580 @@ To create this pod,
 
 Exercise : Examine /var/lib/pgdata on the systems to check if the directory is been created and if the data is present.
 
+# LAB : Multi Container Pods
+Creating Multi Container Pods
+
+
+file: multi_container_pod.yml
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: web
+      labels:
+        tier: front
+        app: nginx
+        role: ui
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:stable-alpine
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /var/www/html-sample-app
+     
+        - name: sync
+          image: schoolofdevops/sync:v2
+          volumeMounts:
+            - name: data
+              mountPath: /var/www/app
+     
+      volumes:
+        - name: data
+          emptyDir: {}
+
+To create this pod
+
+    kubectl apply -f multi_container_pod.yml
+
+Check Status
+
+    root@kube-01:~# kubectl get pods
+    NAME      READY     STATUS              RESTARTS   AGE
+    nginx     0/2       ContainerCreating   0          7s
+    vote      1/1       Running             0          3m
+
+Checking logs, logging in
+
+    kubectl logs  web  -c sync
+    kubectl logs  web  -c nginx
+     
+    kubectl exec -it web  sh  -c nginx
+    kubectl exec -it web  sh  -c sync
+     
+
+Observe whats common and whats isolated in two containers running inside the same pod using the following commands,
+
+shared
+
+    hostname
+    ifconfig
+
+isolated
+
+    cat /etc/issue
+    ps aux
+    df -h
+     
+
+
+# Exercise
+Pods
+
+1. Create a Pod manifest which uses "ghost" image and open port 2368.
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: ghost
+    spec:
+      containers:
+      - image: xxx
+        name: ghost
+        ports:
+        - containerPort: xxx
+          hostPort: xxx
+
+Get the name of the Node in which the Pod is scheduled by running,
+
+    kubectl describe pod <POD_NAME>
+     
+    [output]
+    Name:           <POD_NAME>
+    Namespace:      default
+    Node:           <NODE_NAME>/<NODE_IP>
+    Start Time:     Wed, xx May 201x 15:59:29 +0530
+
+Try to access the application on the host's port 2368.
+
+    curl <NODE_IP>:2368
+
+Reference :Ghost Docker image
+
+2. Create a Pod with ubuntu:trusty image and a command to echo “YOUR_NAME” which overrides the default CMD/ENTRYPOINT of the image.
+
+Reference: Define command argument in a Pod
+
+3. Apply the following Pod manifest and read the error. Fix it by editing it.
+
+    apiVersion: v1apps/beta1
+    kind: Pod
+    metadata:
+      name: mogambo-frontend
+      label:
+        role: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: schoolofdevops/frontend:orange
+          ports:
+            - containerName: web
+              Port: 8079
+              protocol: TCP
+
+Reference: Debugging a unscheduled Pod
+
+4. A Pod with the following pod always crashes with CrashLoopBackOff error. How would you fix it?
+
+          image: schoolofdevops/nginx:break
+          ports: 80
+
+Reference: Debugging a crashed Pod
+
+5. You are running a Pod with hostPort option. Your Pod status stays “pending”. What could be the issue for the Pod not being scheduled?
+
+Reference: Debugging a unscheduled Pod
+
+6. The given manifest for multi-container pod is not working as intended. It does not sync the content between containers like expected. What could be the issue? Find the issue just by reading the manifest.
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: web
+      labels:
+        tier: front
+        app: nginx
+        role: ui
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:stable-alpine
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: data
+              mountPath: /var/www/html-sample-app
+     
+        - name: sync
+          image: schoolofdevops/sync:v2
+          volumeMounts:
+            - name: datanew
+              mountPath: /var/www/app
+     
+      volumes:
+        - name: data
+          emptyDir: {}
+
+7. For the above given manifest, the following command is not working. What could be the issue?
+
+    kubeclt exec -it web -sh -c synch
+
+8. Try to apply the following manifest. If fails, try to debug.
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: web
+      labels:
+        app:
+        role: role
+    spec:
+      containers:
+        - name: web
+          image: robotshop/rs-web:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+
+9. Fix the following manifest. Don't apply it. Just fix it by reading.
+
+    apiVersion: v1
+    kind: pod
+    metadata:
+      name: web
+    labels:
+      role: role
+    spec:
+      containers:
+        - name: web
+          image: robotshop/rs-web:latest
+          ports:
+            - containerport: 8080
+              protocol: TCP
+
+10. Mount /var/www/html from Pod using the follwing manifest. Fill the missing fields.
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: web
+      labels:
+        role: role
+    spec:
+      containers:
+        - name: web
+          image: robotshop/rs-web:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+      volumes:
+        - name: roboshop-storage
+          emptyDir: {}
+
+11. Write a Pod manifest with the image nginx which has a volume that mounts /etc/nginx/ directory. Use "hostPath" volume type.
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          xxx
+
+# LAB: Creating a Namespace and switching to it
+Setting up a Namespace
+
+Check current config
+
+    kubectl config view
+    kubectl config get-contexts
+
+You could also examine the current configs in file cat ~/.kube/config
+Creating a namespace
+
+Namespaces offers separation of resources running on the same physical infrastructure into virtual clusters. It is typically useful in mid to large scale environments with multiple projects, teams and need separate scopes. It could also be useful to map to your workflow stages e.g. dev, stage, prod.
+
+Lets create a namespace called instavote
+
+    cd projects/instavote
+    cat instavote-ns.yaml
+
+[output]
+
+    kind: Namespace
+    apiVersion: v1
+    metadata:
+      name: instavote
+
+Lets create a namespace
+
+    kubectl get ns
+    kubectl apply -f instavote-ns.yaml
+     
+    kubectl get ns
+
+And switch to it
+
+    kubectl config --help
+     
+    kubectl config get-contexts
+     
+    kubectl config current-context
+     
+    kubectl config set-context --current --namespace=instavote
+     
+    kubectl config view
+     
+    kubectl config get-contexts
+     
+# LAB: Writing Replica Set Specs
+Writing ReplicaSet Specs
+
+
+To understand how ReplicaSets works with the selectors lets launch a pod in the new namespace with existing specs.
+
+    cd k8s-code/pods
+    kubectl apply -f vote-pod.yaml
+     
+    kubectl get pods
+    cd ../projects/instavote/dev/
+
+Lets now write the spec for the Rplica Set. This is going to mainly contain,
+
+    replicas
+
+    selector
+
+    template (pod spec )
+
+    minReadySeconds
+
+file: vote-rs.yaml
+
+    apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      name: vote
+    spec:
+      replicas: 5
+      minReadySeconds: 20
+      selector:
+        matchLabels:
+          role: vote
+        matchExpressions:
+          - {key: version, operator: In, values: [v1, v2, v3]}
+      template:
+
+Lets now add the metadata and spec from pod spec defined in vote-pod.yaml. And with that, the Replica Set Spec changes to
+
+file: vote-rs.yaml
+
+    apiVersion: apps/v1
+    kind: ReplicaSet
+    metadata:
+      name: vote
+    spec:
+      replicas: 5
+      minReadySeconds: 20
+      selector:
+        matchLabels:
+          role: vote
+        matchExpressions:
+          - {key: version, operator: In, values: [v1, v2, v3]}
+      template:
+        metadata:
+          name: vote
+          labels:
+            app: python
+            role: vote
+            version: v1
+        spec:
+          containers:
+            - name: app
+              image: schoolofdevops/vote:v1
+              ports:
+                - containerPort: 80
+                  protocol: TCP
+
+
+# Replica Sets in Action
+
+
+If you are not running a monitoring screen, start it in a new terminal with the following command.
+
+    watch -n 1 kubectl get  pod,deploy,rs,svc
+
+    kubectl delete pod vote
+
+
+    kubectl apply -f vote-rs.yaml --dry-run
+     
+    kubectl apply -f vote-rs.yaml
+     
+    kubectl get rs
+     
+    kubectl describe rs vote
+     
+    kubectl get pods
+     
+     
+
+Exercise :
+
+    Switch to monitoring screen, observe how many replicas were created and why
+
+    Compare selectors and labels of the pods created with and without replica sets
+
+    kubectl get pods
+     
+    kubectl get pods --show-labels
+
+Exercise: Deploying new version of the application
+
+    kubectl edit rs/vote
+
+Update the version of the image from schoolofdevops/vote:v1 to schoolofdevops/vote:v2
+
+Save the file. Observe if application got updated. Note what do you observe. Do you see the new version deployed ??
+Exercise: Self Healing Replica Sets
+
+List the pods and kill some of those, see what replica set does.
+
+    kubectl get pods
+    kubectl delete pods  vote-xxxx  vote-yyyy
+
+where replace xxxx and yyyy with actual pod ids.
+
+Questions:
+
+    Did replica set replaced the pods ?
+
+    Which version of the application is running now ?
+
+Lets now delete the pod created independent of replica set.
+
+    kubectl get pods
+    kubectl delete pods  vote
+
+Observe what happens.
+
+  * Does replica set take any action after deleting the pod created outside of its spec ? Why?
+
+# Exercises
+
+1. The following replication controller manifest has some bugs in it. Fix them.
+
+    apiVersion: v1/beta1
+    kind: ReplicationController
+    metadata:
+      name: loop
+    spec:
+      replicas: 3
+      selecter:
+        app: loop
+      templates:
+        metadata:
+          name: loop
+          labels:
+          app: loop
+        specs:
+          container:
+          - name: loop
+              image: schoolofdevops/loop
+
+Reference: Replication Controller
+
+2. Create Pods using following manifests. Each Pod has different values for the Label "platform". You should create a ReplicaSet with 4 replicas, which also selects both Pods based on "platform" Label. Tip: You may have to use matchExpressions attribute in your ReplicaSet.
+
+    file: sync-aws-po.yml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: sync-aws
+      labels:
+        version: 2
+        platform: aws
+    spec:
+      containers:
+        - name: sync
+          image: schoolofdevops/sync:v2
+     
+    file: sync-gcp-po.yml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: sync-gcp
+      labels:
+        version: 2
+        platforms: gcp
+    spec:
+      containers:
+        - name: sync
+          image: schoolofdevops/sync:v2
+
+3. Create a Namespace with the name test and prod.
+
+        - 1. For test create it using kubectl cli
+        - 2. For prod, create from a namespace manifest(yaml) file.
+
+4. The following manifest is working as intended. Try to debug.
+
+    apiVersion: v1
+    kind: ReplicationController
+    metadata:
+      name: web
+      labels:
+        role: role
+    spec:
+      replicas: 3
+      selector:
+        app: robotshop
+      template:
+        metadata:
+          name: robotshop
+          labels:
+            app: robotshop
+      containers:
+        - name: web
+          image: robotshop/rs-web:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+
+5. How do you get the logs from all pods of a Replication Controller?
+
+Reference: logs from all pods in a RC
+
+6. The Pods from a Replication Controller has stuck in Terminating status and doesn't actually get deleted. How do you delete these Pods.?
+
+Reference: Delete Pods forcefully
+
+7. How do you force repulling an image with the same tag?
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: kuard
+    spec:
+      containers:
+        - image: gcr.io/kuar-demo/kuard-amd64:1
+          name: kuard
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+
+Reference: Force image pull
+
+8. When I try to apply the following Pod manifest, I am getting image <user/image>:latest not found. How would you fix it?
+
+     `Tip`: This image is in a private registry.
+
+    apiVersion: v1
+    kind: ReplicationController
+    metadata:
+      name: web
+      labels:
+        role: role
+    spec:
+      replicas: 3
+      selector:
+        app: robotshop
+      template:
+        metadata:
+          name: robotshop
+          labels:
+            app: robotshop
+      containers:
+        - name: web
+          image: my-private-registry/robotshop/rs-web:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+
+Reference: Pulling images from private registry
+
+9. Launch the following Replication Controller in Prod namespace and use kubectl to scale the replicas from 3 to 6.
+
+    apiVersion: v1
+    kind: ReplicationController
+    metadata:
+      name: web
+      labels:
+        role: role
+    spec:
+      replicas: 3
+      selector:
+        app: robotshop
+      template:
+        metadata:
+          name: robotshop
+          labels:
+            app: robotshop
+        spec:
+          containers:
+            - name: web
+              image: robotshop/rs-web:latest
+              ports:
+                - containerPort: 8080
+                  protocol: TCP
 
