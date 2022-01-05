@@ -811,5 +811,111 @@ where expected output should be similar to,
     vis-13   36m          1%     1001Mi          26%
     vis-14   71m          3%     1047Mi          27%
 
+# LAB: Running load test as a kubernetes Job
+Running Load Test as a Job
 
+
+file: loadtest-job.yaml
+
+    apiVersion: batch/v1
+    kind: Job
+    metadata:
+      name: loadtest
+    spec:
+      template:
+        spec:
+          containers:
+          - name: siege
+            image: schoolofdevops/loadtest:v1
+            command: ["siege",  "--concurrent=5", "--benchmark", "--time=10m", "http://vote"]
+          restartPolicy: Never
+      backoffLimit: 4
+
+And launch the loadtest
+
+    kubectl apply -f loadtest-job.yaml
+
+To monitor while the load test is running ,
+
+    watch kubectl top pods
+     
+
+To get information about the job
+
+    kubectl get jobs
+    kubectl describe  job loadtest
+     
+
+To check the load test output
+
+    kubectl logs  -f loadtest-xxxx
+
+[replace loadtest-xxxx with the actual pod id.]
+
+[Sample Output]
+
+    ** SIEGE 3.0.8
+    ** Preparing 15 concurrent users for battle.
+    root@kube-01:~# kubectl logs vote-loadtest-tv6r2 -f
+    ** SIEGE 3.0.8
+    ** Preparing 15 concurrent users for battle.
+     
+    .....
+     
+     
+    Lifting the server siege...      done.
+     
+    Transactions:              41618 hits
+    Availability:              99.98 %
+    Elapsed time:             299.13 secs
+    Data transferred:         127.05 MB
+    Response time:              0.11 secs
+    Transaction rate:         139.13 trans/sec
+    Throughput:             0.42 MB/sec
+    Concurrency:               14.98
+    Successful transactions:       41618
+    Failed transactions:               8
+    Longest transaction:            3.70
+    Shortest transaction:           0.00
+     
+    FILE: /var/log/siege.log
+    You can disable this annoying message by editing
+    the .siegerc file in your home directory; change
+    the directive 'show-logfile' to false.
+
+Now check the job status again,
+
+    kubectl get jobs
+    NAME            DESIRED   SUCCESSFUL   AGE
+    vote-loadtest   1         1            10m
+    
+  # Exercise
+
+1. When you deploy the metrics server, you are not able to get metrics either from Pods or Nodes. After debugging further, you found out that the metrics-server Pods is not running with following error. How would you go about fixing this issue?
+
+    [metrics-server-logs]
+    I0919 11:06:38.614962       1 serving.go:273] Generated self-signed cert (apiserver.local.config/certificates/apiserver.crt, apiserver.local.config/certificates/apiserver.key)
+    [restful] 2018/09/19 11:06:39 log.go:33: [restful/swagger] listing is available at https://:443/swaggerapi
+    [restful] 2018/09/19 11:06:39 log.go:33: [restful/swagger] https://:443/swaggerui/ is mapped to folder /swagger-ui/
+    I0919 11:06:39.698970       1 serve.go:96] Serving securely on [::]:443
+    E0919 11:06:50.112929       1 reststorage.go:101] unable to fetch node metrics for node "kubeadm-test": no metrics known for node "kubeadm-test"
+    E0919 11:06:50.112964       1 reststorage.go:101] unable to fetch node metrics for node "kubeadm-test-2": no metrics known for node "kubeadm-test-2"
+    E0919 11:06:52.638381       1 reststorage.go:101] unable to fetch node metrics for node "kubeadm-test": no metrics known for node "kubeadm-test"
+    E0919 11:06:52.638404       1 reststorage.go:101] unable to fetch node metrics for node "kubeadm-test-2": no metrics known for node "kubeadm-test-2"
+    E0919 11:07:39.693561       1 manager.go:102] unable to fully collect metrics: [unable to fully scrape metrics from source kubelet_summary:kubeadm-test: unable to fetch metrics from Kubelet kubeadm-test (kubeadm-test): Get https://kubeadm-test:10250/stats/summary/: x509: certificate signed by unknown authority, unable to fully scrape metrics from source kubelet_summary:kubeadm-test-2: unable to fetch metrics from Kubelet kubeadm-test-2 (kubeadm-test-2): Get https://kubeadm-test-2:10250/stats/summary/: x509: certificate signed by unknown authority]
+
+2. Create a Deployment manifest with following properties.
+
+    image: schoolofdevops/frontend:v1.0
+    minimum available memory: 128mb
+    minimum available cpu: 0.25 core
+    maximum available memory: 256mb
+    maximum available cpu: 0.50 core
+
+3. Create a HPA for the above created Deployment with following propeties.
+
+    cpu target utilization: 50%
+    memory target utiliztion: 200mb
+    
+  
 
