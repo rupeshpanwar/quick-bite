@@ -1,4 +1,4 @@
-- hosts: alpine-example-com
+- hosts: rhel8-example-com
   become: yes
   tasks:
   - name: webserver is installed
