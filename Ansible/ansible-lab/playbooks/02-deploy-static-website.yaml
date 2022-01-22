@@ -1,4 +1,4 @@
-- hosts: ec2
+- hosts: alpine-example-com
   become: yes
   tasks:
   - name: webserver is installed
@@ -16,5 +16,5 @@
       state: directory
   - name: static website is deployed
     uri:
-      url: https://raw.githubusercontent.com/abdennour/example-static-website/ansible-course/index.html
+      url: https://raw.githubusercontent.com/rupeshpanwar/example-static-website/ansible-course/index.html
       dest: /var/www/html # /usr/share/nginx/html
