@@ -9,6 +9,8 @@ ElasticSearch - https://www.elastic.co/elasticsearch/
 
 Kibana - https://www.elastic.co/kibana/ 
 
+<img width="867" alt="image" src="https://user-images.githubusercontent.com/75510135/150619735-1a1c9e8d-5ba5-4f43-a5f7-685e37b2b44c.png">
+
 Kubernetes Procedure Document
 Github repository [Read this first]
 
