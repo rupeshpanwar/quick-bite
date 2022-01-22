@@ -1,5 +1,5 @@
 - name: play for file management
-  hosts: ec2
+  hosts: all
   tasks:
     # create file `/tmp/hello.txt` with some content
   - name: hello file is copied
