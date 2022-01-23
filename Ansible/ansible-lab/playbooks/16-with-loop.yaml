@@ -19,7 +19,7 @@
       state: directory
   - name: static website is deployed
     uri:
-      url: https://raw.githubusercontent.com/abdennour/example-static-website/{{ git_branch }}/{{ item }}.html
+      url: https://raw.githubusercontent.com/rupeshpanwar/example-static-website/{{ git_branch }}/{{ item }}.html
       dest: "{{ webserver_root_dir }}" # /usr/share/nginx/html
     loop:
     - index
