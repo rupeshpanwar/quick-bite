@@ -1,4 +1,4 @@
-- hosts: ec2
+- hosts: ansible-lab_managedhost-alpine_2
   become: yes
   vars:
     webserver: nginx
