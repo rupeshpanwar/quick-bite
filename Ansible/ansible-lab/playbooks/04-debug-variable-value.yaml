@@ -1,4 +1,4 @@
-- hosts: ansible-lab_managedhost-alpine_2
+- hosts: rhel8-example-com
   become: yes
   vars:
     webserver: nginx
