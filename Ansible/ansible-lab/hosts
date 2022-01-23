@@ -2,7 +2,7 @@ alpine-example-com ansible_host=managedhost-alpine ansible_connection=ssh
 rhel8-example-com ansible_connection=docker
 centos7-example-com ansible_connection=docker
 alpinesystemd-example-com ansible_connection=docker
-ec2  ansible_connection=docker
+ansible-lab_managedhost-alpine_2  ansible_host=managedhost-alpine ansible_connection=ssh
 [redhat_group]
 rhel8-example-com
 centos7-example-com
