@@ -1,5 +1,5 @@
 - name: play - target group from large inventory
-  hosts: prod
+  hosts: redhat_group
   become: yes
   tasks:
   - name: nginx is installed

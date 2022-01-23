@@ -1,5 +1,5 @@
 - name: play for turn-off gather facts task
-  hosts: ec2
+  hosts: rhel8-example-com
   gather_facts: no
   tasks:
   - name: print ansible_facts
