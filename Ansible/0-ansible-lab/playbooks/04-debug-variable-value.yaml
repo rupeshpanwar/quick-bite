@@ -1,0 +1,10 @@
+- hosts: rhel8-example-com
+  become: yes
+  vars:
+    webserver: nginx
+    webserver_root_dir: /var/www/html
+  tasks:
+  - name: debug
+    debug:
+      msg: "the value of webserver is {{ webserver }}"
+

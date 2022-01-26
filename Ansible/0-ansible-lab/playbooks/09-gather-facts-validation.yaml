@@ -1,0 +1,6 @@
+- name: play for discover gather facts task
+  hosts: rhel8-example-com
+  tasks:
+  - name: print ansible_facts
+    debug:
+      var: ansible_facts
