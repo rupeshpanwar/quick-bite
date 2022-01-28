@@ -117,17 +117,17 @@ cat /etc/redhat-release
 
 
 <img width="1047" alt="image" src="https://user-images.githubusercontent.com/75510135/151085808-dd371f8b-1923-4bda-9946-bf06f97267b4.png">
-```
+
 - check if package is installed or not
 $ yum list installed | grep package-name
 
 - check if package is available or not
 $ yum list available | grep package-name
-```
+
 
 <img width="935" alt="image" src="https://user-images.githubusercontent.com/75510135/151087355-e557ba5b-cbe5-43ce-af46-0bc8a8b37010.png">
 
-```
+
 - find the machine name 
 $ cat /etc/hostname
 
