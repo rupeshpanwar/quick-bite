@@ -87,7 +87,7 @@ $ sudo chkconfig jenkins on
 <img width="843" alt="image" src="https://user-images.githubusercontent.com/75510135/151082144-410290fa-3263-4925-ae82-080f85020256.png">
 <img width="1034" alt="image" src="https://user-images.githubusercontent.com/75510135/151082725-a742aa3f-0558-4910-aa66-bd4091dc9223.png">
 <img width="917" alt="image" src="https://user-images.githubusercontent.com/75510135/151082784-c89cc767-5d6c-4f80-99bd-4f9c70b263d9.png">
-```
+
 - to display permission of a Directory
 $ ls -ld directory-name
 
@@ -95,7 +95,7 @@ $ ls -ld directory-name
 cat /etc/redhat-release
 
 
-```
+
 <img width="574" alt="image" src="https://user-images.githubusercontent.com/75510135/151082962-bf462006-18e4-44a3-a189-1641cc20f1c7.png">
 <img width="1004" alt="image" src="https://user-images.githubusercontent.com/75510135/151083088-70a6499a-2712-4ce3-8c9d-d5a50c25cbf0.png">
 <img width="567" alt="image" src="https://user-images.githubusercontent.com/75510135/151083334-59910239-c974-4c58-9bf6-4611781bec3b.png">
