@@ -112,6 +112,8 @@
 * https://github.com/ujenmr/ansible-logstash-callback/blob/master/README.md
 * https://github.com/ujenmr/ansible-logstash-callback
 * https://www.youtube.com/watch?v=Dj0hgliEjA8
+* https://www.bmc.com/blogs/elasticsearch-logs-beats-logstash/
+
 
 ```
 checking out ansible callback plugins - they are python modules that implement callback functions that ansible will call during playbook execution. 
