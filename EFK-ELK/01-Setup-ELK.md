@@ -33,9 +33,10 @@ sudo apt-get install elasticsearch -y
 
 sudo vim /etc/elasticsearch/elasticsearch.yml
 
+```
 _network.host: "localhost"
 http.port:9200_
-
+```
 
 **Start EC Service:**
 
@@ -65,10 +66,11 @@ sudo apt-get install kibana
 
 vim /etc/kibana/kibana.yml
 
+```
 server.port: 5601
 server.host: "0.0.0.0"
 elasticsearch.hosts: ["http://localhost:9200"]
-
+```
 
 **Start Kibana Service:**
 
@@ -78,7 +80,9 @@ sudo service kibana start
 take public ip of the the machine => ifconfig => look for ip under eth0 section
 
 then in the browser, type below
+```
     public-ip:5601
+```
 
 **Installing Beats**
 
@@ -93,7 +97,7 @@ sudo service metricbeat start
 sudo vim /etc/logstash/conf.d/apache-01.conf
 
 
-
+```
 input {
 file {
 path => "/home/ubuntu/apache-daily-access.log"
@@ -121,7 +125,7 @@ elasticsearch {
 hosts => ["localhost:9200"]
 }
 }
-
+```
 
 **Start LogStash Service:**
 
