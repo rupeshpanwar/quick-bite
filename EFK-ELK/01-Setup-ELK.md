@@ -1,17 +1,17 @@
-Update Unix Machine Package Manager
+**Update Unix Machine Package Manager**
 
 sudo apt-get update
 
 sudo apt-get upgrade -y
 
 
-Install JAVA on Machine:
+**Install JAVA on Machine:**
 
 sudo apt-get install default-jre -y
 
+java -version
 
-
-Elasticsearch Installation
+**Elasticsearch Installation**
 
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
@@ -21,7 +21,7 @@ echo "deb https://artifacts.elastic.co/packages/oss-7.x/apt stable main" | sudo 
 
 
 
-Install ES:
+**Install ES:**
 
 sudo apt-get update
 
@@ -29,39 +29,39 @@ sudo apt-get install elasticsearch -y
 
 
 
-Update ES Network Config:
+**Update ES Network Config:**
 
 sudo vim /etc/elasticsearch/elasticsearch.yml
 
-network.host: "localhost"
-http.port:9200
+_network.host: "localhost"
+http.port:9200_
 
 
-Start EC Service:
+**Start EC Service:**
 
 sudo service elasticsearch start
 
 
 
-Verify ES Service Status:
+**Verify ES Service Status:**
 
 sudo curl http://localhost:9200
 
 
 
-Logstash Installation
+**Logstash Installation**
 
 sudo apt-get install logstash
 
 
 
-Installing Kibana
+**Installing Kibana**
 
 sudo apt-get install kibana
 
 
 
-Update Kibana Network Setting:
+**Update Kibana Network Setting:**
 
 vim /etc/kibana/kibana.yml
 
@@ -70,13 +70,17 @@ server.host: "0.0.0.0"
 elasticsearch.hosts: ["http://localhost:9200"]
 
 
-Start Kibana Service:
+**Start Kibana Service:**
 
 sudo service kibana start
 
+**Access Kibana**
+take public ip of the the machine => ifconfig => look for ip under eth0 section
 
+then in the browser, type below
+    public-ip:5601
 
-Installing Beats
+**Installing Beats**
 
 sudo apt-get install metricbeat
 
@@ -84,7 +88,7 @@ sudo service metricbeat start
 
 
 
-Shipping some data:
+**Shipping some data:**
 
 sudo vim /etc/logstash/conf.d/apache-01.conf
 
@@ -119,6 +123,6 @@ hosts => ["localhost:9200"]
 }
 
 
-Start LogStash Service:
+**Start LogStash Service:**
 
 sudo service logstash start 
