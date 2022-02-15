@@ -8,6 +8,7 @@ However, in order to make it easy for you, i will summarize here all what's requ
 1. MacOS :
 
     # python3 & pip are installed
+    ```
     brew install python3
     curl -O https://bootstrap.pypa.io/get-pip.py
     sudo python3 get-pip.py
@@ -15,10 +16,10 @@ However, in order to make it easy for you, i will summarize here all what's requ
     # install ansible
     sudo pip3 install ansible --upgrade
     # or try:  pip3 install ansible --upgrade --user
-
+    ```
 
 2. Ubuntu (18.04 or later)
-
+```
     # python3 & pip are installed
     sudo apt update -y
     sudo apt install python3-pip
@@ -26,7 +27,7 @@ However, in order to make it easy for you, i will summarize here all what's requ
     # install ansible
     sudo pip3 install ansible --upgrade
     # or try:  pip3 install ansible --upgrade --user
-
+```
 
 3. Windows
 
