@@ -1,3 +1,15 @@
+- quick Ansible installation on ubuntu server
+
+```
+    # python3 & pip are installed
+    sudo apt update -y
+    sudo apt install python3-pip
+     
+    # install ansible
+    sudo pip3 install ansible --upgrade
+    # or try:  pip3 install ansible --upgrade --user
+ ```
+ 
 - ansible -i inventory example -m ping -u <your_user_name> --ask-pass
 
 ```
