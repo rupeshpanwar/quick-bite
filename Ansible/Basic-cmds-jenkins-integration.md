@@ -45,3 +45,50 @@ checkJenkinsService.yml
 
 ```
 - to run the playbook => ansible-playbook checkJenkinsService.yml --ask-pass
+
+- remove jenkins from Ubuntu
+```
+sudo apt-get remove --purge jenkins
+```
+# install Jenkins
+```
+---
+- hosts: jenkins
+  become: yes
+  tasks:
+  - name: openjdk
+    apt: name=openjdk-8-jdk update_cache=yes
+
+  - name: repo key
+    apt_key: url=https://pkg.jenkins.io/debian-stable/jenkins.io.key state=present
+
+  - name: repo
+    apt_repository: repo='deb https://pkg.jenkins.io/debian-stable binary/' state=present
+
+  - name: jenkins
+    apt: name=jenkins update_cache=yes
+
+  - name: jenkins service
+    service: name=jenkins state=started
+
+  - name: print passwd
+    command: cat /var/lib/jenkins/secrets/initialAdminPassword
+    register: jpass
+
+  - name: passwd
+    debug:
+      var: jpass
+  ```
+  
+  # check JenkinsService run status
+  ```
+  root@jenkins:~# more checkJenkinsService.yml
+---
+- hosts: jenkins
+  become: yes
+  tasks:
+  - name: jenkins service
+    service: name=jenkins state=started
+  ```
+  
+  
