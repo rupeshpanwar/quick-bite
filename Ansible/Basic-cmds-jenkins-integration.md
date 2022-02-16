@@ -141,7 +141,21 @@ pipeline{
     }
 }
 ```
+
+# Configure Email Notification
+- Under Configure System
+![image](https://user-images.githubusercontent.com/75510135/154193400-e525d78f-5f36-429c-a1c5-dab07699d154.png)
+
+![image](https://user-images.githubusercontent.com/75510135/154193919-2770c3a4-ea9d-4f2d-b178-df317219f276.png)
+
+![image](https://user-images.githubusercontent.com/75510135/154195090-f701b237-b82a-4a76-913c-69d17cc841e5.png)
+
+
+
 - reference links
 - https://www.shellhacks.com/ansible-sudo-a-password-is-required/
 - https://www.cyberciti.biz/faq/change-root-password-ubuntu-linux/
 - https://fuzzyblog.io/blog/ansible/2020/06/03/getting-past-ansible-password-required-issues.html
+- https://tech.davidfield.co.uk/from-0-to-code-using-ansible-in-jenkins-pipelines/
+- https://blog.dbi-services.com/jenkins-deploy-ansible-playbook-with-jenkins-plugin/
+- https://tech.davidfield.co.uk/from-0-to-code-using-ansible-in-jenkins-pipelines/
