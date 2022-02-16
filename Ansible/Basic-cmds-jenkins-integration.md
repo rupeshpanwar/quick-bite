@@ -103,5 +103,45 @@ sudo apt-get remove --purge jenkins
 - add path as installation path on server
 <img width="456" alt="image" src="https://user-images.githubusercontent.com/75510135/154174135-46745963-eba3-4936-ad7f-e045198f466b.png">
 
-![image](https://user-images.githubusercontent.com/75510135/154174225-2617d734-0e39-4e11-81d2-1f690851104f.png)
+![image](https://user-images.githubusercontent.com/75510135/154182097-d997c19e-1210-4f7a-9bcb-4aa0c9033063.png)
 
+## note , setting up the password for Jenkins
+```
+sudo visudo
+jenkins    ALL=(ALL) NOPASSWD:ALL
+```
+
+# Jenkinsfile
+```
+pipeline{
+    agent {
+        node{
+            label "node:ansible"
+            customWorkspace "/usr/Jenkins"
+        }
+    }
+    stages{
+        stage('test echo') {
+          steps {
+            // One or more steps need to be included within the steps block.
+            echo 'test'
+        //   sh 'echo $PATH'
+        //   sh 'ls -lrta'
+        //   sh 'ansible --version'
+        //   sh 'which ansible'
+          }
+        } // stage - test echo closed
+        
+        stage('test service playbook') {
+          steps {
+            // One or more steps need to be included within the steps block.
+            ansiblePlaybook installation: 'ansible', inventory: '/usr/Jenkins/hosts', playbook: '/usr/Jenkins/checkJService.yml'
+          }
+       } // stage - test service laybook closed
+    }
+}
+```
+- reference links
+- https://www.shellhacks.com/ansible-sudo-a-password-is-required/
+- https://www.cyberciti.biz/faq/change-root-password-ubuntu-linux/
+- https://fuzzyblog.io/blog/ansible/2020/06/03/getting-past-ansible-password-required-issues.html
