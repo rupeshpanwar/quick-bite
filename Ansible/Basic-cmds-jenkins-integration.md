@@ -142,6 +142,58 @@ pipeline{
 }
 ```
 
+# Publish Job output to HTML Report 
+![image](https://user-images.githubusercontent.com/75510135/154197266-1f0f5dc6-16aa-4876-9d46-295d6107eae2.png)
+
+# find text in console output and mark the job fail
+```
+pipeline{
+    agent {
+        node{
+            label "node:ansible"
+            customWorkspace "/usr/Jenkins"
+        }
+    }
+    stages{
+        stage('test echo') {
+          steps {
+            // One or more steps need to be included within the steps block.
+            echo 'test'
+        //   sh 'echo $PATH'
+        //   sh 'ls -lrta'
+        //   sh 'ansible --version'
+        //   sh 'which ansible'
+          }
+        } // stage - test echo closed
+        
+        stage('test service playbook') {
+          steps {
+            // One or more steps need to be included within the steps block.
+            ansiblePlaybook installation: 'ansible', inventory: '/usr/Jenkins/hosts', playbook: '/usr/Jenkins/checkJService.yml'
+          }
+       } // stage - test service laybook closed
+       
+       stage('test html report') {
+          steps {
+            // One or more steps need to be included within the steps block.
+            echo 'test'
+           // findText(textFinders: [textFinder(regexp: 'PLAY RECAP', alsoCheckConsoleOutput: true)])
+            //  publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: 'Job Output'])
+          }
+       } // stage - test HTML report closed
+       
+      
+       
+    //   stage('test email notification') {
+    //       steps {
+    //         // One or more steps need to be included within the steps block.
+    //          mail bcc: '', body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:', cc: '', from: 'rupeshpanwar28@gmail.com', replyTo: '', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'rupeshpanwar28@gmail.com'
+    //       }
+    //   } // stage - test email notification
+      
+    }
+}
+```
 # Configure Email Notification
 - Under Configure System
 ![image](https://user-images.githubusercontent.com/75510135/154193400-e525d78f-5f36-429c-a1c5-dab07699d154.png)
