@@ -91,4 +91,17 @@ sudo apt-get remove --purge jenkins
     service: name=jenkins state=started
   ```
   
-  
+  # Install Ansible plugin
+![image](https://user-images.githubusercontent.com/75510135/154173727-f816589e-2b44-417f-89f2-af7ab2545fe1.png)
+
+
+- check the box n click on install without restart
+![image](https://user-images.githubusercontent.com/75510135/154173854-a2e1f654-b7cc-4405-83e5-a72eb891844a.png)
+
+- switch to manage jenkins => Global Configuration Tool => Ansible section => click on Add Ansible
+
+- add path as installation path on server
+<img width="456" alt="image" src="https://user-images.githubusercontent.com/75510135/154174135-46745963-eba3-4936-ad7f-e045198f466b.png">
+
+![image](https://user-images.githubusercontent.com/75510135/154174225-2617d734-0e39-4e11-81d2-1f690851104f.png)
+
