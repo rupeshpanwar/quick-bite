@@ -1,7 +1,0 @@
-- name: play to generate SPECS report
-  hosts: container
-  tasks:
-  - name: report is generated
-    template:
-      src: ./32-file.conf
-      dest: /tmp/specs.conf

@@ -1,6 +1,0 @@
-- name: play for discover magic variables
-  hosts: rhel8-example-com
-  gather_facts: no 
-  tasks:
-  - name: print inventory_hostname
-  - name: print hostvars

@@ -1,8 +1,0 @@
-- name: play use encrypted vars
-  hosts: localhost
-  vars_files:
-  - vars/40-users.yaml
-  tasks:
-  - name: encrypted variable is printed
-    debug:
-      var: my_users

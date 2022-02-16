@@ -1,7 +1,0 @@
-- name: play for turn-off gather facts task
-  hosts: rhel8-example-com
-  gather_facts: no
-  tasks:
-  - name: print ansible_facts
-    debug:
-      var: ansible_facts
