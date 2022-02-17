@@ -44,7 +44,7 @@ pipeline {
 <img width="853" alt="image" src="https://user-images.githubusercontent.com/75510135/154295326-734c4cb9-e646-4631-89df-1e36cc0b87d5.png">
 
 - now make changes in the jenkinsfile
-```
+
 pipeline {
   agent any
 
