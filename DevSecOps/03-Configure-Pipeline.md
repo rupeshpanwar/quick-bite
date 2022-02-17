@@ -39,6 +39,8 @@ pipeline {
 ### kube config file
 - cat /root/.kube/config => copy into a file 
 - create creds in jenkins , upload kubeconfig file
+
+
 <img width="853" alt="image" src="https://user-images.githubusercontent.com/75510135/154295326-734c4cb9-e646-4631-89df-1e36cc0b87d5.png">
 
 - now make changes in the jenkinsfile
@@ -75,6 +77,14 @@ pipeline {
     }
   }
 }
-```
+
+
+# 
 <img width="1098" alt="image" src="https://user-images.githubusercontent.com/75510135/154295824-3d7b0a06-977d-4b07-b9f2-4076ef078974.png">
+
+# Use Case
+![image](https://user-images.githubusercontent.com/75510135/154379940-aa6facec-60a0-4de7-9ffb-c10eab28bdfb.png)
+
+![image](https://user-images.githubusercontent.com/75510135/154380807-fcdbf492-441d-42e1-8410-1cf63a80351e.png)
+
 
