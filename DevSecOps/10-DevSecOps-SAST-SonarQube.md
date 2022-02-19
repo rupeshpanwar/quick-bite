@@ -80,7 +80,7 @@
 
       stage('SonarQube - SAST') {
           steps {
-            sh "mvn sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.host.url=http://142.93.213.194:9000 -Dsonar.login=6a993da4fd9a411c2a96ba2bab03dc0f26e6a105"
+            sh "mvn sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.host.url=http://142.93.213.194:9000 -Dsonar.login="
           }
       } // stage ending SonarQube - SAST
   ```
@@ -197,7 +197,7 @@
         stage('SonarQube - SAST') {
           steps {
                 withSonarQubeEnv('SonarQube') {
-            sh "mvn sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.host.url=http://142.93.213.194:9000  -Dsonar.login=6a993da4fd9a411c2a96ba2bab03dc0f26e6a105"
+            sh "mvn sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.host.url=http://142.93.213.194:9000"
                 }
                 timeout(time: 2, unit: 'MINUTES') {
           script {
