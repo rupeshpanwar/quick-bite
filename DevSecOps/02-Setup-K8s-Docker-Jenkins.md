@@ -1,6 +1,18 @@
+<details>
+<summary>Introduction</summary>
+<br>
+
 <img width="335" alt="image" src="https://user-images.githubusercontent.com/75510135/153755482-39e1eca3-2dbb-4d03-aeb5-93dea1655cee.png">
 <img width="882" alt="image" src="https://user-images.githubusercontent.com/75510135/153755796-b1300d45-a601-4ba9-b8b3-4aa94e31c937.png">
+    
+</details>
 
+
+<details>
+<summary>1. Create VM & Install K8s</summary>
+<br>
+
+    
 - create a VM with above mentioned configuration then
 - run the script => https://github.com/rupeshpanwar/quick-bite/blob/main/DevSecOps/DevOps-Sec/setup/vm-install-script/install-script.sh
 
@@ -33,15 +45,21 @@ kubectl get svc
     1. Create a file called subnet.env at location /run/flannel/ inside your worker nodes.
 
     2. Add the below content in it.
-
+```
     FLANNEL_NETWORK=10.244.0.0/16
     FLANNEL_SUBNET=10.244.0.1/24
     FLANNEL_MTU=1450
     FLANNEL_IPMASQ=true
-
+```
    3.  Save the file and create the pod again. It should saw the runnign status now.
 
-# Install plugins
+</details>
+
+<details>
+<summary>2. Install plugins</summary>
+<br>
+
+    
 ![image](https://user-images.githubusercontent.com/75510135/154281751-e12fc949-cc32-42e4-963d-6f067521a671.png)
 
 - if jenkins installation fails then run below scripts
@@ -134,7 +152,13 @@ kubernetes-cli@1.10.2
 <img width="443" alt="image" src="https://user-images.githubusercontent.com/75510135/154288962-118724ec-9aa0-47d8-a5d3-976e6a6a3354.png">
 <img width="494" alt="image" src="https://user-images.githubusercontent.com/75510135/154289264-5e6bd2b9-c6e4-4d72-8c11-bf17034885e8.png">
 
-- get installed plugin details in Jenkins
+
+</details>
+    
+<details>
+<summary>3. get installed plugin details in Jenkins</summary>
+<br>
+
 ```
 Jenkins.instance.pluginManager.plugins.each{
   plugin -> 
@@ -143,6 +167,11 @@ Jenkins.instance.pluginManager.plugins.each{
 ```
 
 <img width="1197" alt="image" src="https://user-images.githubusercontent.com/75510135/154289928-6e32990e-e018-4e37-8041-49216c3e6fd5.png">
+    
+</details>
+    
+
+
 
 
 
