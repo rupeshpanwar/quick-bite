@@ -60,6 +60,18 @@
 
 <img width="1146" alt="image" src="https://user-images.githubusercontent.com/75510135/154786891-dcdc2268-009a-42a8-a905-8ff652455a00.png">
 
+- when git push is attempted
+<img width="784" alt="image" src="https://user-images.githubusercontent.com/75510135/154787341-73c42270-98ed-450f-8604-ae963a74ae87.png">
+
+<img width="1379" alt="image" src="https://user-images.githubusercontent.com/75510135/154787346-1c1e511e-8d38-4058-b813-db1b29316629.png">
 
 
-    4. Configure Talisman to ignore some files(having sensitive data)
+
+ #   4. Configure Talisman to ignore some files(having sensitive data)
+ 
+ - in the project root dir, create file .talismanrc with content filename n checksum detected above
+ <img width="723" alt="image" src="https://user-images.githubusercontent.com/75510135/154787477-441128bf-156f-478d-b292-a533814f2b61.png">
+
+- and again perform git push 
+
+
