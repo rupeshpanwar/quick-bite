@@ -88,9 +88,3 @@ ENTRYPOINT ["java","-jar","/home/k8s-pipeline/app.jar"]
 
 </details>
 
-
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
