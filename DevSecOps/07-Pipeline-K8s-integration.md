@@ -1,11 +1,22 @@
-- Summary 
-    1. K8s Deployment yml file
-    2. @Jenkinsfile, Add K8s stage to execute the deployment & service
-    3. Deploy NodeJs Backend service
+**Steps**
+    
+   
+
+<details>
+<summary>Introduction</summary>
+<br>
 
 ![image](https://user-images.githubusercontent.com/75510135/154777691-ce87ab12-7fd2-41bd-af2f-2043312c037f.png)
+    
+</details>
 
-#     1. K8s Deployment yml file
+
+
+<details>
+<summary>1. K8s Deployment yml file</summary>
+<br>
+
+
 ```
 k8s_deployment_service.yml
 apiVersion: apps/v1
@@ -44,8 +55,15 @@ spec:
     app: devsecops
   type: NodePort
 ```
+    
+</details>
 
-#     2. @Jenkinsfile, Add K8s stage to execute the deployment & service
+
+<details>
+<summary>2. @Jenkinsfile, Add K8s stage to execute the deployment & service</summary>
+<br>
+
+
 ```
 pipeline {
   agent any
@@ -94,11 +112,19 @@ pipeline {
 }
 ```
 
-#     3. Deploy NodeJs Backend service
+    
+</details>
 
+ 
+<details>
+<summary>3. Deploy NodeJs Backend service</summary>
+<br>
+    
     kubectl -n default create deploy node-app --image siddharth67/node-service:v1 
     kubectl -n default expose deploy node-app --name node-service --port 5000
     kubectl get all
+    
+    
 
 <img width="727" alt="image" src="https://user-images.githubusercontent.com/75510135/154779140-02bfdfed-5198-4831-ac3a-b4e7adbeabcc.png">
 
@@ -117,9 +143,20 @@ pipeline {
 <img width="636" alt="image" src="https://user-images.githubusercontent.com/75510135/154779643-8d55a938-5ff1-41da-919a-e525a79238a6.png">
 
 - Notedown the service name
+    
+    ```
     NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
     service/devsecops-svc   NodePort    10.98.106.125    <none>        8080:31031/TCP   7m8s
+    ```
 
 - check frontend & backend endpoints
-  BE =>  http://142.93.213.194:31031/compare/51
-  FE =>  http://142.93.213.194:31031/increment/77
+    
+>  BE =>  http://142.93.213.194:31031/compare/51
+    
+>  FE =>  http://142.93.213.194:31031/increment/77
+
+    
+</details>
+
+
+
