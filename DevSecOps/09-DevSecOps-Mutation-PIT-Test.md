@@ -1,19 +1,30 @@
-
-**Summary**
-1. Add PIT Mutation Plugin in POM file
-2. Add Stage in Jenkinsfile(post Jococo test)
-3. PIT Mutation Report
-
 - https://pitest.org/quickstart/maven/
 
+
+**Steps**
+
+<details>
+<summary>Introduction</summary>
+<br>
+
+ 
+
 ![image](https://user-images.githubusercontent.com/75510135/154794372-f36a5876-5373-4b4e-b07e-f67d4665d1da.png)
+   
 ![image](https://user-images.githubusercontent.com/75510135/154794659-0963b86f-7641-4447-a745-5a141fc6ce48.png)
 
 
-# 1. Add PIT Mutation Plugin in POM file
+</details>
 
+<details>
+<summary>1. Add PIT Mutation Plugin in POM file</summary>
+<br>
+
+   
 ![image](https://user-images.githubusercontent.com/75510135/154795822-2f336a01-a517-4de5-ba64-7d6df18f1368.png)
 
+ 
+ 
 ```
 <!--                   PITest Mutation Plugin                   -->
 <plugin>
@@ -37,9 +48,15 @@
 </plugin>
 ```
 
+</details>
 
-# 2. Add Stage in Jenkinsfile(post Jococo test)
-```
+
+<details>
+<summary>2. Add Stage in Jenkinsfile(post Jococo test)</summary>
+<br>
+
+
+ ```
       stage('Mutation Tests - PIT') {
           steps {
               sh "mvn org.pitest:pitest-maven:mutationCoverage"
@@ -50,9 +67,15 @@
               }
           }
       }   // stage ending PIT mutations test
-```
+``` 
 
-# 3. PIT Mutation Report
+</details>
+
+
+<details>
+<summary>3. PIT Mutation Report</summary>
+<br>
+
 
 **Note , more mutation is killed , more it success**
 
@@ -94,3 +117,6 @@ NumericApplicationTests.java , change the code to
 
 ![image](https://user-images.githubusercontent.com/75510135/154796361-c0c68842-fc27-4520-8ded-0089b5e7dced.png)
 
+
+   
+</details>
