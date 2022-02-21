@@ -1,5 +1,8 @@
 -  https://jeremylong.github.io/DependencyCheck/dependency-check-maven/
 -  https://github.com/spring-projects/spring-boot
+-  https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-41079
+
+
 
 **Steps**
 <details>
