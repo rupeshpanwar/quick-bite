@@ -108,3 +108,47 @@ fi
   
 </details>
 
+<details>
+<summary>Add-on </summary>
+<br>
+
+- check for po readonly file 
+	
+> kubectl get po
+	
+> kubectl get po devsecops-5688749f69-6swww -o yaml | grep read
+	
+<img width="644" alt="image" src="https://user-images.githubusercontent.com/75510135/154971506-c060cde8-7894-4cb3-b282-31204af8560c.png">
+
+- make changes in deployment file
+
+<img width="843" alt="image" src="https://user-images.githubusercontent.com/75510135/154972036-0684fdd2-2980-4823-912e-7ebf1f159c57.png">
+	
+- add Volume spec to k8s deployment yml
+	
+```
+    spec:
+      volumes:
+      - name: vol
+        emptyDir: {}
+      serviceAccountName: default
+      containers:
+      - image: replace
+        name: devsecops-container
+        volumeMounts:
+        - mountPath: /tmp
+          name: vol
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 100
+          readOnlyRootFilesystem: true
+```
+<img width="1149" alt="image" src="https://user-images.githubusercontent.com/75510135/154974777-b043381c-c19a-40bd-8b40-4869e83a4fd1.png">
+
+- check the file system again
+	
+<img width="630" alt="image" src="https://user-images.githubusercontent.com/75510135/154974915-f22ac2f5-b8ec-48a4-b116-e63a94d4d522.png">
+	
+
+
+</details>
