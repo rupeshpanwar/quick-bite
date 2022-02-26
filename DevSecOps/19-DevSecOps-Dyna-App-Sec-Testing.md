@@ -122,8 +122,99 @@ echo "Exit Code : $exit_code"
 
  ![image](https://user-images.githubusercontent.com/75510135/155824956-866466a8-354e-4c7c-a50f-d84525d85793.png)
 
+- Add spring-boot-starter-security dependency in pom.xml
   
+ ```
+  <dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-security</artifactId>
+  </dependency>
+```
+
+ - Create a new class - src/main/java/com/devsecops/WebSecurityConfig.java 
   
+ ```
+  package com.devsecops;
+
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+
+    }
+}
+```
+  
+ ![image](https://user-images.githubusercontent.com/75510135/155826002-3b55b7ee-75d4-4a90-a23d-5b06dec5fee5.png)
+
+  - Modify zap.sh script with below details
+ 
+ ```
+  #!/bin/bash
+
+PORT=$(kubectl -n default get svc ${serviceName} -o json | jq .spec.ports[].nodePort)
+
+# first run this
+chmod 777 $(pwd)
+echo $(id -u):$(id -g)
+# docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-api-scan.py -t $applicationURL:$PORT/v3/api-docs -f openapi -r zap_report.html
+
+
+# comment above cmd and uncomment below lines to run with CUSTOM RULES
+docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-api-scan.py -t $applicationURL:$PORT/v3/api-docs -f openapi -c zap_rules -r zap_report.html
+
+exit_code=$?
+
+
+# HTML Report
+ sudo mkdir -p owasp-zap-report
+ sudo mv zap_report.html owasp-zap-report
+
+
+echo "Exit Code : $exit_code"
+
+ if [[ ${exit_code} -ne 0 ]];  then
+    echo "OWASP ZAP Report has either Low/Medium/High Risk. Please check the HTML Report"
+    exit 1;
+   else
+    echo "OWASP ZAP did not report any Risk"
+ fi;
+
+
+# Generate ConfigFile
+# docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-api-scan.py -t http://devsecops-demo.eastus.cloudapp.azure.com:31933/v3/api-docs -f openapi -g gen_file
+
+```
+  
+  - Add a new file zap_rules  - replace the url with your external ip and node port 
+  
+  ```
+  # zap-api-scan rule configuration file
+  # Change WARN to IGNORE to ignore rule or FAIL to fail if rule matches
+  # Active scan rules set to IGNORE will not be run which will speed up the scan
+  # Only the rule identifiers are used - the names are just for info
+  # You can add your own messages to each rule by appending them after a tab on each line.
+  100001	IGNORE	http://devsecops-demo.eastus.cloudapp.azure.com:31933/
+  100000	IGNORE	http://devsecops-demo.eastus.cloudapp.azure.com:31933/
+  ```
+  
+  - Add spring-security.version in pom.xml
+  
+  ```
+  <properties>
+   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+   <java.version>1.8</java.version>
+   <tomcat.version>9.0.43</tomcat.version>
+   <spring-security.version>5.4.4</spring-security.version>
+</properties>
+  ```
 </details>
 
 
