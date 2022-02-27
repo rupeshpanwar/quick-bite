@@ -165,13 +165,50 @@
 <summary>@GitLab, Configure the webhook obtained from Jenkins MBP</summary>
 <br>
   
-  - Click on Settings under Project
+  - Click on Settings => webhooks under Project
  
+  ![image](https://user-images.githubusercontent.com/75510135/155866582-52dd3b27-7f30-40fb-9c2b-0c12c2087fb9.png)
+
+  - provide the webhook url obtained from Jenkins [Note # Replace JENKINS_URL with your jenkins dns url name n replace token name here]
+  - http://142.93.213.194:8080/multibranch-webhook-trigger/invoke?token=mbp-webhook-token
+  ![image](https://user-images.githubusercontent.com/75510135/155866598-b6874525-270d-44e9-961e-da79402238b5.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/155866671-48019848-2117-4022-b616-900c2a582ba5.png)
+
+ - click on Add webhook
+  ![image](https://user-images.githubusercontent.com/75510135/155866675-067c1cc6-7547-4768-b728-a77a15735db1.png)
+
+  - on respective webhook , click on Test => then click on Push Event
+  
+  ![image](https://user-images.githubusercontent.com/75510135/155866716-dfb67883-27e8-4550-86c5-2df45dc6b5b8.png)
+
+  - on top of the same screen , it shows test result
+  ![image](https://user-images.githubusercontent.com/75510135/155866723-32afc292-6010-43b1-a7c4-cd6320a53416.png)
+
+  
 </details>
 
 
 <details>
-<summary>sample</summary>
+<summary>Validate & Fix</summary>
 <br>
+  
+  - to test the connectivity, make some minor changes in Jenkinsfile like here
+  - in dev branch , adding another sh command
+  
+  <img width="926" alt="image" src="https://user-images.githubusercontent.com/75510135/155866795-a192d9b9-399e-42b9-8fd7-89c3694bd781.png">
+  
+  - commit the changes to dev branch
+  
+  <img width="778" alt="image" src="https://user-images.githubusercontent.com/75510135/155866806-8c59915d-e9d0-40f8-8766-142ac8a9b071.png">
+
+  - check the build job under Dev brnach pipleine
+  ![image](https://user-images.githubusercontent.com/75510135/155866829-954cd617-7647-408a-b0e9-035faa79a904.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/155866826-60328308-7232-4210-b542-5e7eb401044c.png)
+
+  
+
+  
 
 </details>
