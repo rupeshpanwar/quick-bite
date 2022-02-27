@@ -4,6 +4,9 @@
 
 - github repo for script => https://github.com/rupeshpanwar/cks-demo.git
 
+![image](https://user-images.githubusercontent.com/75510135/155878902-0d5a2dd7-9d5d-482f-b241-d2825f8247a4.png)
+
+
 <details>
 <summary>Cluster Specification</summary>
 <br>
