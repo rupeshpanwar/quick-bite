@@ -30,7 +30,7 @@
 <summary>Application Security</summary>
 <br>
   
-    <img width="605" alt="image" src="https://user-images.githubusercontent.com/75510135/155873974-0de502fc-9ef6-4002-952f-14d5f0b854ac.png">
+  <img width="605" alt="image" src="https://user-images.githubusercontent.com/75510135/155873974-0de502fc-9ef6-4002-952f-14d5f0b854ac.png">
 
 </details>
 
@@ -38,7 +38,7 @@
 <summary>Extra Reference</summary>
 <br>
   
-    <img width="879" alt="image" src="https://user-images.githubusercontent.com/75510135/155874019-1b15be38-8374-4897-b2d9-4377ad442b6b.png">
+  <img width="879" alt="image" src="https://user-images.githubusercontent.com/75510135/155874019-1b15be38-8374-4897-b2d9-4377ad442b6b.png">
 
 
 </details>
