@@ -2,6 +2,7 @@
 -  https://cloud.google.com/sdk/docs/install
 - https://cloud.google.com/sdk/auth_success
 
+- github repo for script => https://github.com/rupeshpanwar/cks-demo.git
 
 <details>
 <summary>Cluster Specification</summary>
@@ -196,4 +197,24 @@ root@cks-master:~#
   
   ```
 </details>
+
+<details>
+<summary>Expose Nodeport range to outside world</summary>
+<br>
+
+  ![image](https://user-images.githubusercontent.com/75510135/155878605-be22b7c0-85f3-4fbd-b9bc-a8fc457e470f.png)
+  
+  - run below command to create firewall rule
+  
+  > gcloud compute firewall-rules create nodeports --allow tcp:30000-40000
+  
+  ```
+  Creating firewall...⠹Created [https://www.googleapis.com/compute/v1/projects/united-option-342608/global/firewalls/nodeports].
+Creating firewall...done.                                                                                
+NAME       NETWORK  DIRECTION  PRIORITY  ALLOW            DENY  DISABLED
+nodeports  default  INGRESS    1000      tcp:30000-40000        False
+  ```
+  
+</details>
+  
 
