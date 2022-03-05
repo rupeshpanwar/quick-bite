@@ -110,24 +110,44 @@
 <summary>PID Namespace</summary>
 <br>
 
-  
+  ```
+      ##### COntainer hunder d HOOD
+      docker <cmd> --name <container-name> <image-name> <process-to-run-inside-container>
+      #container c11
+      docker run --name c1 -d ubuntu sh -c 'sleep 1d'
+
+      docker exec c1 ps aux
+
+      #container c12
+      docker run --name c2 -d ubuntu sh -c 'sleep 999d'
+
+      docker exec c2 ps aux
+
+      # check the host kernel
+      ps aux | grep sleep
+
+      # remove C2
+      docker rm c2 --force
+
+      # now run c2 container in Namespace of C1
+      docker run --name c2 --pid=namespace:c1 ubuntu sh -c 'sleep 999d'
+
+      # then check the process running on C1 n C2
+      docker exec c1 ps aux
+      docker exec c2 ps aux
+  ```
   
 </details>
 
 
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Add-on</summary>
 <br>
-This is how you dropdown.
+
+    
+    ![image](https://user-images.githubusercontent.com/75510135/156876561-87196e7e-ebc1-463e-a1a1-c77668fcbd48.png)
+
 </details>
 
-
-
-
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
 
