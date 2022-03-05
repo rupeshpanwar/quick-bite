@@ -71,7 +71,8 @@ https://kubernetes.io/docs/setup/best-practices/certificates
 # What have containers done for you lately?
 https://www.youtube.com/watch?v=MHv6cWjvQjM
 
-
+# Container under d hood
+- https://www.youtube.com/watch?v=MHv6cWjvQjM
 
 
 
