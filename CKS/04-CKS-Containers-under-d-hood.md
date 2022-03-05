@@ -130,7 +130,7 @@
       docker rm c2 --force
 
       # now run c2 container in Namespace of C1
-      docker run --name c2 --pid=namespace:c1 ubuntu sh -c 'sleep 999d'
+      docker run --name c2 --pid=container:c1 ubuntu sh -c 'sleep 999d'
 
       # then check the process running on C1 n C2
       docker exec c1 ps aux
