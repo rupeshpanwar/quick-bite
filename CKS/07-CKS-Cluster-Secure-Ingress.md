@@ -101,5 +101,62 @@ job.batch/ingress-nginx-admission-patch created
   
   <img width="951" alt="image" src="https://user-images.githubusercontent.com/75510135/156891764-89e0a053-fdad-4ed6-ab04-b6dbce3630d8.png">
 
+  
+ k get svc -n ingress-nginx
+
+     NAME                                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+    ingress-nginx-controller             NodePort    10.111.232.132   <none>        80:31902/TCP,443:31485/TCP   64m
+    ingress-nginx-controller-admission   ClusterIP   10.96.20.220     <none>        443/TCP                      64m
+
+ - curl the https port 
+
+curl https://35.240.145.48:31485/service2 -kv
+   
+  <img width="790" alt="image" src="https://user-images.githubusercontent.com/75510135/156892320-ac506966-54d7-45bb-9de2-378f900e2352.png">
+
+ - need to create TLS cert
+  
+  <img width="657" alt="image" src="https://user-images.githubusercontent.com/75510135/156892382-08bebfb6-763a-4bc3-9334-64b238fadf45.png">
+
+  - n bind to host
+  
+  <img width="598" alt="image" src="https://user-images.githubusercontent.com/75510135/156892396-279ee602-14d8-4807-a826-cddb3a05aa53.png">
+
+  - generate cert & key
+   > openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+	- note Common Name: secure-ingress.com
+  
+  <img width="836" alt="image" src="https://user-images.githubusercontent.com/75510135/156892491-288532a0-7f86-4a08-8e6d-88c195318750.png">
+
+  <img width="739" alt="image" src="https://user-images.githubusercontent.com/75510135/156892564-76a42a79-fc4f-4586-b14c-5baa5fbd928d.png">
+
+  
+>  k create secret tls secure-ingress --cert=cert.pem --key=key.pem
+   secret/secure-ingress created
+
+> k get ing,secret
+  
+    NAME                                       CLASS   HOSTS   ADDRESS      PORTS   AGE
+    ingress.networking.k8s.io/secure-ingress   nginx   *       10.148.0.3   80      39m
+
+    NAME                         TYPE                                  DATA   AGE
+    secret/default-token-vzx4x   kubernetes.io/service-account-token   3      6d6h
+    secret/secure-ingress        kubernetes.io/tls                     2      3s
+
+  - edit ingress file and apply 
+  
+ > k -f secure-ingress-step2.yaml apply
+  
+  <img width="838" alt="image" src="https://user-images.githubusercontent.com/75510135/156892863-a7726f91-0b02-47c3-93be-a148562c0276.png">
+
+  - curl the site again
+  
+  > curl https://secure-ingress.com:31485/service2 -kv --resolve secure-ingress.com:31485:35.240.145.48
+  
+  <img width="592" alt="image" src="https://user-images.githubusercontent.com/75510135/156892992-cb8d8355-9b49-46b9-b1e0-36dfdc3fbeba.png">
+
+  <img width="597" alt="image" src="https://user-images.githubusercontent.com/75510135/156893010-22851590-26c8-4d73-9140-498196961cb5.png">
+
+  
 </details>
 
