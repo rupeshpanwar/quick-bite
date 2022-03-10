@@ -36,4 +36,11 @@
 - stcked windows => vi -o a b
 - move bw files => ctrl + w
 - to compare to files => vi -d a b or vidiff a b
+- to print content from file linewise
+
+```
+sed -n 1p file
+head -n 1 file
+awk 'NR==1' file
+```
         
