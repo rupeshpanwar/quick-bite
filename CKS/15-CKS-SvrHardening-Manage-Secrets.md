@@ -88,7 +88,9 @@
         restartPolicy: Always
       status: {}
   ```
-  
+  - grab the PAss
+  <img width="471" alt="image" src="https://user-images.githubusercontent.com/75510135/158083001-099be168-b83e-45ba-b766-d27ae9158f48.png">
+
   
 </details>
 
