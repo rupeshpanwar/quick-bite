@@ -19,9 +19,77 @@
 
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Simple scenario - using Env var n Username as secret</summary>
 <br>
-This is how you dropdown.
+
+  <img width="784" alt="image" src="https://user-images.githubusercontent.com/75510135/158047320-24b38645-2079-4e06-8cfa-6f04c6159351.png">
+
+      k create secret generic secret1 --from-literal user=admin
+      secret/secret1 created
+  
+      k create secret generic secret2 --from-literal pass=1234
+      secret/secret2 created
+  
+   - create pod and set above created secrets
+  ```
+      k run pod --image nginx -oyaml --dry-run=client > pod.yaml
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        creationTimestamp: null
+        labels:
+          run: pod
+        name: pod
+      spec:
+        containers:
+        - image: nginx
+          name: pod
+          resources: {}
+          volumeMounts:
+          - name: secret1
+            mountPath: "/etc/scret1"
+            readOnly: true
+        volumes:
+        - name: secret1
+          secret:
+            secretName: secret1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+      status: {}
+  
+     ==========
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        creationTimestamp: null
+        labels:
+          run: pod
+        name: pod
+      spec:
+        containers:
+        - image: nginx
+          name: pod
+          resources: {}
+          env:
+            - name: secret2
+              valueFrom:
+                secretKeyRef:
+                  name: secret2
+                  key: mykey
+          volumeMounts:
+          - name: secret1
+            mountPath: "/etc/scret1"
+            readOnly: true
+        volumes:
+        - name: secret1
+          secret:
+            secretName: secret1
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+      status: {}
+  ```
+  
+  
 </details>
 
 
