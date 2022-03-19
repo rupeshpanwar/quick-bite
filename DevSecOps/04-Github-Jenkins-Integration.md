@@ -1,5 +1,9 @@
 - application binary https://github.com/rupeshpanwar/devsecops-k8s.git
-- Create a token 
+
+<details>
+<summary>Create a token</summary>
+<br>
+
 - @ Jenkins , click on Developer settings under Profile
 ![image](https://user-images.githubusercontent.com/75510135/154387790-4490d752-027a-4190-a0a4-93bede316de9.png)
 
@@ -19,7 +23,14 @@
 ![image](https://user-images.githubusercontent.com/75510135/154388786-b509dd44-31af-4089-b5a5-95f109793b4b.png)
 
 
+</details>
 
+
+<details>
+<summary>reate webhook</summary>
+<br>
+  
+  
 - create webhook @ Jenkins, click on settings
 
 ![image](https://user-images.githubusercontent.com/75510135/154381691-16cbddf9-6c94-45ff-8f45-516566c0f11b.png)
@@ -37,6 +48,13 @@
 - webhook is created 
 ![image](https://user-images.githubusercontent.com/75510135/154382183-65856f00-9dce-49ff-9c7a-145960b6f7c8.png)
 
+</details>
+
+<details>
+<summary>Create a new pipeline</summary>
+<br>
+  
+  
 # @ jenkins, create a new pipeline
 ![image](https://user-images.githubusercontent.com/75510135/154383430-37260b49-6a93-4c92-806c-84422c6d42c4.png)
 
@@ -73,6 +91,14 @@ pipeline {
 
 ![image](https://user-images.githubusercontent.com/75510135/154384516-43fecd37-7179-49c5-bb4c-090153743676.png)
 
+</details>
+
+
+<details>
+<summary>Test the connection</summary>
+<br>
+  
+  
 # Test the connection
 - make minor change in any code
 - commit the code
@@ -90,4 +116,7 @@ git push
 ![image](https://user-images.githubusercontent.com/75510135/154390082-617260b9-445b-4cac-8d34-634481e943d5.png)
 
 ![image](https://user-images.githubusercontent.com/75510135/154390129-b18f5388-e9da-4f29-bae3-234becec1df5.png)
+
+</details>
+
 
