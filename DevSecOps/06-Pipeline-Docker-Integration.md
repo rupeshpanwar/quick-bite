@@ -1,10 +1,8 @@
+<details>
+<summary>Introduction</summary>
+<br>
+    
 ![image](https://user-images.githubusercontent.com/75510135/154499364-d847e4ef-6026-4366-a6b2-21b024b075f7.png)
-
--  Summary
-    1. Docker plugin 
-    2. Docker hub credential
-    3. Dockerfile
-    4. @Jenkinsfile, build  & push docker image
 
 
 #     1. Docker plugin 
@@ -27,9 +25,18 @@
 
 ![image](https://user-images.githubusercontent.com/75510135/154504166-4066f181-aa58-439a-add5-b610b7c22660.png)
 
+</details>
 
-#     3. Dockerfile
 
+
+
+
+
+<details>
+<summary>Dockerfile</summary>
+<br>
+
+    
 - to refer to build the docker image
 
 ```
@@ -39,9 +46,15 @@ ARG JAR_FILE=target/*.jar
 ADD ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 ```
+    
+</details>
 
-#     4. @Jenkinsfile, build  & push docker image
 
+<details>
+<summary>@Jenkinsfile, build  & push docker image</summary>
+<br>
+
+    
 ```
 pipeline {
   agent any
@@ -81,12 +94,19 @@ pipeline {
 }
 ```
 
-- check the result 
+
+
+</details>
+
+<details>
+<summary>Validate</summary>
+<br>
+
+    
 
 ![image](https://user-images.githubusercontent.com/75510135/154505526-8914a25a-bddd-429c-8b45-72cc552f8538.png)
 
 ![image](https://user-images.githubusercontent.com/75510135/154505610-8b7004d0-38b5-4aa1-8f9c-25587f86627c.png)
 
-
-
-
+    
+</details>
