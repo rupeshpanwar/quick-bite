@@ -1,9 +1,21 @@
-![image](https://user-images.githubusercontent.com/75510135/154492877-8867dd93-1174-403e-b35f-417caf69f5b6.png)
+
+
+<details>
+<summary>Introduction</summary>
+<br>
+
+ ![image](https://user-images.githubusercontent.com/75510135/154492877-8867dd93-1174-403e-b35f-417caf69f5b6.png)
 
 - installed plugin
-![image](https://user-images.githubusercontent.com/75510135/154494654-be459ff5-4dec-4d5d-b982-a7f56faf9e93.png)
+ ![image](https://user-images.githubusercontent.com/75510135/154494654-be459ff5-4dec-4d5d-b982-a7f56faf9e93.png)
 
-- unit test Jenkinsfile
+</details>
+
+<details>
+<summary>Unit test @Jenkinsfile</summary>
+<br>
+	
+	
 ```
 pipeline {
   agent any
@@ -30,7 +42,14 @@ pipeline {
 
 ![image](https://user-images.githubusercontent.com/75510135/154495834-5883cac3-221a-4b3f-8fdb-f8ce20e4b39a.png)
 
-- add plugin in pom.xml
+</details>
+
+
+<details>
+<summary>Add plugin in pom.xml</summary>
+<br>
+
+	
 ```
 <!--                   Jacoco Plugin                   -->
 			<plugin>
@@ -96,6 +115,10 @@ pipeline {
 ![image](https://user-images.githubusercontent.com/75510135/154498477-039952de-5f73-4d46-b14d-8c971fad43df.png)
 
 ![image](https://user-images.githubusercontent.com/75510135/154498788-e7893be7-367b-49d0-98ad-27450615f217.png)
+
+
+	
+</details>
 
 
 
