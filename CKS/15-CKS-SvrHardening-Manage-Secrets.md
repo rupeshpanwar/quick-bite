@@ -1,3 +1,4 @@
+- https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data
 
 <details>
 <summary>Introduction</summary>
@@ -171,7 +172,46 @@
 
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Practice Encryption</summary>
 <br>
-This is how you dropdown.
+
+  <img width="865" alt="image" src="https://user-images.githubusercontent.com/75510135/159154286-55894863-3b95-437f-a83a-3561ae8f6c5c.png">
+
+  - create dir then generate 16 char encryptionkey
+    cd /etc/kubernetes/
+    mkdir etcd
+    cd etcd/
+    echo passwordpassword | base64
+  
+  - Create encryption key file
+  <img width="940" alt="image" src="https://user-images.githubusercontent.com/75510135/159154881-177ce570-bfb8-425a-b625-64ee63a907d0.png">
+
+    apiVersion: apiserver.config.k8s.io/v1
+    kind: EncryptionConfiguration
+    resources:
+      - resources:
+          - secrets
+        providers:
+          - aescbc:
+              keys:
+                - name: key1
+                  secret: cGFzc3dvcmRwYXNzd29yZAo=
+          - identity: {}
+  
+  -  pass this config file to API server
+  <img width="654" alt="image" src="https://user-images.githubusercontent.com/75510135/159154989-dbe91051-9991-49e4-9ba2-716b6a928f92.png">
+
+   /etc/kubernetes/manifests# vi  kube-apiserver.yaml
+  <img width="703" alt="image" src="https://user-images.githubusercontent.com/75510135/159155150-de99a164-8e8b-4eb6-8a1d-6c58984fc975.png">
+
+  - but need to mount the volume
+  <img width="405" alt="image" src="https://user-images.githubusercontent.com/75510135/159155283-a82b15a5-a45a-47e4-95bd-249eb1bc2706.png">
+
+  <img width="469" alt="image" src="https://user-images.githubusercontent.com/75510135/159155315-ad00b9b5-5929-4a8f-bd0a-4c28e024cd58.png">
+
+  <img width="695" alt="image" src="https://user-images.githubusercontent.com/75510135/159155372-b343814e-945a-4bb6-a466-9429c2bad054.png">
+
+  <img width="1032" alt="image" src="https://user-images.githubusercontent.com/75510135/159155450-e5f0040e-260a-4303-b07e-32391a95b2f2.png">
+
+  
 </details>
