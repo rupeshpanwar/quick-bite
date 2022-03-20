@@ -38,16 +38,16 @@
 <summary>Kata Container , gVisor</summary>
 <br>
 
-    <img width="770" alt="image" src="https://user-images.githubusercontent.com/75510135/159159604-3eee27ca-54b1-496f-a224-4c323241f3f1.png">
+  <img width="770" alt="image" src="https://user-images.githubusercontent.com/75510135/159159604-3eee27ca-54b1-496f-a224-4c323241f3f1.png">
 
-    <img width="719" alt="image" src="https://user-images.githubusercontent.com/75510135/159159704-145b358f-0b6b-40ea-b31f-f591aec2c42f.png">
+  <img width="719" alt="image" src="https://user-images.githubusercontent.com/75510135/159159704-145b358f-0b6b-40ea-b31f-f591aec2c42f.png">
 
-    <img width="838" alt="image" src="https://user-images.githubusercontent.com/75510135/159159719-433034db-2677-49fa-be07-d7b56c4f3fc6.png">
+  <img width="838" alt="image" src="https://user-images.githubusercontent.com/75510135/159159719-433034db-2677-49fa-be07-d7b56c4f3fc6.png">
 
     - create a runtime class for gvisor
-    <img width="973" alt="image" src="https://user-images.githubusercontent.com/75510135/159159923-5c5c7567-ad52-4e8d-9545-7ec7311e3b38.png">
+  <img width="973" alt="image" src="https://user-images.githubusercontent.com/75510135/159159923-5c5c7567-ad52-4e8d-9545-7ec7311e3b38.png">
     
-    <img width="677" alt="image" src="https://user-images.githubusercontent.com/75510135/159159996-32e52bbe-a433-4382-a898-597c38d9b8f9.png">
+  <img width="677" alt="image" src="https://user-images.githubusercontent.com/75510135/159159996-32e52bbe-a433-4382-a898-597c38d9b8f9.png">
 
   - create pod now 
     k run gvisor --image=nginx -oyaml --dry-run=client > gvisor.yml
@@ -56,7 +56,33 @@
 
     <img width="390" alt="image" src="https://user-images.githubusercontent.com/75510135/159160211-7eed8336-7f76-4efc-849f-87fb4c9facbf.png">
   
+  - install gvisor 
+  
+  > bash <(curl -s https://raw.githubusercontent.com/killer-sh/cks-course-environment/master/course-content/microservice-vulnerabilities/container-runtimes/gvisor/install_gvisor.sh)
+              
     
-    
+ - create below pod 
+      ```         
+      apiVersion: node.k8s.io/v1
+      kind: RuntimeClass
+      metadata:
+        name: gvisor
+      handler: runsc
+      ---
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        labels:
+          run: gvisor
+        name: gvisor
+      spec:
+        runtimeClassName: gvisor
+        containers:
+          - image: nginx
+            name: gvisor
+            resources: {}
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+       ```        
 </details>
 
