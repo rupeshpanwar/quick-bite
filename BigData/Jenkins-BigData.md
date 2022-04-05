@@ -23,5 +23,4 @@
 
 <img width="567" alt="image" src="https://user-images.githubusercontent.com/75510135/161562438-6e870a55-0564-4101-b55e-603d0cccbc33.png">
 
-<img width="690" alt="image" src="https://user-images.githubusercontent.com/75510135/161562850-cd2d3296-6888-41db-8f13-04ae94cbf12e.png">
 
