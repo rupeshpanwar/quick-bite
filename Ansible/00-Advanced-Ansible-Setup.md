@@ -135,9 +135,4 @@ db_and_webserver2          : ok=2    changed=0    unreachable=0    failed=0    s
  <img width="872" alt="image" src="https://user-images.githubusercontent.com/75510135/163663790-c45b3914-ba68-4fd8-a012-d4b507968c40.png">
 </details>
 
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
 
