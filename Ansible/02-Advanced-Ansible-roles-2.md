@@ -42,7 +42,8 @@
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>https://galaxy.ansible.com/</summary>
 <br>
-This is how you dropdown.
+- browse respective roles on Ansible Galaxy https://galaxy.ansible.com/
+  
 </details>
