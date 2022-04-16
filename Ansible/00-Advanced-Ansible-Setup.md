@@ -1,3 +1,5 @@
+- code is available =>  https://github.com/rupeshpanwar/ansible-advance.git
+
 <details>
 <summary>Docker based setup</summary>
 <br>
@@ -13,7 +15,7 @@
   ```
   - create ssh enabled docker image => dockerfile
   ```
-  FROM ubuntu:16.04
+  FROM ubuntu:18.04
   RUN apt-get update && apt-get install -y openssh-server
   RUN mkdir /var/run/sshd
   RUN echo 'root:Passw0rd' | chpasswd
@@ -24,10 +26,20 @@
   EXPOSE 22
   CMD ["/usr/sbin/sshd", "-D"]
   ```
+  - build the image
+  ```
+  674  docker build -t ubuntu-with-ssh .
+  675  docker login
+  676  docker images
+  677  docker push rupeshpanwar/ubuntu-with-ssh
+  681  docker image tag ubuntu-with-ssh rupeshpanwar/ubuntu-with-ssh:v1
+  684  docker push rupeshpanwar/ubuntu-with-ssh:v1
+  ```
   
-  - run 3 times to create 3 containers 
+  - run 2 times to create 2 target containers 
   
-    > docker run -it -d mmumshad/ubuntu-ssh-enabled
+    > docker run --name db_and_web_server3 -it -d rupeshpanwar/ubuntu-with-ssh:v1
+  docker run -d mmumshad/ubuntu-ssh-enabled
   
   - fetch ipaddress of each container
   
@@ -36,9 +48,8 @@
   - create inventory file
   ```
     cat > inventory.txt
-    target1 ansible_host=172.17.0.2 ansible_ssh_pass=Passw0rd
-    target2 ansible_host=172.17.0.3 ansible_ssh_pass=Passw0rd
-    target3 ansible_host=172.17.0.4 ansible_ssh_pass=Passw0rd
+db_and_web_server1 ansible_host=172.17.0.3 ansible_ssh_pass=Passw0rd ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+db_and_webserver2 ansible_host=172.17.0.4 ansible_ssh_pass=Passw0rd ansible_ssh_common_args='-o StrictHostKeyChecking=no'
   ```
   - test
   ```
@@ -101,4 +112,32 @@ db_and_webserver2          : ok=2    changed=0    unreachable=0    failed=0    s
   ```
 </details>
 
+<details>
+<summary>Reorganise code - File Separation</summary>
+<br>
+ 
+  
+  - host_vars => create same name yml file as host entry as mentioned  in playbook.yml => hosts: then move them to their respective yml file
+  <img width="850" alt="image" src="https://user-images.githubusercontent.com/75510135/163663008-b11a6b20-c555-4dcf-97d1-b8bec8b71288.png">
+
+  <img width="809" alt="image" src="https://user-images.githubusercontent.com/75510135/163662944-ff0d354a-0c8a-4d2b-8522-6dd6e903f37c.png">
+  <img width="889" alt="image" src="https://user-images.githubusercontent.com/75510135/163662956-065b4acc-ff2c-4def-a58f-4a1004dd11b4.png">
+  
+  - group_vars => alternatively , create a Group in Inventory file
+  <img width="961" alt="image" src="https://user-images.githubusercontent.com/75510135/163663093-1c05644d-6769-44df-b06a-173f5eaebd5b.png">
+ - then create group_vars and create yml file with same name as of group name then move the variable there
+  <img width="995" alt="image" src="https://user-images.githubusercontent.com/75510135/163663147-a4718da4-0557-409d-b73e-fa045f53eaf1.png">
+ - Now, Create Tasks dir , move DB related code to deploy_db.yml and Web related code to deploy_web.yml
+  <img width="1134" alt="image" src="https://user-images.githubusercontent.com/75510135/163663291-02cf98ef-0b69-4298-b7ff-58386cbb2bdd.png">
+
+  <img width="983" alt="image" src="https://user-images.githubusercontent.com/75510135/163663309-b0677525-b0a1-4239-b97f-67591874a5a4.png">
+ - import db & web playbook to main playbook.yml
+ <img width="872" alt="image" src="https://user-images.githubusercontent.com/75510135/163663790-c45b3914-ba68-4fd8-a012-d4b507968c40.png">
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
 
