@@ -54,7 +54,7 @@
 </details>
 
 <details>
-<summary>Small project Webapplication?</summary>
+<summary>Small project Webapplication</summary>
 <br>
 
   <img width="971" alt="image" src="https://user-images.githubusercontent.com/75510135/163585058-775caabc-9538-42ed-953d-d68f628b45b0.png">
@@ -63,5 +63,42 @@
 </details>
 
 
+<details>
+<summary>Code - Small project Webapplication</summary>
+<br>
+  
+  ```
+  db_and_webserver1 ansible_host=172.17.0.2 ansible_ssh_pass=Passw0rd ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+  db_and_webserver2 ansible_host=172.17.0.3 ansible_ssh_pass=Passw0rd ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+  db_and_webserver3 ansible_host=172.17.0.4 ansible_ssh_pass=Passw0rd ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+  ```
+  
+  ```
+  ---
+- name: Simple Web Application
+  hosts: db_and_webserver1,db_and_webserver2
+  tasks:
+   - name: ping
+     ping:
+  ```
+  
+  ```
+  ansible-playbook playbook.yml -i inventory.txt
+
+PLAY [Simple Web Application] ***********************************************************
+
+TASK [Gathering Facts] ******************************************************************
+ok: [db_and_webserver2]
+ok: [db_and_webserver1]
+
+TASK [ping] *****************************************************************************
+ok: [db_and_webserver2]
+ok: [db_and_webserver1]
+
+PLAY RECAP ******************************************************************************
+db_and_webserver1          : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+db_and_webserver2          : ok=2    changed=0    unreachable=0    failed=0    skipped=0
+  ```
+</details>
 
 
