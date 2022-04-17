@@ -110,3 +110,18 @@
   ```
 </details>
 
+<details>
+<summary>Example - Replace index.file with IP as dynamic var </summary>
+<br>
+
+  - mention logic in playbook under task 
+  <img width="581" alt="image" src="https://user-images.githubusercontent.com/75510135/163699402-66c7b2b3-562c-4122-be16-7be572627ea2.png">
+
+  - create the Jinja2 template file
+  <img width="632" alt="image" src="https://user-images.githubusercontent.com/75510135/163699430-6db25d45-3acd-4df4-b6f5-919973e5c664.png">
+
+  <img width="632" alt="image" src="https://user-images.githubusercontent.com/75510135/163699449-f6a59020-8a45-4afa-ad1a-5b00e09ed4ff.png">
+
+  - https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html
+</details>
+
