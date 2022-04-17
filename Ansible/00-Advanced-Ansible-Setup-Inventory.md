@@ -3,8 +3,31 @@
 <details>
 <summary>Docker based setup</summary>
 <br>
+  
+  - basic setup
+  
+  <img width="961" alt="image" src="https://user-images.githubusercontent.com/75510135/163700070-f4ce9682-932f-41e7-89aa-43c6357a0fbb.png">
+  
+  - install Ansible
+  - configure Ansible.cfg
+ <img width="1012" alt="image" src="https://user-images.githubusercontent.com/75510135/163700121-397e9c41-c830-48c1-a4f6-e1e5dfed0fc1.png">
 
+  - https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
+  
   <img width="561" alt="image" src="https://user-images.githubusercontent.com/75510135/163583431-808fa032-fe9c-4a90-a643-fd7383785850.png">
+  <img width="1392" alt="image" src="https://user-images.githubusercontent.com/75510135/163700216-fb196abd-7123-469d-9c7d-6413af9cfe00.png">
+
+  <img width="1025" alt="image" src="https://user-images.githubusercontent.com/75510135/163700330-c83f30b5-0ebb-4e41-9de8-f1d046bae037.png">
+
+  > visudo
+  <img width="582" alt="image" src="https://user-images.githubusercontent.com/75510135/163701964-a7ac57e8-1a73-426e-9183-974921469b52.png">
+
+  <img width="656" alt="image" src="https://user-images.githubusercontent.com/75510135/163702015-f45a590d-52dc-48bc-9350-0b13a537cf81.png">
+
+  <img width="1029" alt="image" src="https://user-images.githubusercontent.com/75510135/163702112-fd984e61-cd66-4781-b95c-696a1aed4661.png">
+
+  - disable host key checking
+  <img width="877" alt="image" src="https://user-images.githubusercontent.com/75510135/163702179-fe6cc0d3-c03a-4490-8485-bbb333a8d901.png">
 
   - install ansible on ubuntu
   ```
