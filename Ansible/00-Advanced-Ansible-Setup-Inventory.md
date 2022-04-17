@@ -65,6 +65,26 @@ db_and_webserver2 ansible_host=172.17.0.4 ansible_ssh_pass=Passw0rd ansible_ssh_
 </details>
 
 <details>
+<summary>Dynamic-Inventory</summary>
+<br>
+
+  - https://github.com/ansible/ansible/tree/devel/lib/ansible/inventory
+  
+  <img width="884" alt="image" src="https://user-images.githubusercontent.com/75510135/163698237-a863e534-6c2c-4130-8dc2-b87548dc45a9.png">
+
+  <img width="900" alt="image" src="https://user-images.githubusercontent.com/75510135/163698246-f9fe6e0f-19f3-4f06-83f6-8b7ba4316fc1.png">
+
+  <img width="925" alt="image" src="https://user-images.githubusercontent.com/75510135/163698258-5fd12417-7b55-4582-aafa-1161bb59d552.png">
+
+  <img width="1042" alt="image" src="https://user-images.githubusercontent.com/75510135/163698282-f520f1f3-5acf-42f5-abc4-f8e9d26ff7b0.png">
+
+  <img width="625" alt="image" src="https://user-images.githubusercontent.com/75510135/163698297-d055b529-9cf9-4752-86a5-092af4a965c4.png">
+
+  
+</details>
+
+
+<details>
 <summary>Small project Webapplication</summary>
 <br>
 
