@@ -105,7 +105,45 @@
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Verify & namespace</summary>
 <br>
-This is how you dropdown.
+
+  ```
+        ********** Interact Cluster Using KubeCtl **********
+      1. Use the kubectl create command to create a Deployment that manages a Pod. The Pod runs a Container based on the provided Docker image.
+      kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4
+
+      2. View the Deployment:
+      kubectl get deployments
+
+      3. View the Pod:
+      kubectl get pods
+
+      4. Expose the Pod to the public internet using the kubectl expose command:
+      kubectl expose deployment hello-node --type=LoadBalancer --port=8080
+
+      **The --type=LoadBalancer flag indicates that you want to expose your Service outside of the cluster.
+
+      5. View the Service you created:
+      minikube service hello-node
+
+      CleanUP -
+      1. Remove service
+      kubectl delete service hello-node
+
+      2. Remove Deployments-
+      kubectl delete deployment hello-node
+  ```
+  
+  - namespace
+  
+  <img width="727" alt="image" src="https://user-images.githubusercontent.com/75510135/163707088-37fe1f47-4894-4699-a586-41fe748d234d.png">
+
+  <img width="722" alt="image" src="https://user-images.githubusercontent.com/75510135/163706982-21b58bb0-f863-4f87-afa3-71024e96e043.png">
+
+  <img width="724" alt="image" src="https://user-images.githubusercontent.com/75510135/163707024-41e486a0-2109-4842-b070-09cedb5ade2c.png">
+
+  <img width="702" alt="image" src="https://user-images.githubusercontent.com/75510135/163707073-c59a9e7b-c702-4957-883a-ef90ef21bee4.png">
+
+  
 </details>
