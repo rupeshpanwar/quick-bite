@@ -1,3 +1,8 @@
+- https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
+-  https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/#how-a-replicaset-works
+-  https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/#example
+
+
 <details>
 <summary>Introduction</summary>
 <br>
