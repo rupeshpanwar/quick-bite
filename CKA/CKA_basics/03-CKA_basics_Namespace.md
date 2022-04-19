@@ -29,14 +29,126 @@
 
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>NS - exercise</summary>
 <br>
-This is how you dropdown.
+
+  ```
+       Reference:                                                                                      
+    
+      * https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/                   *
+      * https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/                     *
+      * https://kubernetes.io/docs/tasks/administer-cluster/namespaces/                                 *
+      * https://kubernetes.io/blog/2016/08/kubernetes-namespaces-use-cases-insights/                    *
+     
+      1. Creating NameSpace:
+      ~~~~~~~~~~~~~~~~~~~~~~
+
+      1a). Using YAML:
+      ----------------
+      # dev-ns.yaml
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: dev
+
+
+      1b). Using Imepratively:
+      -------------------------
+      kubectl create namespace test
+
+
+      2. Displaying Namespace
+      ~~~~~~~~~~~~~~~~~~~~~~~
+      kubectl get ns [NAMESPACE-NAME]
+      kubectl get ns [NAMESPACE-NAME] -o wide
+      kubectl get ns [NAMESPACE-NAME] -o yaml
+      kubectl get pods –-namespace=[NAMESPACE-NAME]
+
+      kubectl describe ns [NAMESPACE-NAME]
+
+
+      ***************************************************************************************************
+
+      3. Creating Pod Object in Specific NameSpace:
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      kubectl run nginx --image=nginx --namespace=dev
+
+      Validate:
+      ----------
+      kubectl get pods
+      kubectl get pods -n dev
+
+
+
+      ***************************************************************************************************
+
+      4. Displaying Objects in All Namespace:
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      kubectl get pods -A
+      or
+      kubectl get [object-name] --all-namespaces
+
+
+      ***************************************************************************************************
+
+      5. Setting the namespace preference:
+      ------------------------------------
+
+      Note: 
+      -----
+      1. You can permanently save the namespace for all subsequent kubectl commands in that context.
+      2. --minify=false: Remove all information not used by current-context from the output
+
+      Syntax: 
+      kubectl config set-context --current --namespace=<insert-namespace-name-here>
+
+      -----------
+
+      kubectl config view --minify | grep namespace:
+      kubectl get pods
+
+      kubectl config set-context --current --namespace=test
+      kubectl config view --minify | grep namespace:
+      kubectl run redis --image=redis 
+      kubectl get pods
+
+      kubectl config set-context --current --namespace=default
+      kubectl config view --minify | grep namespace:
+      kubectl run httpd --image=httpd
+
+
+      ***************************************************************************************************
+
+      6. Deleting Namespaces
+      ~~~~~~~~~~~~~~~~~~~~~~
+      kubectl delete pods nginx -n dev
+      kubectl delete pods redis -n test
+      kubectl delete pods httpd
+      kubectl get pods -A
+
+      kubectl get ns
+      kubectl delete ns dev
+      kubectl delete ns test
+      kubectl get ns
+      kubectl get pods
+
+  ```
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>NS - Addon - reading</summary>
 <br>
-This is how you dropdown.
+
+ - https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
+
+ - https://kubernetes.io/docs/tasks/administer-cluster/namespaces/#creating-a-new-namespace
+
+ - https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/
+
+ - https://kubernetes.io/docs/tasks/administer-cluster/namespaces/
+
+ - https://kubernetes.io/blog/2016/08/kubernetes-namespaces-use-cases-insights/
 </details>
 
