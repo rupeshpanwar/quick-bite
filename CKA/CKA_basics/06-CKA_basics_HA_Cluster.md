@@ -1,3 +1,5 @@
+- https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/
+
 <details>
 <summary>Introduction</summary>
 <br>
