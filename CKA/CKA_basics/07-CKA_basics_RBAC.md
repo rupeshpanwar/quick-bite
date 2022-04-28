@@ -478,22 +478,18 @@
   ```
 </details>
 
-<details>
-<summary>Add-on Articles</summary>
-<br>
 
-  ```
-  https://kubernetes.io/docs/reference/access-authn-authz/authorization/
 
-  https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+-  https://kubernetes.io/docs/reference/access-authn-authz/authorization/
 
-  https://www.sumologic.com/glossary/role-based-access-control/
+ - https://kubernetes.io/docs/reference/access-authn-authz/rbac/
 
-  https://www.cncf.io/blog/2018/08/01/demystifying-rbac-in-kubernetes/
+  - https://www.sumologic.com/glossary/role-based-access-control/
 
-  https://thenewstack.io/three-realistic-approaches-to-kubernetes-rbac/
-  ```
-</details>
+ - https://www.cncf.io/blog/2018/08/01/demystifying-rbac-in-kubernetes/
+
+  - https://thenewstack.io/three-realistic-approaches-to-kubernetes-rbac/
+
 
 
 
