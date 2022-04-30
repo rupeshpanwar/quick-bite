@@ -102,6 +102,7 @@ kubectl delete pods nodeselector-pod
 
 </details>
 
+<details>
 <summary>Practice - Resource Limit</summary>
 <br>
 
