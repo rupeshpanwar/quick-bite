@@ -174,8 +174,7 @@ journalctl –u kube-controller-manager
   ```
 </details>
 
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
+- https://kubernetes.io/docs/concepts/cluster-administration/logging/
+- https://kubernetes.io/docs/concepts/cluster-administration/logging/#streaming-sidecar-container
+- https://kubernetes.io/docs/tasks/debug-application-cluster/
+- https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#logs
