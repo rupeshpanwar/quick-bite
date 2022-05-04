@@ -147,3 +147,302 @@
 
   
 </details>
+
+
+<details>
+<summary>Setup via KubeAdm</summary>
+<br>
+
+  ```
+  * Reference:                                                                                      *
+* ----------                                                                                      *
+* https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/          *
+* https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/   *
+* https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker              *
+*                                                                                                 *
+***************************************************************************************************
+
+
+***************************************************************************************************
+
+
+0. Provisioning Nodes and Firewalls:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+0a. Kubernetes Cluster Nodes(3):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Cloud: Google Compute Engine (GCE)
+Master(1): 2 vCPUs - 4GB Ram  
+Worker(2): 2 vCPUs - 2GB RAM
+OS:     Ubuntu 16.04 or CentOS/RHEL 7
+
+
+0b. Firewall Rules (Ingress): 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Master Node: 2379,6443,10250,10251,10252 
+Worker Node: 10250,30000-32767
+
+
+0c. NOT Mandatory. For better visibility.
+-----------------------------------------
+Add below lines to ~/.bashrc
+Master Node:
+PS1="\e[0;33m[\u@\h \W]\$ \e[m "
+
+Worker Node:
+PS1="\e[0;36m[\u@\h \W]\$ \e[m "
+
+***************************************************************************************************
+
+
+1. PRE-Reqs: Disable Swap | Bridge Traffic (Run it on MASTER & WORKER Nodes):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1a) Disable SWAP:
+~~~~~~~~~~~~~~~~~
+swapoff -a
+sed -i.bak -r 's/(.+ swap .+)/#\1/' /etc/fstab
+
+
+1b) Bridge Traffic:
+~~~~~~~~~~~~~~~~~~~
+lsmod | grep br_netfilter 
+sudo modprobe br_netfilter
+
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+
+sudo sysctl --system
+
+
+***************************************************************************************************
+
+
+2. Installing Docker (Run it on MASTER & WORKER Nodes):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+apt-get update  
+apt-get install -y  apt-transport-https ca-certificates curl software-properties-common gnupg2
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+     $(lsb_release -cs) \
+     stable"
+
+
+2a) Installing Docker:
+~~~~~~~~~~~~~~~~~~~~~
+apt-get update && sudo apt-get install -y \
+  containerd.io=1.2.13-2 \
+  docker-ce=5:19.03.11~3-0~ubuntu-$(lsb_release -cs) \
+  docker-ce-cli=5:19.03.11~3-0~ubuntu-$(lsb_release -cs)
+
+
+2b) Setting up the Docker "daemon":
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cat <<EOF | sudo tee /etc/docker/daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+mkdir -p /etc/systemd/system/docker.service.d
+
+
+2c) Start and enable docker:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+systemctl daemon-reload
+systemctl enable docker
+systemctl restart docker
+systemctl status docker
+
+
+***************************************************************************************************
+
+
+3. Installing KUBEADM   - KUBELET -  KUBECTL
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+apt-get update && sudo apt-get install -y apt-transport-https curl
+
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+
+3a) Installing Kubeadm, Kubelet, Kubectl:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+apt-get update
+apt-get install -y kubelet kubeadm kubectl
+
+apt-mark hold kubelet kubeadm kubectl
+
+
+3b) Start and enable Kubelet:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+systemctl daemon-reload
+systemctl enable kubelet
+systemctl restart kubelet
+systemctl status kubelet
+
+
+***************************************************************************************************
+
+
+4. Initializing CONTROL-PLANE (Run it on MASTER Node only)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+kubeadm init
+
+
+***************************************************************************************************
+
+
+5. Installing POD-NETWORK add-on (Run it on MASTER Node only)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+5a) "kubectl":
+~~~~~~~~~~~~~~
+# for kubectl
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+5b) Installing "Weave CNI" (Pod-Network add-on):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+NOTE: There are multiple CNI Plug-ins available. You can install choice of yours. Incase above commands doesn't work, try checking below link for more info.
+
+
+***************************************************************************************************
+
+
+6. Joining Worker Nodes (Run it on WORKER Node only):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Past the Join command from above kubeadm init output
+kubeadm join <...>
+
+
+# Run this command IF you do not have above join command and/or to create NEW one.
+kubeadm token create --print-join-command
+  ```
+</details>
+
+<details>
+<summary>Validating</summary>
+<br>
+  ```
+  * Reference:                                                                                      *
+* ----------                                                                                      *
+* https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/          *
+* https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/   *
+* https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker              *
+*                                                                                                 *
+***************************************************************************************************
+
+In this demo:
+~~~~~~~~~~~~~
+
+a. We will validate the K8s cluster configured using kubeadm in the previous lecture.
+
+b. At the end, we will deploy same deployment and will ensure everything is working as it should be.
+
+
+***************************************************************************************************
+
+1. Validating CMD Tools:  kubeadm & kubectl:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ensure kubeadm and kubectl version is as per your cluster setup
+
+1a). Checking "kubeadm" version:
+--------------------------------
+kubeadm version
+
+1b). Checking "kubectl" version:
+--------------------------------
+kubectl version
+
+
+***************************************************************************************************
+
+
+2. Validating Cluster Nodes:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ensure all nodes including Master and Worker nodes are "Ready":
+---------------------------------------------------------------
+kubectl get nodes 
+kubectl get nodes –o wide
+
+
+***************************************************************************************************
+
+
+3. Validating Kubernetes Components:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ensure all K8s Master node components are in "Running" status:
+--------------------------------------------------------------
+kubectl get pods –n kube-system
+kubectl get pods –n kube-system -o wide
+
+
+***************************************************************************************************
+
+
+4. Validating Services:  Docker & Kubelet:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ensure Docker and Kubelet Services are "Active(Running) and Enabled on all nodes
+
+4a). Checking Docker Service Status:
+------------------------------------
+systemctl status docker
+
+4b). Checking Docker Kubelet Status:
+------------------------------------
+systemctl status kubelet
+
+
+***************************************************************************************************
+
+
+5. Deploying Test Deployment:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+5a). Deploying the sample "nginx" deployment:
+----------------------------------------
+kubectl apply -f https://k8s.io/examples/controllers/nginx-deployment.yaml
+
+5b). Validate Deployment:
+-------------------------
+kubectl get deploy
+kubectl get deploy –o wide
+
+5c). Validating Pods are in "Running" status:
+---------------------------------------------
+kubectl get pods 
+kubectl get pods –o wide
+
+5d). Validate containers are running on respective worker nodes:
+----------------------------------------------------------------
+docker ps
+
+5e). Delete Deployment:
+-----------------------
+kubectl delete -f https://k8s.io/examples/controllers/nginx-deployment.yaml
+  ```
+</details>
