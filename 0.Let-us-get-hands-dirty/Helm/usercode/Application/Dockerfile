@@ -1,6 +1,6 @@
 FROM node:latest
-COPY . /hello-educative
-RUN cd /hello-educative; npm install
+COPY . /hello-helm
+RUN cd /hello-helm; npm install
 EXPOSE 3000
-WORKDIR /hello-educative 
+WORKDIR /hello-helm
 ENTRYPOINT ["npm", "start"]
