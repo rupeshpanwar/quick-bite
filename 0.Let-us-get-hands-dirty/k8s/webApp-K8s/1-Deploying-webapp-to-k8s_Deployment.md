@@ -139,17 +139,43 @@ Our Service object should contain:
 
 Now, we’ll create the Service. We’ll need to reload the browser to view the output.
 
+  ```
+    apiVersion: v1
+kind: Service
+metadata:
+  name: kubernetes-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 31111
+    protocol: TCP
+    targetPort: 3000
+    nodePort: 31111
+  selector:
+    project: kubernetes-project
+  ```
+    
+ <img width="634" alt="image" src="https://user-images.githubusercontent.com/75510135/167162911-3dd8a7a9-1ed2-46be-8568-2a9629fc3aa8.png">
+
     
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Test the Service</summary>
 <br>
-This is how you dropdown.
+
+    Here we will test the creation of the pod. The time can be run by running the following commands in the terminal:
+
+./test_3
+
+Here are the expected outputs:
+
+    Passed: If the service is running.
+    Failed: If the service is not working.
+    Service not found: If the service is not created.
+
+
+    <img width="446" alt="image" src="https://user-images.githubusercontent.com/75510135/167163043-d0cf932e-31b0-4fa2-83e6-07998624d02e.png">
+
 </details>
 
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
