@@ -113,6 +113,14 @@ This is how you dropdown.
 
   <img width="543" alt="image" src="https://user-images.githubusercontent.com/75510135/167246726-3a0beb85-c3c3-4d0e-aff4-afd86dfada51.png">
 
+  <img width="862" alt="image" src="https://user-images.githubusercontent.com/75510135/167248246-464f0c7a-e063-493c-b3fa-b1c82153beb6.png">
+
+  <img width="646" alt="image" src="https://user-images.githubusercontent.com/75510135/167248269-8f4cc11b-b4f6-420a-95a1-f6dc746b6de8.png">
+
+  <img width="710" alt="image" src="https://user-images.githubusercontent.com/75510135/167248300-7218227c-e8dc-4e15-b456-2d5980b40263.png">
+  
+  <img width="624" alt="image" src="https://user-images.githubusercontent.com/75510135/167248316-9ef642ba-05a3-49f7-8a23-48f3f056adae.png">
+
   
   
 </details>
