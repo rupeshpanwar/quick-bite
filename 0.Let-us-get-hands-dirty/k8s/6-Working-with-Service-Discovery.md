@@ -366,20 +366,10 @@ Log on to the jump Pod#
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Troubleshooting Service Discovery</summary>
 <br>
-This is how you dropdown.
-</details>
 
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
+    <img width="633" alt="image" src="https://user-images.githubusercontent.com/75510135/167258964-8b2a685d-9768-41db-a436-25e16fb71a7d.png">
 
     
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
 </details>
