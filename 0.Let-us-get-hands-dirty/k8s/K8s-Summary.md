@@ -44,6 +44,7 @@ When you perform updates with the kubectl apply command, older versions of Repli
 
 The front end of a Service provides a stable IP, DNS name, and port that is guaranteed not to change for the entire life of the Service. The back end of a Service uses labels to load -balance traffic across a potentially dynamic set of application Pods.
 
+  As with all Kubernetes objects, the preferred way of deploying and managing Services is the declarative way. Labels allow them to send traffic to a dynamic set of Pods. This means you can deploy new Services that will work with Pods and Deployments that are already running on the cluster and are already in use. Each Service gets its own Endpoints object that maintains an up-to-date list of matching Pods.
   
 </details>
 
