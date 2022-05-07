@@ -37,9 +37,14 @@ When you perform updates with the kubectl apply command, older versions of Repli
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Service</summary>
 <br>
-This is how you dropdown.
+
+  Services are all about providing stable networking for Pods. They also provide load balancing and ways to be accessed from outside of the cluster.
+
+The front end of a Service provides a stable IP, DNS name, and port that is guaranteed not to change for the entire life of the Service. The back end of a Service uses labels to load -balance traffic across a potentially dynamic set of application Pods.
+
+  
 </details>
 
 <details>
