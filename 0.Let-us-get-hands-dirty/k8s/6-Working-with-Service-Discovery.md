@@ -187,11 +187,197 @@ The Node has no route to the service network, so it sends the traffic to its own
 </details>
 
 <details>
+<summary>Service Discovery and Namespaces</summary>
+<br>
+
+    <img width="450" alt="image" src="https://user-images.githubusercontent.com/75510135/167258215-e625a38e-cc48-4ec9-8761-496171ec135f.png">
+
+    How service discovery works#
+
+Two things are important if you want to understand how service discovery works within and across namespaces:
+
+    Every cluster has an address space.
+    Namespaces partition the cluster address space.
+
+Every cluster has an address space based on a DNS domain that we usually call the cluster domain. By default, it’s called cluster.local, and Service objects are placed within that address space. For example, a Service called ent will have a fully qualified domain name (FQDN) of ent.default.svc.cluster.local.
+
+The format of the FQDN is <object-name>.<namespace>.svc.cluster.local
+
+    Namespaces#
+
+Namespaces allow you to partition the address space below the cluster domain. For example, creating a couple of namespaces, called prod and dev, will give you two address spaces that you can place Services and other objects in:
+
+    dev: .dev.svc.cluster.local
+    prod: .prod.svc.cluster.local
+
+Object names#
+
+Object names must be unique within Namespaces but not across Namespaces. This means that you cannot have two Service objects called “ent” in the same Namespace, but you can if they are in different Namespaces. This is useful for parallel development and production configurations. For example, the figure below shows a single cluster address divided into dev and prod with identical instances of the ent and voy Service are deployed to each.
+
+    <img width="564" alt="image" src="https://user-images.githubusercontent.com/75510135/167258610-4f3f6a56-22e2-4a8c-abf9-4094f00bc40f.png">
+
+    Pods in the prod Namespace can connect to Services in the local Namespace using short names, such as ent and voy. Connecting to objects in a remote Namespace requires FQDNs, such as ent.dev.svc.cluster.local and voy.dev.svc.cluster.local.
+
+As we’ve seen, Namespaces partition the cluster address space. They are also good for implementing access control and resource quotas. However, they are not workload isolation boundaries and should not be used to isolate hostile workloads.
+
+    
+</details>
+
+<details>
+<summary>Service discovery example#</summary>
+<br>
+
+    Let’s walk through a quick example.
+
+The following yml defines two Namespaces, two Deployments, two Services, and a stand-alone jump Pod. The two Deployments have identical names, as do the Services. However, they’re deployed to different Namespace, so this is allowed. The jump Pod is deployed to the dev Namespace.
+    <img width="634" alt="image" src="https://user-images.githubusercontent.com/75510135/167258634-55858c67-6c5b-480d-90df-3b91fe5a3ecd.png">
+
+    ```
+    apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enterprise
+  labels:
+    app: enterprise
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: enterprise
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: enterprise
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+      - image: nigelpoulton/k8sbook:text-dev
+        name: enterprise-ctr
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enterprise
+  labels:
+    app: enterprise
+  namespace: prod
+spec:
+  selector:
+    matchLabels:
+      app: enterprise
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: enterprise
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+      - image: nigelpoulton/k8sbook:text-prod
+        name: enterprise-ctr
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ent
+  namespace: dev
+spec:
+  selector:
+    app: enterprise
+  ports:
+    - port: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ent
+  namespace: prod
+spec:
+  selector:
+    app: enterprise
+  ports:
+    - port: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jump
+  namespace: dev
+spec:
+  terminationGracePeriodSeconds: 5
+  containers:
+  - name: jump
+    image: ubuntu
+    tty: true
+    stdin: true
+    ```
+</details>
+
+<details>
+<summary>Deploy and verify configuration#</summary>
+<br>
+
+    <img width="866" alt="image" src="https://user-images.githubusercontent.com/75510135/167258673-25169cb1-e419-4edf-84e7-9f5d414fe7fb.png">
+
+    Next steps#
+    The next steps will be:
+
+    Log on to the main container of jump Pod in the dev Namespace.
+    Check the container’s /etc/resolv.conf file.
+    Connect to the ent app in the dev. Namespace using the Service’s shortname
+    Connect to the ent app in the prod Namespace using the Service’s FQDN.
+
+To help with the demo, the versions of the ent app used in each Namespace are different.
+Log on to the jump Pod#
+    <img width="943" alt="image" src="https://user-images.githubusercontent.com/75510135/167258693-04d58f08-04db-4db1-8667-23efabbd8ecf.png">
+
+    <img width="934" alt="image" src="https://user-images.githubusercontent.com/75510135/167258701-871637f4-5e97-495a-a319-ffa723734d1e.png">
+
+    <img width="906" alt="image" src="https://user-images.githubusercontent.com/75510135/167258711-e27c3bb2-6a70-41f2-80f3-047f36d1a52e.png">
+
+    ```
+    1  cat /etc/resolv.conf
+    2  apt install update && apt install curl -y
+    3  apt  update && apt install curl -y
+    4  curl ent:8080
+    5  curl ent.prod.svc.cluster.local:8080
+    ```
+</details>
+
+<details>
 <summary>How do I dropdown?</summary>
 <br>
 This is how you dropdown.
 </details>
 
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+    
 <details>
 <summary>How do I dropdown?</summary>
 <br>
