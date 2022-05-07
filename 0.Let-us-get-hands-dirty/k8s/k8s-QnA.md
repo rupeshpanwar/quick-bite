@@ -92,7 +92,7 @@
 
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>SERVICE</summary>
 <br>
 This is how you dropdown.
 </details>
@@ -100,7 +100,21 @@ This is how you dropdown.
 <details>
 <summary>How do I dropdown?</summary>
 <br>
-This is how you dropdown.
+
+   <img width="649" alt="image" src="https://user-images.githubusercontent.com/75510135/167246601-4e64b602-b471-4b2d-8595-6e2b031895c1.png">
+
+  <img width="741" alt="image" src="https://user-images.githubusercontent.com/75510135/167246614-89561a54-29a0-4cdb-b41d-b810cd58422f.png">
+
+  <img width="658" alt="image" src="https://user-images.githubusercontent.com/75510135/167246658-50190eaf-45bf-43ec-9bac-b473c7de88f3.png">
+
+  <img width="555" alt="image" src="https://user-images.githubusercontent.com/75510135/167246693-5a139912-b7ca-4664-8f2c-3304c7c34934.png">
+
+  <img width="555" alt="image" src="https://user-images.githubusercontent.com/75510135/167246710-4d3507d0-7254-450b-87e4-ffb1a27ffe99.png">
+
+  <img width="543" alt="image" src="https://user-images.githubusercontent.com/75510135/167246726-3a0beb85-c3c3-4d0e-aff4-afd86dfada51.png">
+
+  
+  
 </details>
 
 <details>
