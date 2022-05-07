@@ -46,6 +46,11 @@ The front end of a Service provides a stable IP, DNS name, and port that is guar
 
   As with all Kubernetes objects, the preferred way of deploying and managing Services is the declarative way. Labels allow them to send traffic to a dynamic set of Pods. This means you can deploy new Services that will work with Pods and Deployments that are already running on the cluster and are already in use. Each Service gets its own Endpoints object that maintains an up-to-date list of matching Pods.
   
+  Services bring stable and reliable networking to apps deployed on Kubernetes. They also perform load balancing and allow you to expose elements of your application to the outside world (outside of the Kubernetes cluster).
+
+The front end of a Service is fixed, providing stable networking for the Pods behind it. The back end of a Service is dynamic, allowing Pods to come and go without impacting the ability of the Service to provide load balancing.
+
+Services are first-class objects in the Kubernetes API and can be defined in the standard YAML manifest files. They use label selectors to dynamically match Pods, and the best way to work with them is declaratively.
 </details>
 
 <details>
