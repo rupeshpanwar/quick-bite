@@ -54,6 +54,32 @@ Services are first-class objects in the Kubernetes API and can be defined in the
 </details>
 
 <details>
+<summary>Service Discovery</summary>
+<br>
+
+  <img width="822" alt="image" src="https://user-images.githubusercontent.com/75510135/167258003-940b56b7-53fc-4af0-b3f4-3f0b2a0d8d18.png">
+
+  Assume a microservice, called “enterprise,” needs to send traffic to a microservice called “voyager.” To start this flow, the “enterprise” microservice needs to know the name of the Kubernetes Service object sitting in front of the “voyager” microservice. We’ll assume it’s called “voy,” but it is the responsibility of the application developer to ensure this is known.
+
+An instance of the “enterprise” microservice sends a query to the cluster DNS (defined in the /etc/resolv.conf file of every container) asking it to resolve the name of the “voy” Service to an IP address. The cluster DNS replies with the ClusterIP (virtual IP), and the instance of the “enterprise” microservice sends requests to this ClusterIP. However, there are no routes to the service network that the ClusterIP is on. This means the requests are sent to the container’s default gateway and, eventually, sent to the Node the container is running on.
+
+The Node has no route to the service network, so it sends the traffic to its own default gateway. En-route, the request is processed by the Node’s kernel. A trap is triggered, and the request is redirected to the IP address of a Pod that matches the Service’s label selector. The Node has routes to Pod IPs, and the requests reach a Pod and are processed.
+
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
 <summary>How do I dropdown?</summary>
 <br>
 This is how you dropdown.
