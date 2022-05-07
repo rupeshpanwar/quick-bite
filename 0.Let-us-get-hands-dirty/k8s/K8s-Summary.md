@@ -65,6 +65,11 @@ An instance of the “enterprise” microservice sends a query to the cluster DN
 
 The Node has no route to the service network, so it sends the traffic to its own default gateway. En-route, the request is processed by the Node’s kernel. A trap is triggered, and the request is redirected to the IP address of a Pod that matches the Service’s label selector. The Node has routes to Pod IPs, and the requests reach a Pod and are processed.
 
+Kubernetes uses the internal cluster DNS for service registration and service discovery.
+
+All new Service objects are automatically registered with the cluster DNS and all containers are configured to know where to find the cluster DNS. This means that all containers will talk to the cluster DNS when they need to resolve a name to an IP address.
+
+The cluster DNS resolves Service names to ClusterIPs. These IP addresses are on a special network, called the service network, and there are no routes to this network. Fortunately, every cluster Node is configured to trap on packets destined for the service network and redirect them to Pod IPs on the Pod network.
 </details>
 
 <details>
