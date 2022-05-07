@@ -218,7 +218,82 @@ Use kubectl apply to implement it on the cluster.
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Accessing Deployments</summary>
 <br>
-This is how you dropdown.
+
+ <img width="912" alt="image" src="https://user-images.githubusercontent.com/75510135/167240992-8b986fd6-f1f0-4b10-a881-536e846d7f82.png">
+
+ <img width="898" alt="image" src="https://user-images.githubusercontent.com/75510135/167241003-e5adf1e6-86da-404f-abb5-3d3ff8584cf9.png">
+
+ <img width="886" alt="image" src="https://user-images.githubusercontent.com/75510135/167241023-01dfcc09-49d6-4a94-bde4-08d43367b71b.png">
+ 
+ <img width="626" alt="image" src="https://user-images.githubusercontent.com/75510135/167241193-4775c421-391d-4a53-b503-2a5c3af606bd.png">
+
+ 
 </details>
+
+<details>
+<summary>Accessing the Apps</summary>
+<br>
+
+ <img width="446" alt="image" src="https://user-images.githubusercontent.com/75510135/167241221-61e71334-dce8-4d36-9924-a318182c5f83.png">
+
+ Deploying a Service object#
+
+In order to access the application from a stable name or IP address, or even from outside the cluster, you need a Kubernetes Service object. We’ll discuss Service objects in detail in the next chapter, but, for now, it’s enough to know that they provide a stable DNS name and IP address for a set of Pods.
+
+The following YAML defines a Service that will work with the Pod replicas previously deployed.
+
+ <img width="355" alt="image" src="https://user-images.githubusercontent.com/75510135/167241327-7d96756a-488e-4f9c-b989-8f69d797f82e.png">
+
+ <img width="930" alt="image" src="https://user-images.githubusercontent.com/75510135/167241340-dce3faf4-6324-4235-b724-60b5eb515e57.png">
+
+ Access using the Service object#
+
+Now that the Service is deployed, you can access the app from either of the following:
+
+    From inside the cluster, using the DNS, name, hello-svc, on port 8080.
+    From outside the cluster by hitting any of the cluster nodes on port 30001.
+
+The figure below shows the Service being accessed from outside of the cluster via a node called node1 on port 30001. It assumes that node1 is resolvable, and that port 30001 is allowed by any intervening firewalls.
+
+If you are using Minikube, you should append port 30001 to the end of the Minikube IP address. Use the minikube ip command to get the IP address of your Minikube.
+ <img width="660" alt="image" src="https://user-images.githubusercontent.com/75510135/167241353-b327b3f1-9d7c-45d2-b035-31cd120ed943.png">
+
+ 
+</details>
+
+<details>
+<summary>Performing a Rolling Update</summary>
+<br>
+
+ <img width="931" alt="image" src="https://user-images.githubusercontent.com/75510135/167241834-22e08300-7d2d-455c-85a1-e34af2f02b7c.png">
+
+ <img width="552" alt="image" src="https://user-images.githubusercontent.com/75510135/167241839-12b0adc1-3ddf-46f3-b765-472d89339a1a.png">
+
+ <img width="901" alt="image" src="https://user-images.githubusercontent.com/75510135/167241849-a189c6f7-a465-4000-a0cb-c8aebf8040ed.png">
+
+ <img width="907" alt="image" src="https://user-images.githubusercontent.com/75510135/167241856-dd4d3041-76df-425c-bc22-267f0ba417e4.png">
+
+ <img width="930" alt="image" src="https://user-images.githubusercontent.com/75510135/167241871-1f2957f6-3977-4797-8167-4a8bcec12c5a.png">
+
+ <img width="889" alt="image" src="https://user-images.githubusercontent.com/75510135/167241895-4692c2af-8c96-470c-a02a-58a0d6f5a207.png">
+
+ 
+</details>
+
+<details>
+<summary>How to Perform a Rollback</summary>
+<br>
+
+ <img width="896" alt="image" src="https://user-images.githubusercontent.com/75510135/167242044-b7bbc010-1ffc-40f2-8c59-93dfdd5b36cf.png">
+
+ <img width="904" alt="image" src="https://user-images.githubusercontent.com/75510135/167242052-88c7cc3d-ec6e-4816-a031-c7be2bdfd028.png">
+
+ <img width="912" alt="image" src="https://user-images.githubusercontent.com/75510135/167242062-3444245a-033a-44b9-8714-77c419dd30d3.png">
+
+ <img width="902" alt="image" src="https://user-images.githubusercontent.com/75510135/167242070-8b7d61e1-aa1d-4986-9bae-a58d5bcbfcf1.png">
+
+ 
+</details>
+
