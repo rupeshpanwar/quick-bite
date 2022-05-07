@@ -56,3 +56,77 @@
 
   
 </details>
+
+
+<details>
+<summary>Deployments</summary>
+<br>
+
+  <img width="681" alt="image" src="https://user-images.githubusercontent.com/75510135/167240898-45c69c52-3db7-45ae-9aed-4f6c771f4029.png">
+
+  <img width="627" alt="image" src="https://user-images.githubusercontent.com/75510135/167240907-830600a2-84e6-4fc8-b7d4-b3812478da41.png">
+
+  <img width="654" alt="image" src="https://user-images.githubusercontent.com/75510135/167240919-473dbd88-b3d9-40a1-8ec9-8afc3ff02aca.png">
+
+  <img width="669" alt="image" src="https://user-images.githubusercontent.com/75510135/167240926-52be69b6-a621-4cc2-b840-1c72cbea5bf6.png">
+
+  <img width="673" alt="image" src="https://user-images.githubusercontent.com/75510135/167240946-063f0a91-27a3-48fb-85a6-7f66204d2008.png">
+
+  
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
