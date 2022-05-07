@@ -187,3 +187,99 @@ The alternative form of service discovery is through environment variables. Ever
 A major problem with environment variables is that they’re only inserted into Pods when the Pod is initially created. This means that Pods have no way of learning about new Services added to the cluster after the Pod itself is created. This is far from ideal and a major reason why DNS is the preferred method. Another limitation can be in clusters with a lot of Services.
 
 </details>
+
+<details>
+<summary>The Imperative Way</summary>
+<br>
+
+  Warning! The imperative way is not the Kubernetes way. It introduces the risk that you make imperative changes and never update your declarative manifests, rendering the manifests incorrect and out-of-date. This introduces the risk that stale manifests are subsequently used to update the cluster at a later date, unintentionally overwriting important changes that were made imperatively.
+
+Use kubectl to declaratively deploy the following Deployment (later steps will be done imperatively).
+
+The YAML file is called deploy.yml.
+
+  <img width="389" alt="image" src="https://user-images.githubusercontent.com/75510135/167247121-8f6ae86d-0f21-499a-8f81-8283cfe8d01e.png">
+
+  <img width="731" alt="image" src="https://user-images.githubusercontent.com/75510135/167247132-ee95956f-df8a-4abf-8843-b212f21e078a.png">
+
+  Imperatively create a Kubernetes Service#
+
+The command to imperatively create a Kubernetes Service is kubectl expose. Run the following command to create a new Service that will provide networking and load balancing for the Pods deployed in the previous step.
+  
+  <img width="886" alt="image" src="https://user-images.githubusercontent.com/75510135/167247151-2e09cc69-5204-457f-954d-53f7c9b6e7d5.png">
+
+  <img width="847" alt="image" src="https://user-images.githubusercontent.com/75510135/167247162-9bed2d97-e8e3-4ce3-b343-8c006e9ac10f.png">
+
+  <img width="912" alt="image" src="https://user-images.githubusercontent.com/75510135/167247180-47f4c5cb-fdd0-4ec7-a44c-a50cf7372354.png">
+
+  <img width="896" alt="image" src="https://user-images.githubusercontent.com/75510135/167247187-b90b99b6-dec1-4b54-b8ff-694ec7d10ce4.png">
+
+  
+</details>
+
+<details>
+<summary>The Declarative Way</summary>
+<br>
+
+  <img width="384" alt="image" src="https://user-images.githubusercontent.com/75510135/167247463-825690bb-32d8-446a-9405-ffa828b319ce.png">
+
+  Time to do things the proper way: the Kubernetes way.
+Looking into the Service YAML#
+
+You’ll use the following Service manifest file to deploy the same Service that you deployed in the previous section. However, this time, you’ll specify a value for the cluster-wide port.
+
+  <img width="896" alt="image" src="https://user-images.githubusercontent.com/75510135/167247613-16d51d3d-575d-4e85-98dd-741040b360e7.png">
+
+  Finally, .spec.selector tells the Service to send traffic to all Pods in the cluster that have the app=hello-world label. This means it will provide stable networking and load balancing across all Pods with that label.
+
+Before deploying and testing the Service, let’s remind ourselves of the major Service types.
+Common Service types#
+
+The three common ServiceTypes are:
+
+    ClusterIP. This is the default option and gives the Service a stable IP address internally within the cluster. It will not make the Service available outside of the cluster.
+    NodePort. This builds on top of the ClusterIP and adds a cluster-wide TCP or UDP port. It makes the Service available outside of the cluster on a stable port.
+    LoadBalancer. This builds on top of the NodePort and integrates with cloud-based load-balancers.
+
+There’s another Service type called ExternalName. This is used to direct traffic to services that exist outside of the Kubernetes cluster.
+Creating the Service#
+
+The manifest needs POSTing to the API server. The simplest way to do this is with kubectl apply.
+
+The YAML file is called svc.yml.
+
+  <img width="892" alt="image" src="https://user-images.githubusercontent.com/75510135/167247629-c571f8fb-6d73-42da-ab57-c26ab04dc52e.png">
+
+  
+</details>
+
+<details>
+<summary>Introspecting Services and Endpoint Objects</summary>
+<br>
+
+  <img width="437" alt="image" src="https://user-images.githubusercontent.com/75510135/167247677-8f13965d-1ed5-4dad-9827-42a22a28944e.png">
+
+  Introspecting Services #
+
+Now that the Service is deployed, you can inspect it with the usual kubectl get and kubectl describe commands.
+
+  <img width="734" alt="image" src="https://user-images.githubusercontent.com/75510135/167247803-61fd69d0-869d-425c-9171-b2403853871d.png">
+
+  In the previous example, you exposed the Service as a NodePort on port 30001 across the entire cluster. This means you can point a web browser to that port on any node and reach the Service and the Pods it’s proxying. You will need to use the IP address of a node you can reach, and you will need to make sure that any firewall and security rules allow the traffic to flow.
+
+The figure below shows a web browser accessing the app via a cluster node with an IP address of 54.246.255.52 on the cluster-wide port 30001.
+  <img width="668" alt="image" src="https://user-images.githubusercontent.com/75510135/167247815-aaed101b-7749-4721-b5b5-57bb0ab86dd2.png">
+
+</details>
+
+<details>
+<summary>Endpoints objects</summary>
+<br>
+
+  Earlier in the chapter, we said that every Service gets its own Endpoints object with the same name as the Service. This object holds a list of all the Pods the Service matches and is dynamically updated as matching Pods come and go. You can see Endpoints with the normal kubectl commands.
+
+In the following command, you use the Endpoint controller’s ep shortname.
+  <img width="664" alt="image" src="https://user-images.githubusercontent.com/75510135/167247838-58fe58dc-36b3-41ac-87ff-959e0daab278.png">
+
+  
+</details>
