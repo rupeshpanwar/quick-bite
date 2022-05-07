@@ -25,9 +25,15 @@ If you deploy a singleton Pod (a Pod that is not deployed via a controller) to y
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Deployments</summary>
 <br>
-This is how you dropdown.
+
+  Deployments are a great way to manage Kubernetes apps. They build on top of Pods by adding self-healing, scalability, rolling updates, and rollbacks. Behind the scenes, they leverage ReplicaSets for the self-healing and scalability parts.
+
+Like Pods, Deployments are objects in the Kubernetes API, and you should work with them declaratively.
+
+When you perform updates with the kubectl apply command, older versions of ReplicaSets get wound down, but they stick around making it easy to perform rollbacks.
+  
 </details>
 
 <details>
