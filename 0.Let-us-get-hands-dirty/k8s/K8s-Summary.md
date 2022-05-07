@@ -11,9 +11,17 @@ We also talked about some of the major Kubernetes API objects, such as Pods, Dep
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Pods</summary>
 <br>
-This is how you dropdown.
+
+The atomic unit of deployment in the Kubernetes world is the Pod. Each Pod consists of one or more containers and gets deployed to a single node in the cluster. The deployment operation is an all or nothing atomic operation.
+
+Pods are defined and deployed declaratively using a YAML manifest file, and it’s normal to deploy them via higher-level controllers, such as Deployments. You use the kubectl command-line to POST the manifest to the API server; it gets stored in the cluster store and converted into a PodSpec that is scheduled to a healthy cluster node with enough available resources.
+
+The process on the worker node that accepts the PodSpec is the kubelet. This is the main Kubernetes agent running on every node in the cluster. It takes the PodSpec and is responsible for pulling all images and starting all containers in the Pod.
+
+If you deploy a singleton Pod (a Pod that is not deployed via a controller) to your cluster, and the node it is running on fails, the singleton Pod is not rescheduled on another node. Because of this, you should almost always deploy Pods via higher-level controllers, such as Deployments and DaemonSets. These add capabilities, such as self-healing and rollbacks, which are at the heart of what makes Kubernetes so powerful.
+
 </details>
 
 <details>
