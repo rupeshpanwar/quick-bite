@@ -76,9 +76,18 @@
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Rollout, Upgrade</summary>
 <br>
-This is how you dropdown.
+
+  <img width="786" alt="image" src="https://user-images.githubusercontent.com/75510135/167242559-90fc26cc-f606-40c0-93e8-473aca34554d.png">
+
+  <img width="727" alt="image" src="https://user-images.githubusercontent.com/75510135/167242571-a20fcb00-c5eb-49ee-be8a-9fa851840ac6.png">
+
+  <img width="668" alt="image" src="https://user-images.githubusercontent.com/75510135/167242582-7ad60d0a-44ce-4ce9-8a7f-f2dd1b72edcf.png">
+
+  <img width="794" alt="image" src="https://user-images.githubusercontent.com/75510135/167242604-47538242-b4f5-47d5-8862-9187c9050e14.png">
+
+  
 </details>
 
 
