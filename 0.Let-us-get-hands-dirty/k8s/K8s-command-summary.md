@@ -70,6 +70,60 @@ This is how you dropdown.
 </details>
 
 <details>
+<summary>Service</summary>
+<br>
+
+  ```
+  610  kubectl expose deploy web-deploy --name web-svc --target-port 8080 --type NodePort
+  611  k get svc
+  612  k describe svc web-svc
+  613  k -f dummydep.yml delete
+  614  k delete svc web-svc
+  615  k -f dummydep.yml create
+  616  vi dummysvc.yml
+  617  k -f dummysvc.yml create
+  618  k delete svc hello-svc
+  619  k delete deploy web-deploy
+  622  kubectl get all -n kube-system | grep dns
+  623  kubectl get all -n kube-system -o wide | grep dns
+  624  kubectl describe service/kube-dns
+  625  kubectl describe svc service/kube-dns
+  626  kubectl describe svc service/kube-dns -n kube-system
+  627  kubectl describe svc kube-dns -n kube-system
+  628  kubectl get ep kube-dns -n kube-system
+  630  vi sdexam.yml
+  631  k -f sdexam.yml create
+  632  k get all -n dev
+  633  k get all -n dev
+  634  k get all -n prod
+  635  k exec -it jump -n dev -- bash
+  636  kubectl get all -n kube-system | grep dns
+  637  kubectl logs kube-dns-697dc8fc8b-kc4gt -n kube-system
+  638  kubectl logs pod/kube-dns-697dc8fc8b-kc4gt -n kube-system
+  639  kubectl logs pod/kube-dns-697dc8fc8b-chmm2 -n kube-system
+  640  kubectl logs pod  pod/kube-dns-697dc8fc8b-chmm2 -n kube-system
+  641  kubectl logs pod/kube-dns-697dc8fc8b-chmm2 --container kubedns -n kube-system
+  642  kubectl get all -n kube-system | grep dns
+  644  kubectl get service/kube-dns -n kube-system
+  645  kubectl get ep kube-dns -n kube-system
+  648  kubectl run -it dnsutils --image gcr.io/kubernetes-e2e-test-images/dnsutils:1.3
+  649  kubectl get svc kubernetes
+  ```
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
 <summary>How do I dropdown?</summary>
 <br>
 This is how you dropdown.
