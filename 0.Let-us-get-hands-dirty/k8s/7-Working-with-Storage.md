@@ -186,17 +186,105 @@ The following YAML defines a single-container Pod with a volume, called “data�
 <summary>Storage Classes and Dynamic Provisioning</summary>
 <br>
 
+  Everything you’ve seen so far is correct and fundamental to Kubernetes storage. But it doesn’t scale – there’s no way somebody managing a large Kubernetes environment can manually create and maintain large numbers of PVs and PVCs. You need something more dynamic.
+
+Enter storage classes:
+
+As the name suggests, storage classes allow you to define different classes, or tiers, of storage. How you define your classes is up to you, but it will depend on the types of storage you have access to. For example, you might define a fast class, a slow class, and an encrypted class (your external storage system would need to support different speeds of storage and support encrypting volumes, as Kubernetes does none of this).
+
+As far as Kubernetes goes, storage classes are defined as resources in the storage.k8s.io/v1 API group. The resource type is StorageClass, and you define them in regular YAML files that you POST to the API server for deployment. You can use the sc shortname to refer to StorageClass objects when using kubectl.
+
+    Note: You can see a full list of API resources and their shortnames using the kubectl api-resources command. The output of the command shows the API group that each resource belongs to (an empty st
+
+    ring indicates the core API group), whether or not the resource is namespaced and what its equivalent kind is when writing YAML files.
+
+A StorageClass YAML #
+
+The following is a simple example of a StorageClass YAML file. It defines a class of storage called “fast”, that is based on AWS solid state drives (io1) in the Ireland Region (eu-west-1a). It also requests a performance level of 10 IOPs per gigabyte.
+<img width="900" alt="image" src="https://user-images.githubusercontent.com/75510135/167277238-6be3a5dd-3e6d-4883-8e23-cad96ce72b7f.png">
+
+  As with all Kubernetes YAML, kind tells the API server what type of object is being defined, and apiVersion tells it which version of the schema to apply to the resource. metadata.name is an arbitrary string value that lets you give the object a friendly name – this example is defining a class called “fast”. provisioner tells Kubernetes which plugin to use, and the parameters field lets you finely tune the type of storage to leverage from the back-end.
+
+A few quick things worth noting:
+
+    StorageClass objects are immutable – this means you cannot modify them once deployed.
+    metadata.name should be meaningful as it’s how other objects will refer to the class.
+    The terms provisioner and plugin are used interchangeably.
+    The parameters section is for plugin-specific values, and each plugin is free to support its own set of values. Configuring this section requires knowledge of the storage plugin and associated storage back end.
+
+Multiple StorageClasses#
+
+You can configure as many StorageClass objects as you need. However, each one relates to a single provisioner. For example, if you have a Kubernetes cluster with StorageOS and Portworx storage back ends, you will n
+
+eed at least two StorageClass objects. That said, each back end can offer multiple classes/tiers of storage, each of which can have its own StorageClass. For example, you could have the following two StorageClass objects for different classes of storage from the same back end:
+
+    “fast-secure” for high performance encrypted volumes
+    “fast” for high-performance unencrypted volumes
+
+An example of a StorageClass defining an encrypted volume on a Portworx back-end might look like this. It will only work if you have a Portworx.
+<img width="533" alt="image" src="https://user-images.githubusercontent.com/75510135/167277248-3ff0b878-7263-45ca-adc9-4433ad3e1ac1.png">
+As you can see, the .parameters section is long and lists some cryptic values. Configuring this section requires knowledge of the plugin and what is supported on the storage back-end. Consult your storage plugin documentation for details.
+Implementing StorageClasses#
+
+The basic workflow for deploying and using a StorageClass on your cluster is as follows:
+
+    Create your Kubernetes cluster with a storage back end.
+    Ensure the plugin for the storage back end is available.
+    Create a StorageClass object.
+    Create a PVC object that references the StorageClass by name.
+    Deploy a Pod that uses volume based on the PVC.
+
+Notice that the workflow does not include creating a PV. This is because storage classes create PVs dynamically.
+
+The following YAML snippet contains the definitions for a StorageClass, a PersistentVolumeClaim, and a Pod. All three objects can be defined in a single YAML file by separating each object with three dashes (---).
+
+Notice how the PodSpec references the PVC by name, and, in turn, the PVC references the SC by name.
+```
+  kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: fast  # Referenced by the PVC
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-ssd
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mypvc  # Referenced by the PodSpec
+  namespace: mynamespace
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: fast    # Matches name of the SC
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: mypvc  # Matches PVC name
+  containers: ...
+  <SNIP>
+```
+    The previous YAML is truncated and does not include a full PodSpec.
+
+So far, you’ve seen a few SC definitions. However, each one has been slightly different, as each one has related to a different provisioner (storage plugin/back end). You will need to refer to the documentation of your storage plugin to know which options your provisioner supports.
+Quick summary#
+
+Let’s quickly summarize what you’ve learned about storage classes before walking through a demo.
+
+StorageClasses make it so that you don’t have to create PVs manually. You create the StorageClass object and use a plugin to tie it to a particular type of storage on a particular storage back end. For example, high performance AWS SSD storage in the AWS Mumbai Region. The SC needs a name, and is defined in a YAML file that you deploy using kubectl. Once deployed, the StorageClass watches the API server for new PVC objects that reference its name. When matching PVCs appear, the StorageClass dynamically creates the required volume on the back-end storage system as well as the PV on Kubernetes.
+
+There’s always more detail, such as mount options and volume binding modes, but what you’ve learned so far is enough to get you more than started.
+
+
   
 </details>
 
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
-
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
