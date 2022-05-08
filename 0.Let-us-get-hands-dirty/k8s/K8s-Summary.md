@@ -102,9 +102,17 @@ ConfigMap data gets injected into containers at runtime, and you can inject data
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Statefulset</summary>
 <br>
-This is how you dropdown.
+
+  StatefulSets create and manage applications that need to persist state.
+
+They can self-heal, scale up and down, and perform updates. Rollbacks require manual attention.
+
+Each Pod replica spawned by a StatefulSet gets a predictable and persistent name, DNS hostname, and unique set of volumes. These stay with the Pod for its entire lifecycle, including failures, restarts, scaling, and other scheduling operations. In fact, StatefulSet Pod names are integral to scaling operations and connecting to storage volumes.
+
+However, StatefulSets are only a framework. Applications need to be written in ways to take advantage of the way StatefulSets behave.
+  
 </details>
 
 <details>
