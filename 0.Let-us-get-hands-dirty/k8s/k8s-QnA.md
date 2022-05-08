@@ -5,6 +5,29 @@ This is how you dropdown.
 </details>
 
 <details>
+<summary>Statefulset</summary>
+<br>
+
+  <img width="725" alt="image" src="https://user-images.githubusercontent.com/75510135/167285045-aecffd38-23d7-4248-bda5-0f0a2d627210.png">
+
+  <img width="606" alt="image" src="https://user-images.githubusercontent.com/75510135/167285061-f6cbba71-4c70-4a45-ae15-f707d64ebfcf.png">
+
+  <img width="832" alt="image" src="https://user-images.githubusercontent.com/75510135/167285072-c697e349-cdc8-4c14-b5dc-70d080f3682b.png">
+
+  <img width="718" alt="image" src="https://user-images.githubusercontent.com/75510135/167285084-45cad4a6-ac4f-47df-801a-18fe40c5f9f2.png">
+
+  <img width="389" alt="image" src="https://user-images.githubusercontent.com/75510135/167285093-6d99159e-25ed-443b-87ae-b78916f3bca1.png">
+
+  <img width="734" alt="image" src="https://user-images.githubusercontent.com/75510135/167285097-64bc0700-bf4e-403c-824e-26f2dd4f06f9.png">
+
+  <img width="654" alt="image" src="https://user-images.githubusercontent.com/75510135/167285101-740e05d2-a463-4604-a5d3-fee851ef6804.png">
+
+  <img width="615" alt="image" src="https://user-images.githubusercontent.com/75510135/167285108-9fd7831d-166c-4d30-8720-6b3c7cce51d7.png">
+
+  
+</details>
+
+<details>
 <summary>ConfigMap</summary>
 <br>
   
