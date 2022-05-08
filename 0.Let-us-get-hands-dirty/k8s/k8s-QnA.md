@@ -5,6 +5,25 @@ This is how you dropdown.
 </details>
 
 <details>
+<summary>Pods</summary>
+<br>
+
+  <img width="605" alt="image" src="https://user-images.githubusercontent.com/75510135/167287891-89526ee2-0bbc-47d9-b958-85e12f1e5198.png">
+
+  <img width="554" alt="image" src="https://user-images.githubusercontent.com/75510135/167287902-a3a25917-40dc-4c26-a948-a4c7e1d6cef9.png">
+
+  <img width="718" alt="image" src="https://user-images.githubusercontent.com/75510135/167287918-bf554794-d022-475d-a68a-40e3f2da60de.png">
+
+  <img width="598" alt="image" src="https://user-images.githubusercontent.com/75510135/167287955-77a1d8aa-46bd-4c8a-9daf-bcfe352951e6.png">
+
+  <img width="523" alt="image" src="https://user-images.githubusercontent.com/75510135/167287968-1b7e88b2-2389-4954-a8e9-9ecf9d59b588.png">
+
+  <img width="553" alt="image" src="https://user-images.githubusercontent.com/75510135/167287977-5f4fb438-9581-4729-b8d3-2b9254306d1f.png">
+
+  
+</details>
+
+<details>
 <summary>Statefulset</summary>
 <br>
 
