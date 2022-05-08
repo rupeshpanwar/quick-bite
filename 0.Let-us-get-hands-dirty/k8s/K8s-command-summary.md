@@ -5,6 +5,13 @@ This is how you dropdown.
 </details>
 
 <details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+
+<details>
 <summary>Play with PODS</summary>
 <br>
 
@@ -112,19 +119,116 @@ This is how you dropdown.
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Configmap</summary>
 <br>
-This is how you dropdown.
+
+  ```
+  kubectl create cm testmap1 --from-literal shortname=msb.com --from-literal longname=magicbox.com
+  695  kubectl get cm
+  696  kubectl get cm testmap1
+  697  kubectl describe cm testmap1
+  698  echo  "this configmap from a file" > configmapfile.txt
+  699  ls
+  700  k create cm fileconfigmap --from-file configmapfile.txt
+  701  k get cm
+  702  k describe cm fileconfigmap
+  703  k get cm configmapfile.txt -o yaml
+  704  k get configmap fileconfigmap -o yaml
+  705  vi multimap.yaml
+  706* k -f multimap.yaml creat
+  707  vi confmap.yaml
+  708  k -f confmap.yaml create
+  709  k get cm
+  710  k describe cm test-conf -o yaml
+  711  k describe cm test-conf -o yaml
+  712  k describe cm test-conf
+  713  vi multimap.yaml
+  714  vi envconfigmap.yaml
+  715  k -f envconfigmap.yaml create
+  716  k get pods
+  717  k exec envpod -- env | grep NAME
+  718  k get pods
+  719  vi envconfigmap.yaml
+  720  k -f envconfigmap.yaml apply
+  721  k -f envconfigmap.yaml apply
+  722  k -f envconfigmap.yaml create
+  723  k get pods
+  724  k exec envpod -- env | grep NAME
+  725  k describe pod envpod
+  726  k logs  envpod
+  727  k logs  envpod -c args1
+  728  vi argsconfigmap.yaml
+  729  k -f argsconfigmap.yaml create
+  730  vi argscm.yaml
+  731  k -f argscm.yaml create
+  732  k delete pod envpod
+  733  k -f argscm.yaml create
+  734  k get pods
+  735  k logs envpod -- env | grep NAME
+  736  k logs envpod -c args1
+  737  k logs envpod
+  738  vi volconfigmap.yaml
+  739  k -f volconfigmap.yaml create
+  740  k get pods
+  741  k get pods
+  742  k exec cmvol -- ls /etc/name
+  743  k exec cmvol -it -- bash
+  ```
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Statefulset</summary>
 <br>
-This is how you dropdown.
+
+  ```
+    vi app.yaml
+  746  vi gcp-sc.yaml
+  747  kubectl -f gcp-sc.yaml create
+  748  kubectl get sc
+  749  vi headless-svc.yml
+  750  k -f headless-svc.yml create
+  751  k get svc
+  752  k get ep
+  753  vi sts.yml
+  754  k -f sts.yml create
+  755  k get sts -w
+  756  k get pvc
+  757  k get ep
+  758  vi jumpingpod.yml
+  759  k -f jumpingpod.yml create
+  760  k get pods
+  761  k get pods
+  762  k get pods
+  763  k exec jump-pod -it -- bash
+  764  vi sts.yml
+  765  k -f sts.yml apply
+   vi sts.yml
+  765  k -f sts.yml apply
+  766  k create --save-config sts.yml
+  767  k create --save-config sts.yml -f
+  768  k create --save-config -f sts.yml
+  769  k apply --save-config -f sts.yml
+  770  k apply -f sts.yml --save-config
+  771  k apply -f sts.yml
+  772  k get sts -w
+  773  k get sts -w
+  774  k get pods -w
+  775  k get pvc
+  776  k get sts
+  777  k get rs
+  778  k describe pvc pvc-643aeae2-834f-45cf-8b8a-790754b8c9f1 | grep Mounted
+  779  k describe pvc webroot-tkb-sts-2 | grep Mounted
+  780  k describe pvc webroot-tkb-sts-2 | grep M
+  781  kubectl explain sts.spec.updateStrategy
+  782  k get pods
+  783  k delete pod tkb-sts-0
+  784  k get pods -w
+  785  k describe pod tkb-sts-0 | grep ClaimName
+  786  k scale sts --replicas 0
+  787  k scale sts tkb-sts --replicas=0
+  788  k get pods -w
+  789  k get sts
+  790  k delete sts tkb-sts
+  ```
 </details>
 
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
