@@ -7,9 +7,26 @@ This is how you dropdown.
 
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Kubernetes Principles</summary>
 <br>
-This is how you dropdown.
+
+  <img width="622" alt="image" src="https://user-images.githubusercontent.com/75510135/167289704-d87963fe-7691-4d20-93c4-f0df27a632d1.png">
+
+  <img width="808" alt="image" src="https://user-images.githubusercontent.com/75510135/167289729-f9239d7f-1a06-4bd7-8dda-8501154d675b.png">
+
+  <img width="598" alt="image" src="https://user-images.githubusercontent.com/75510135/167289737-1e3deca9-a178-4cb5-b5d0-f5f4a03a13fd.png">
+
+  <img width="819" alt="image" src="https://user-images.githubusercontent.com/75510135/167289747-c7aedce2-40ee-497c-97f8-b239ea0a644b.png">
+
+  <img width="515" alt="image" src="https://user-images.githubusercontent.com/75510135/167289767-588f97e6-1d15-4b5a-b7c1-029344c5e22f.png">
+
+  <img width="611" alt="image" src="https://user-images.githubusercontent.com/75510135/167289778-bd76c0c5-e9b4-437b-8f5c-bfc98f37de0d.png">
+
+  <img width="656" alt="image" src="https://user-images.githubusercontent.com/75510135/167289782-7321ca88-dcfa-4839-87cb-d21ac42e582d.png">
+
+  <img width="659" alt="image" src="https://user-images.githubusercontent.com/75510135/167289791-86ec8f5d-d538-4527-9210-a5d2e3d769ca.png">
+
+  
 </details>
 
 <details>
