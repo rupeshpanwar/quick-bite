@@ -144,9 +144,21 @@ This is how you dropdown.
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Storage</summary>
 <br>
-This is how you dropdown.
+
+  <img width="708" alt="image" src="https://user-images.githubusercontent.com/75510135/167277805-d24211bd-204a-4504-ae37-9a0f8fba523d.png">
+
+  <img width="593" alt="image" src="https://user-images.githubusercontent.com/75510135/167277822-f3134669-9f3b-4204-846e-30d4ca98fab7.png">
+
+  <img width="552" alt="image" src="https://user-images.githubusercontent.com/75510135/167277835-61c265d8-69d9-482c-87aa-6014cf9432ce.png">
+
+  <img width="715" alt="image" src="https://user-images.githubusercontent.com/75510135/167277856-a929f2d7-eb41-4355-8050-da1e31406a2c.png">
+
+  <img width="598" alt="image" src="https://user-images.githubusercontent.com/75510135/167277866-3c5f5d7c-2577-44f3-9e02-384f2afaf5c9.png">
+
+  <img width="757" alt="image" src="https://user-images.githubusercontent.com/75510135/167277892-4d83592b-21fa-49eb-9c27-901f46c550a2.png">
+
 </details>
 
 <details>
