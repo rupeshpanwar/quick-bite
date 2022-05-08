@@ -22,6 +22,12 @@ The process on the worker node that accepts the PodSpec is the kubelet. This is 
 
 If you deploy a singleton Pod (a Pod that is not deployed via a controller) to your cluster, and the node it is running on fails, the singleton Pod is not rescheduled on another node. Because of this, you should almost always deploy Pods via higher-level controllers, such as Deployments and DaemonSets. These add capabilities, such as self-healing and rollbacks, which are at the heart of what makes Kubernetes so powerful.
 
+  Pods are the atomic unit of scheduling in Kubernetes. You can have more than one container in a Pod. Single-container Pods are the simplest, but multi-container Pods are ideal for containers that need to be tightly coupled. They’re also great for logging and service meshes.
+
+Pods get scheduled on nodes – you can’t schedule a single Pod instance to span multiple nodes. Pods are defined declaratively in a manifest file that is POSTed to the API server and assigned to nodes by the scheduler.
+
+You almost always deploy Pods via higher-level controllers.
+
 </details>
 
 <details>
