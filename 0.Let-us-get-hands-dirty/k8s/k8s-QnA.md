@@ -1,4 +1,29 @@
 <details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>ConfigMap</summary>
+<br>
+  
+  <img width="869" alt="image" src="https://user-images.githubusercontent.com/75510135/167281357-c523ed32-87b9-4a8f-b7d5-48851b28e6a7.png">
+
+  <img width="664" alt="image" src="https://user-images.githubusercontent.com/75510135/167281365-111b57e7-4d0e-4d9d-91cf-a09b6999d02b.png">
+
+  <img width="529" alt="image" src="https://user-images.githubusercontent.com/75510135/167281378-9a82b391-2e6f-46e5-a689-a4ca8aba739d.png">
+
+  <img width="725" alt="image" src="https://user-images.githubusercontent.com/75510135/167281383-04044757-4284-4faa-a50f-ebaa85c32cad.png">
+
+  <img width="612" alt="image" src="https://user-images.githubusercontent.com/75510135/167281391-dd77ca09-aa11-4f1d-9ee2-f95c471ed21a.png">
+
+  <img width="873" alt="image" src="https://user-images.githubusercontent.com/75510135/167281401-1d392912-99cb-4534-b277-48a8942df229.png">
+  <img width="813" alt="image" src="https://user-images.githubusercontent.com/75510135/167281408-bdcf885b-645a-4575-adbe-90acbfae1c25.png">
+
+</details>
+
+<details>
 <summary>Installation</summary>
 <br>
 
@@ -161,27 +186,4 @@ This is how you dropdown.
 
 </details>
 
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
-
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
-
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
-
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
 
