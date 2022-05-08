@@ -1,4 +1,22 @@
 <details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>Control plane summary</summary>
+<br>
+
+  <img width="416" alt="image" src="https://user-images.githubusercontent.com/75510135/167289359-4dcc6737-dd8b-404b-ba9b-d78751a9f604.png">
+
+  Kubernetes’s masters run all of the cluster’s control plane services. Think of it as the brains of the cluster, where all the control and scheduling decisions are made. Behind the scenes, a master is made up of many small specialized control loops and services. These include the API server, the cluster store, the controller manager, and the scheduler.
+
+The API server is the front end into the control plane, and all instructions and communication must go through it. By default, it exposes a RESTful endpoint on port 443.
+  
+</details>
+
+<details>
 <summary>Major components of a Kubernetes cluster</summary>
 <br>
 
@@ -121,8 +139,4 @@ However, StatefulSets are only a framework. Applications need to be written in w
   
 </details>
 
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
+
