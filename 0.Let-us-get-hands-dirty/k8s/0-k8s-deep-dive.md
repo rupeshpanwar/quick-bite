@@ -13,6 +13,87 @@ This is how you dropdown.
 </details>
 
 <details>
+<summary>Packaging Apps for Kubernetes</summary>
+<br>
+
+  For an application to run on a Kubernetes cluster, it needs to tick a few boxes. These include:
+
+    Being packaged as a container
+    Being wrapped in a Pod
+    Being deployed via a declarative manifest file
+
+It goes like this: you write an application service in a language of your choice. You build it into a container image and store it in a registry. At this point, the application service is containerized.
+
+Next, you define a Kubernetes Pod to run the containerized application. At the kind of high level we’re at, a Pod is just a wrapper that allows a container to run on a Kubernetes cluster. Once you’ve defined the Pod, you’re ready to deploy it on the cluster.
+Deployments#
+
+It is possible to run a stand-alone Pod on a Kubernetes cluster, but the preferred model is to deploy all Pods via higher-level controllers. The most common controller is the Deployment. It offers scalability, self-healing, and rolling updates. You define Deployments in YAML manifest files that specify things like which image to use and how many replicas to deploy.
+
+  <img width="874" alt="image" src="https://user-images.githubusercontent.com/75510135/167289660-e0692d48-f991-4185-bed3-c38400ec74f4.png">
+
+  
+</details>
+
+<details>
+<summary>Kubernetes DNS</summary>
+<br>
+
+  As well as the various control plane and node components, every Kubernetes cluster has an internal DNS service that is vital to operations.
+
+The cluster’s DNS service has a static IP address that is hard-coded into every Pod on the cluster, meaning all containers and Pods know how to find it. Every new service is automatically registered with the cluster’s DNS so that all components in the cluster can find every Service by name. Some other components that are registered with the cluster DNS are StatefulSets and the individual Pods that a StatefulSet manages.
+
+  <img width="405" alt="image" src="https://user-images.githubusercontent.com/75510135/167289585-a80f6808-333f-4dca-aaf4-f3e0ac573af6.png">
+
+  Cluster DNS is based on CoreDNS. Now that we understand the fundamentals of masters and nodes, let’s switch gears in the upcoming lessons and look at how we package applications to run on Kubernetes.
+  
+</details>
+
+
+<details>
+<summary>Masters and Nodes: Nodes</summary>
+<br>
+
+  <img width="461" alt="image" src="https://user-images.githubusercontent.com/75510135/167289399-bff20435-0468-4c8e-9e5d-09b956061020.png">
+
+  Nodes#
+
+Nodes are the workers of a Kubernetes cluster. At a high level, they do three things:
+
+    Watch the API Server for new work assignments.
+    Execute new work assignments.
+    Report back to the control plane (via the API server).
+
+As we can see from the figure below, they’re a bit simpler than masters.
+
+  <img width="506" alt="image" src="https://user-images.githubusercontent.com/75510135/167289507-2d5479e2-7d20-45ce-a6b7-5d2ced62c1bf.png">
+
+  Let’s look at the three major components of a node.
+Kubelet#
+
+The kubelet is the star of the show on every node. It’s the main Kubernetes agent, and it runs on every node in the cluster. In fact, it’s common to use the terms node and kubelet interchangeably.
+
+When you join a new node to a cluster, the process installs the kubelet onto the node. The kubelet is then responsible for registering the node with the cluster. Registration effectively pools the node’s CPU, memory, and storage into the wider cluster pool.
+
+One of the main jobs of the kubelet is to watch the API server for new work assignments. Any time it sees one, it executes the task and maintains a reporting channel back to the control plane.
+
+If a kubelet can’t run a particular task, it reports back to the master and lets the control plane decide what actions to take. For example, if a kubelet cannot execute a task, it is not responsible for finding another node to run it on. It simply reports back to the control plane, and the control plane decides what to do.
+Container runtime#
+
+The kubelet needs a container runtime to perform container-related tasks – things like pulling images and starting and stopping containers.
+
+In the early days, Kubernetes had native support for a few container runtimes, such as Docker. More recently, it has moved to a plugin model called the Container Runtime Interface (CRI). At a high level, the CRI masks the internal machinery of Kubernetes and exposes a clean documented interface for third-party container runtimes to plug into.
+
+There are many container runtimes available for Kubernetes. One popular example is cri-containerd. This is a community-based, open-source project, porting the CNCF containerd runtime to the CRI interface. It has a lot of support and is replacing Docker as the most popular container runtime used in Kubernetes.
+
+    Note: containerd (pronounced “container-dee”) is the container supervisor and runtime logic stripped out from the Docker Engine. It was donated to the CNCF by Docker, Inc. and has a lot of community support. Other CRI-compliant container runtimes exist as well.
+
+Kube-proxy #
+
+The last piece of the node puzzle is the kube-proxy. This runs on every node in the cluster and is responsible for local cluster networking. For example, it makes sure each node gets its own unique IP address and implements local IPTABLES or IPVS rules to handle routing and load-balancing of traffic on the Pod network.
+
+</details>
+
+<details>
 <summary>Masters and Nodes: Masters</summary>
 <br>
 
