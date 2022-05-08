@@ -77,6 +77,11 @@ The cluster DNS resolves Service names to ClusterIPs. These IP addresses are on 
 <br>
 
   You start out with storage assets on an external storage system. You use a CSI plugin to integrate the external storage system with Kubernetes, and you use Persistent Volume (PV) objects to make the external system’s assets accessible and usable. Each PV is an object on the Kubernetes cluster that maps back to a specific storage asset (LUN, share, blob, etc.) on the external storage system. Finally, for a Pod to use a PV, it needs a PersistentVolumeClaim (PVC). This is like a ticket that grants the Pod to the PV. Once the PV and PVC objects are created and bound, the PVC can be referenced in a PodSpec, and the associated PV can be mounted as a volume in a container.
+  
+  Using the default StorageClass
+
+If your cluster has a default storage class, you can deploy a Pod using just a PodSpec and a PVC. You do not need to manually create a StorageClass. However, real-world production clusters will usually have multiple StorageClasses, so it’s best practice creating and managing StorageClasses that suit your business and application needs. The default StorageClass is normally only useful in development environments and times when you do not have specific storage requirements.
+
 </details>
 
 <details>
