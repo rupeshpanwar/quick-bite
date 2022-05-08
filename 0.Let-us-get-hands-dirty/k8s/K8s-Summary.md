@@ -90,9 +90,15 @@ Storage Classes take things to the next level by allowing applications to dynami
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>ConfigMap</summary>
 <br>
-This is how you dropdown.
+
+  ConfigMaps are the mechanism that Kubernetes provides for decoupling applications and their configuration.
+
+ConfigMaps are first-class objects in the Kubernetes API and can be created and manipulated with the usual kubectl create, kubectl get, and kubectl describe commands. They’re ideal for storing application configuration parameters as well as entire configuration files, but they shouldn’t be used to store sensitive data.
+
+ConfigMap data gets injected into containers at runtime, and you can inject data via environment variables, container startup commands, and volumes. The volumes method is the most flexible, as it allows you to work with entire configuration files. It also allows updates to eventually be reflected in already running containers.
+
 </details>
 
 <details>
