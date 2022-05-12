@@ -89,9 +89,33 @@ We can see that I have one node called docker-for-desktop. It is using 248 CPU m
 
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Observe Metrics Server Data</summary>
 <br>
-This is how you dropdown.
+
+  Resource usage of the nodes is useful but is not what we’re looking for. In this chapter, we’re focused on auto-scaling Pods. But, before we get there, we should observe how much memory each of our Pods is using. We’ll start with those running in the kube-system Namespace.
+Memory consumption of pods running in kube-system #
+
+Execute the following from your command line to see the memory consumption of all the pods running in the Kube-system.
+  <img width="924" alt="image" src="https://user-images.githubusercontent.com/75510135/168001866-51c73175-1c3b-4265-90af-17104fe7230d.png">
+
+  <img width="933" alt="image" src="https://user-images.githubusercontent.com/75510135/168001896-555400c2-62e3-4bd1-a945-f712dd0813f3.png">
+
+  <img width="921" alt="image" src="https://user-images.githubusercontent.com/75510135/168001931-62bc0e72-a11a-4068-a510-6f7a315fb74d.png">
+
+  We can see that this time, the output shows each container separately. We can, for example, observe metrics of the kube-dns-* Pod separated into three containers (kubedns, dnsmasq, sidecar).
+Flow of data using kubectl top #
+
+When we request metrics through kubectl top, the flow of data is almost the same as when the scheduler makes requests. A request is sent to the API Server (Master Metrics API), which gets data from the Metrics Server which, in turn, was collecting information from Kubeletes running on the nodes of the cluster.
+  <img width="646" alt="image" src="https://user-images.githubusercontent.com/75510135/168001981-3acc9253-340f-4b16-ae51-caa47b5e9045.png">
+
+  Scrape the metrics using JSON #
+
+While kubectl top command is useful to observe current metrics, it is pretty useless if we’d like to access them from other tools. After all, the goal is not for us to sit in front of a terminal with watch kubectl top pods command. That would be a waste of our (human) talent. Instead, our goal should be to scrape those metrics from other tools and create alerts and (maybe) dashboards based on both real-time and historical data. For that, we need output in JSON or some other machine-parsable format. Luckily, kubectl allows us to invoke its API directly in raw format and retrieve the same result as if a tool would query it.
+  <img width="636" alt="image" src="https://user-images.githubusercontent.com/75510135/168002032-cf2960d4-a701-4dae-ac2f-79faf45c69da.png">
+
+  <img width="911" alt="image" src="https://user-images.githubusercontent.com/75510135/168002059-9ae650e8-b620-4154-a7b9-36fcc13b2bba.png">
+
+  
 </details>
 
 <details>
