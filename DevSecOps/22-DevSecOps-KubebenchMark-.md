@@ -312,3 +312,28 @@ pipeline {
   ```
 </details>
 
+
+<details>
+<summary>Pod-2-Pod Communication</summary>
+<br>
+
+	<img width="536" alt="image" src="https://user-images.githubusercontent.com/75510135/168459262-6216e728-95fc-46ae-ac4d-5f00bd43ca63.png">
+
+	<img width="543" alt="image" src="https://user-images.githubusercontent.com/75510135/168459255-50ae473e-39b3-4a93-b2e6-f300d5d9ff88.png">
+
+	- to Encrypt/decrypt the data  via Istio(side car containers)
+	<img width="598" alt="image" src="https://user-images.githubusercontent.com/75510135/168459237-e3edd60e-756f-40a7-a567-c14463fb9845.png">
+
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
+
+<details>
+<summary>How do I dropdown?</summary>
+<br>
+This is how you dropdown.
+</details>
