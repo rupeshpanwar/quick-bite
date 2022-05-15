@@ -1,6 +1,7 @@
 - https://www.cisecurity.org/
 - https://github.com/aquasecurity/kube-bench
 - https://github.com/aquasecurity/kube-bench/blob/main/docs/installation.md
+- https://istio.io/latest/docs/setup/install/helm/
 
 <details>
 <summary>Introduction</summary>
@@ -317,19 +318,93 @@ pipeline {
 <summary>Pod-2-Pod Communication</summary>
 <br>
 
-	<img width="536" alt="image" src="https://user-images.githubusercontent.com/75510135/168459262-6216e728-95fc-46ae-ac4d-5f00bd43ca63.png">
+  <img width="536" alt="image" src="https://user-images.githubusercontent.com/75510135/168459262-6216e728-95fc-46ae-ac4d-5f00bd43ca63.png">
 
-	<img width="543" alt="image" src="https://user-images.githubusercontent.com/75510135/168459255-50ae473e-39b3-4a93-b2e6-f300d5d9ff88.png">
+  <img width="543" alt="image" src="https://user-images.githubusercontent.com/75510135/168459255-50ae473e-39b3-4a93-b2e6-f300d5d9ff88.png">
 
-	- to Encrypt/decrypt the data  via Istio(side car containers)
-	<img width="598" alt="image" src="https://user-images.githubusercontent.com/75510135/168459237-e3edd60e-756f-40a7-a567-c14463fb9845.png">
+  - to Encrypt/decrypt the data  via Istio(side car containers)
+  <img width="598" alt="image" src="https://user-images.githubusercontent.com/75510135/168459237-e3edd60e-756f-40a7-a567-c14463fb9845.png">
 
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Istio - basics</summary>
 <br>
-This is how you dropdown.
+
+<img width="381" alt="image" src="https://user-images.githubusercontent.com/75510135/168459511-f5c52bc2-55da-4564-8291-21042b68943e.png">
+
+ -  Istio features
+ <img width="976" alt="image" src="https://user-images.githubusercontent.com/75510135/168459490-3326161c-c69e-448a-a34b-a4164e46d771.png">
+
+  - Istio  Architecture
+    <img width="879" alt="image" src="https://user-images.githubusercontent.com/75510135/168459470-37b7e38f-a9f6-4a03-ba66-c28f6c793f1a.png">
+
+  - Istio capabilities
+
+	<img width="1022" alt="image" src="https://user-images.githubusercontent.com/75510135/168459438-7b99fe3b-3756-48a6-9c8e-18261a71c467.png">
+
+</details>
+
+<details>
+<summary>Installation</summary>
+<br>
+
+	<img width="909" alt="image" src="https://user-images.githubusercontent.com/75510135/168459751-f3fcc44b-5399-40c9-8b7e-96c80c8e73e5.png">
+
+	```
+	curl -Ls https://istio.io/downloadIstio | ISTIO_VERSION=1.9.0 sh -
+	cd istio-1.9.0
+	export PATH=$PWD/bin:$PATH
+	istioctl install --set profile=demo -y && kubectl apply -f samples/addons
+	```
+	
+	- below components get created
+	<img width="851" alt="image" src="https://user-images.githubusercontent.com/75510135/168459781-0d010cb4-8f6a-4999-b744-009ad1e98157.png">
+
+	<img width="618" alt="image" src="https://user-images.githubusercontent.com/75510135/168459810-e4b29678-f0be-4c93-830d-e5c6c209b4df.png">
+
+	<img width="410" alt="image" src="https://user-images.githubusercontent.com/75510135/168459828-12bf9f4a-fc71-4af7-b2f1-a77a983cc837.png">
+
+	<img width="1006" alt="image" src="https://user-images.githubusercontent.com/75510135/168460165-8021414b-04a5-4134-b62d-0e9916ff4e37.png">
+
+	<img width="1006" alt="image" src="https://user-images.githubusercontent.com/75510135/168460201-9a8a6fdd-67d8-4bfb-8c0e-2115676a2af0.png">
+
+	- edit Kaili service from ClusterIP to NodePort
+	<img width="929" alt="image" src="https://user-images.githubusercontent.com/75510135/168460338-d00f1dda-73ac-47df-bbaf-0c9aa3a2fddc.png">
+
+	- access Kaili dashboard
+	<img width="1238" alt="image" src="https://user-images.githubusercontent.com/75510135/168460355-39415f44-4dea-4e35-8477-bbb2a5ae422b.png">
+
+	
+	
+</details>
+
+<details>
+<summary>Injecting sidecar container for - Istio</summary>
+<br>
+
+	- side car injection
+ <img width="1012" alt="image" src="https://user-images.githubusercontent.com/75510135/168460929-5945fe21-c540-4e4f-acb0-6da06560e669.png">
+
+	<img width="927" alt="image" src="https://user-images.githubusercontent.com/75510135/168460942-b126dc6c-7ca3-4f18-880c-194528f77cd1.png">
+
+	- Istio demo architecture
+<img width="1007" alt="image" src="https://user-images.githubusercontent.com/75510135/168460967-9541dd9e-d734-46d4-8f9b-0598b22cb302.png">
+
+	<img width="968" alt="image" src="https://user-images.githubusercontent.com/75510135/168460985-50f83b35-227e-4856-9497-78ea4ba28d31.png">
+
+	```
+	  569  k -n prod create deploy node-app --image nginx
+	  571  k -n prod expose deploy node-app --name node-service --port 5000
+	  572  k get ns --show-labels
+	  573  k label ns prod istio-injection=enabled
+	  574  k get ns --show-labels
+	  575  k -n prod rollout -h
+	  576  k -n prod rollout restart deploy node-app
+	  577  k -n prod get po
+	  578  k describe po node-app-78895c644-p6ghb
+	  579  k -n prod  describe po node-app-78895c644-p6ghb
+	```
 </details>
 
 <details>
