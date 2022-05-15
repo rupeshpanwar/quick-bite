@@ -2,6 +2,7 @@
 - https://github.com/aquasecurity/kube-bench
 - https://github.com/aquasecurity/kube-bench/blob/main/docs/installation.md
 - https://istio.io/latest/docs/setup/install/helm/
+- https://blog.aquasec.com/dns-spoofing-kubernetes-clusters
 
 <details>
 <summary>Introduction</summary>
@@ -408,7 +409,340 @@ pipeline {
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Promote App to Prod and Visualize via Kiali</summary>
 <br>
-This is how you dropdown.
+
+  ```
+#################### Add k8s_PROD-deployment_service.yaml #################### 
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: devsecops
+  name: devsecops
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devsecops
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: devsecops
+    spec:
+      serviceAccountName: default
+      volumes:
+      - name: vol
+        emptyDir: {}
+      containers:
+      - image: replace
+        name: devsecops-container
+        volumeMounts:
+          - mountPath: /tmp
+            name: vol
+        securityContext:
+          capabilities:
+            drop:
+             - NET_RAW
+          runAsUser: 100
+          runAsNonRoot: true
+          readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
+        resources:
+         requests:
+          memory: "256Mi"
+          cpu: "200m"
+         limits:
+          memory: "512Mi"
+          cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: devsecops
+  name: devsecops-svc
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: devsecops
+  type: ClusterIP
+
+#################### Add k8s_PROD-deployment_service.yaml #################### 
+
+
+
+
+
+#################### Add k8s-PROD-deployment-rollout-status.sh #################### 
+
+
+#!/bin/bash
+sleep 60s
+
+if [[ $(kubectl -n prod rollout status deploy ${deploymentName} --timeout 5s) != *"successfully rolled out"* ]]; 
+then     
+	echo "Deployment ${deploymentName} Rollout has Failed"
+    kubectl -n prod rollout undo deploy ${deploymentName}
+    exit 1;
+else
+	echo "Deployment ${deploymentName} Rollout is Success"
+fi
+
+
+#################### Add k8s-PROD-deployment-rollout-status.sh #################### 
+
+
+
+
+
+
+
+  ```
 </details>
+
+<details>
+<summary>Jenkinsfile to deploy App into Prod</summary>
+<br>
+
+	<img width="670" alt="image" src="https://user-images.githubusercontent.com/75510135/168462116-6668d4df-7876-43e7-a936-35f10e8b8264.png">
+
+	```
+	##################### Jenkinsfile - Add stage('K8S Deployment - PROD') ##################### 
+
+@Library('slack') _
+
+pipeline {
+  agent any
+
+  environment {
+    deploymentName = "devsecops"
+    containerName = "devsecops-container"
+    serviceName = "devsecops-svc"
+    imageName = "siddharth67/numeric-app:${GIT_COMMIT}"
+    applicationURL = "http://devsecops-demo.eastus.cloudapp.azure.com"
+    applicationURI = "/increment/99"
+  }
+
+  stages {
+
+    stage('Build Artifact - Maven') {
+      steps {
+        sh "mvn clean package -DskipTests=true"
+        archive 'target/*.jar'
+      }
+    }
+
+    stage('Unit Tests - JUnit and JaCoCo') {
+      steps {
+        sh "mvn test"
+      }
+    }
+
+    stage('Mutation Tests - PIT') {
+      steps {
+        sh "mvn org.pitest:pitest-maven:mutationCoverage"
+      }
+    }
+
+    stage('SonarQube - SAST') {
+      steps {
+        withSonarQubeEnv('SonarQube') {
+          sh "mvn sonar:sonar \
+		              -Dsonar.projectKey=numeric-application \
+		              -Dsonar.host.url=http://devsecops-demo.eastus.cloudapp.azure.com:9000"
+        }
+        timeout(time: 2, unit: 'MINUTES') {
+          script {
+            waitForQualityGate abortPipeline: true
+          }
+        }
+      }
+    }
+
+    stage('Vulnerability Scan - Docker') {
+      steps {
+        parallel(
+          "Dependency Scan": {
+            sh "mvn dependency-check:check"
+          },
+          "Trivy Scan": {
+            sh "bash trivy-docker-image-scan.sh"
+          },
+          "OPA Conftest": {
+            sh 'docker run --rm -v $(pwd):/project openpolicyagent/conftest test --policy opa-docker-security.rego Dockerfile'
+          }
+        )
+      }
+    }
+
+    stage('Docker Build and Push') {
+      steps {
+        withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
+          sh 'printenv'
+          sh 'sudo docker build -t siddharth67/numeric-app:""$GIT_COMMIT"" .'
+          sh 'docker push siddharth67/numeric-app:""$GIT_COMMIT""'
+        }
+      }
+    }
+
+    stage('Vulnerability Scan - Kubernetes') {
+      steps {
+        parallel(
+          "OPA Scan": {
+            sh 'docker run --rm -v $(pwd):/project openpolicyagent/conftest test --policy opa-k8s-security.rego k8s_deployment_service.yaml'
+          },
+          "Kubesec Scan": {
+            sh "bash kubesec-scan.sh"
+          },
+          "Trivy Scan": {
+            sh "bash trivy-k8s-scan.sh"
+          }
+        )
+      }
+    }
+
+    stage('K8S Deployment - DEV') {
+      steps {
+        parallel(
+          "Deployment": {
+            withKubeConfig([credentialsId: 'kubeconfig']) {
+              sh "bash k8s-deployment.sh"
+            }
+          },
+          "Rollout Status": {
+            withKubeConfig([credentialsId: 'kubeconfig']) {
+              sh "bash k8s-deployment-rollout-status.sh"
+            }
+          }
+        )
+      }
+    }
+
+    stage('Integration Tests - DEV') {
+      steps {
+        script {
+          try {
+            withKubeConfig([credentialsId: 'kubeconfig']) {
+              sh "bash integration-test.sh"
+            }
+          } catch (e) {
+            withKubeConfig([credentialsId: 'kubeconfig']) {
+              sh "kubectl -n default rollout undo deploy ${deploymentName}"
+            }
+            throw e
+          }
+        }
+      }
+    }
+
+    stage('OWASP ZAP - DAST') {
+      steps {
+        withKubeConfig([credentialsId: 'kubeconfig']) {
+          sh 'bash zap.sh'
+        }
+      }
+    }
+
+    stage('Prompte to PROD?') {
+      steps {
+        timeout(time: 2, unit: 'DAYS') {
+          input 'Do you want to Approve the Deployment to Production Environment/Namespace?'
+        }
+      }
+    }
+
+    stage('K8S CIS Benchmark') {
+      steps {
+        script {
+
+          parallel(
+            "Master": {
+              sh "bash cis-master.sh"
+            },
+            "Etcd": {
+              sh "bash cis-etcd.sh"
+            },
+            "Kubelet": {
+              sh "bash cis-kubelet.sh"
+            }
+          )
+
+        }
+      }
+    }
+
+    stage('K8S Deployment - PROD') {
+      steps {
+        parallel(
+          "Deployment": {
+            withKubeConfig([credentialsId: 'kubeconfig']) {
+              sh "sed -i 's#replace#${imageName}#g' k8s_PROD-deployment_service.yaml"
+              sh "kubectl -n prod apply -f k8s_PROD-deployment_service.yaml"
+            }
+          },
+          "Rollout Status": {
+            withKubeConfig([credentialsId: 'kubeconfig']) {
+              sh "bash k8s-PROD-deployment-rollout-status.sh"
+            }
+          }
+        )
+      }
+    }
+
+    // stage('Testing Slack') {
+    //    steps {
+    //        sh 'exit 1'
+    //    }
+    //  }
+
+  }
+
+  post {
+    always {
+      junit 'target/surefire-reports/*.xml'
+      jacoco execPattern: 'target/jacoco.exec'
+      pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
+      dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+      publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'owasp-zap-report', reportFiles: 'zap_report.html', reportName: 'OWASP ZAP HTML Report', reportTitles: 'OWASP ZAP HTML Report'])
+
+      //Use sendNotifications.groovy from shared library and provide current build result as parameter 
+      sendNotification currentBuild.result
+    }
+
+    // success {
+
+    // }
+
+    // failure {
+
+    // }
+  }
+
+}
+
+##################### Jenkinsfile - Add stage('K8S Deployment - PROD') ##################### 
+
+	```
+	
+<img width="724" alt="image" src="https://user-images.githubusercontent.com/75510135/168462206-d7cac919-bb6e-4c13-8305-ccb14dc6a0e4.png">
+
+<img width="499" alt="image" src="https://user-images.githubusercontent.com/75510135/168462214-3dde147c-9935-49c5-8f2c-b10dc99710f6.png">
+
+<img width="610" alt="image" src="https://user-images.githubusercontent.com/75510135/168462223-bf215ecf-344e-46cc-8adb-eceee811e379.png">
+
+<img width="686" alt="image" src="https://user-images.githubusercontent.com/75510135/168462381-6d732c1f-f2be-450f-8265-b240e21570d3.png">
+
+<img width="865" alt="image" src="https://user-images.githubusercontent.com/75510135/168462394-4214ea46-db5c-46d9-aa03-323559ea5c2d.png">
+
+<img width="854" alt="image" src="https://user-images.githubusercontent.com/75510135/168462404-87c36792-cec9-440e-80d0-c2d7c7d72951.png">
+
+	
+</details>
+
+
