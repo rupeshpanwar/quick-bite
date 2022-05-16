@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"path": "../../../project/quick-bite/Ansible"
+		},
+		{
+			"path": "../../../project/quick-bite/CKA"
+		},
+		{
+			"path": "../../../project/quick-bite/EFK-ELK"
+		},
+		{
+			"path": "../../../project/quick-bite/DevSecOps"
+		},
+		{
+			"path": "../../../project/devsecops-k8s"
+		},
+		{
+			"path": "../../quick-bite/TF-GitLab-Jenkins"
+		},
+		{
+			"path": "../../digitalocean-tf"
+		},
+		{
+			"path": "../../demo-gitlab-jenkins-tf/forum"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
