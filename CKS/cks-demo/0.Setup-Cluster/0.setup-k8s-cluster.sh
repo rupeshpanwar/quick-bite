@@ -73,4 +73,7 @@ gcloud compute instances stop vm-name
 
    # install kube-scan 
    kubectl apply -f https://raw.githubusercontent.com/sidd-harth/kubernetes-devops-security/main/kube-scan.yaml
-   
+
+   # change clusterIP to NodePort
+    k edit service/kube-scan-ui -n kube-scan
+    
