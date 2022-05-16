@@ -1,4 +1,5 @@
 - https://falco.org/docs/getting-started/installation/
+- https://falco.org/blog/extend-falco-outputs-with-falcosidekick/
 
 
 <details>
@@ -43,7 +44,49 @@
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Helm n FalcoUI</summary>
+<br>
+
+  <img width="1235" alt="image" src="https://user-images.githubusercontent.com/75510135/168508783-24400b69-9fb4-4e4d-b102-e702a3812df8.png">
+
+  ```
+  kubectl create namespace falco
+helm repo add falcosecurity https://falcosecurity.github.io/charts
+helm install falco falcosecurity/falco \
+--set falcosidekick.enabled=true \
+--set falcosidekick.webui.enabled=true \
+--set falcosidekick.config.slack.webhookurl="https://hooks.slack.com/services/XXXX" \
+-n falco 
+  ```
+  
+  <img width="1013" alt="image" src="https://user-images.githubusercontent.com/75510135/168508855-966c1a32-a922-47a7-9fca-e10879a67ab8.png">
+
+  
+  - Helm
+  <img width="986" alt="image" src="https://user-images.githubusercontent.com/75510135/168508963-7a193ddc-e4df-40d3-a2f6-c94305602b2d.png">
+
+  ```
+   13  helm repo add falcosecurity https://falcosecurity.github.io/charts
+   14  helm install falco falcosecurity/falco --set falcosidekick.enabled=true --set falcosidekick.webui.enabled=true -n falco
+   18  helm repo ls
+   19  alias k=kubectl
+   20  k -n falco get all
+  ```
+  - Falco UI
+  <img width="922" alt="image" src="https://user-images.githubusercontent.com/75510135/168509683-f6c06f8a-4a7c-415a-ba08-fc11869d13a3.png">
+
+  <img width="792" alt="image" src="https://user-images.githubusercontent.com/75510135/168509889-76cae5d8-2d2e-44d7-94f3-f39a806d9573.png">
+
+  <img width="963" alt="image" src="https://user-images.githubusercontent.com/75510135/168509928-e7f65ec4-bd9b-4059-b7e8-b63611a68e96.png">
+
+  <img width="948" alt="image" src="https://user-images.githubusercontent.com/75510135/168509962-544279c3-fc51-4ebe-95e7-3a4378b5a735.png">
+
+  
+  
+</details>
+
+<details>
+<summary>Falco - Slack Notification</summary>
 <br>
 This is how you dropdown.
 </details>
