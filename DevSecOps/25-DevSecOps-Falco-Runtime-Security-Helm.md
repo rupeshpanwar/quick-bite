@@ -1,5 +1,6 @@
 - https://falco.org/docs/getting-started/installation/
 - https://falco.org/blog/extend-falco-outputs-with-falcosidekick/
+- https://api.slack.com/messaging/webhooks
 
 
 <details>
@@ -88,11 +89,44 @@ helm install falco falcosecurity/falco \
 <details>
 <summary>Falco - Slack Notification</summary>
 <br>
-This is how you dropdown.
+  
+  <img width="1248" alt="image" src="https://user-images.githubusercontent.com/75510135/168510822-9c09b709-af62-4b03-96bd-fece03d31de3.png">
+
+  <img width="810" alt="image" src="https://user-images.githubusercontent.com/75510135/168510853-e70dbf93-f3bb-4267-b30d-6ff0e61ce09c.png">
+
+  - in slack
+  <img width="649" alt="image" src="https://user-images.githubusercontent.com/75510135/168510897-abb98ae3-a1b1-4551-8d81-732b6a72485d.png">
+
+  <img width="557" alt="image" src="https://user-images.githubusercontent.com/75510135/168510928-665866eb-c584-4964-8d49-b2e277256389.png">
+
+  <img width="849" alt="image" src="https://user-images.githubusercontent.com/75510135/168510956-545e4975-b239-4599-b6df-66987aee2f20.png">
+
+  <img width="777" alt="image" src="https://user-images.githubusercontent.com/75510135/168510992-733a4f22-d554-494a-b309-b2925b229830.png">
+
+  <img width="755" alt="image" src="https://user-images.githubusercontent.com/75510135/168511039-9b683b5f-5160-4dbf-9854-0cf84ffab839.png">
+
+  <img width="629" alt="image" src="https://user-images.githubusercontent.com/75510135/168511066-0ed522da-fdb7-41c5-b636-5765f41adfbe.png">
+
+  <img width="843" alt="image" src="https://user-images.githubusercontent.com/75510135/168511099-6f59b59b-2211-44c4-8e6f-a7f9d1666f96.png">
+
+  <img width="751" alt="image" src="https://user-images.githubusercontent.com/75510135/168511129-d95d20f1-6447-46b4-9aad-68c7bce91915.png">
+
+  <img width="917" alt="image" src="https://user-images.githubusercontent.com/75510135/168511166-62a4d278-23c8-43e9-b9cf-87fb6442c294.png">
+
+  <img width="648" alt="image" src="https://user-images.githubusercontent.com/75510135/168511195-6f625de8-2c81-4762-817f-724a29ee3ef4.png">
+
+  - upgrade FalcoSideKick
+  
+  <img width="771" alt="image" src="https://user-images.githubusercontent.com/75510135/168511237-44fc1586-5114-49e7-bb69-43d6bef2b70e.png">
+
+  <img width="773" alt="image" src="https://user-images.githubusercontent.com/75510135/168511296-ce74a9af-3168-4735-9cdc-91dd17047b07.png">
+
+  <img width="956" alt="image" src="https://user-images.githubusercontent.com/75510135/168511327-30ed3119-c1ae-4706-b24f-f5a736b12be0.png">
+
+  <img width="508" alt="image" src="https://user-images.githubusercontent.com/75510135/168511515-7d2703b3-f396-4080-be38-8a7674738294.png">
+
+  
+  
 </details>
 
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
+
