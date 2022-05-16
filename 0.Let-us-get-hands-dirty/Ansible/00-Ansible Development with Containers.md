@@ -122,19 +122,82 @@ docker run -it --rm ansible
 <summary>Variables, Volumes, and DockerHub</summary>
 <br>
 
-  ![](20220516140139.png)  
-  ![](20220516140218.png)  
-  ![](20220516140238.png)  
-  ![](20220516140331.png)  
-  ![](20220516140355.png)  
-  ![](20220516140418.png)  
-  ![](20220516140442.png)  
+  ![](./images/20220516140139.png)  
+  ![](./images/20220516140218.png)  
+  ![](./images/20220516140238.png)  
+  ![](./images/20220516140331.png)  
+  ![](./images/20220516140355.png)  
+  ![](./images/20220516140418.png)  
+  ![](./images/20220516140442.png)  
   
-</details>
+  ```
+  # Verify that the image exists
+docker images
 
-<details>
-<summary>Testing image paste</summary>
-<br>
+# Build the "ansible" image, in case it does not exist
+docker build -t ansible:latest .
 
+# mount a volume by running this command
+docker run -it --rm --volume "$(pwd)":/ansible ansible
+
+# exit the container
+exit
+
+# Start a container in the specified work directory -- ansible
+docker run -it --rm --volume "$(pwd)":/ansible --workdir /ansible ansible
+
+# exit the container
+exit
+
+# Environment Variables for AWS
+# replace the <AWS_Access_Key_ID> and <AWS_Secret_Access_Key> 
+# with the actual keys
+docker run -it --rm --volume "$(pwd)":/ansible --workdir /ansible \ 
+--env "AWS_ACCESS_KEY_ID='<AWS_Access_Key_ID>'" \
+--env "AWS_SECRET_ACCESS_KEY='<AWS_Secret_Access_Key>'" \
+ansible
+
+# exit the container
+exit
+
+#Environment Variable for Azure
+# replace the <Azure_Subscription_ID>, <Service_Principal_Application_ID>,
+# <Service_Principal_Password>, and <Azure_Tenant>
+# with the actual keys
+docker run -it --rm --volume "$(pwd)":/ansible --workdir /ansible \ 
+--env "AZURE_SUBSCRIPTION_ID=<Azure_Subscription_ID>" \
+--env "AZURE_CLIENT_ID=<Service_Principal_Application_ID>" \
+--env "AZURE_SECRET=<Service_Principal_Password>" \
+--env "AZURE_TENANT=<Azure_Tenant>" \ 
+ansible
+
+# exit the container
+exit
+
+# Upload the Image to DockerHub
+# replace <DockerHub-UserName> with your actual username.
+docker login --username <DockerHub-UserName>
+
+# Add a repository name to the tag
+docker build -t <DockerHub-UserName>/ansible:latest .
+
+# push the image
+docker push <DockerHub-UserName>/ansible:latest
+  ```
+
+  In this lesson, we explored volumes, environment variables, and pushing an image to DockerHub. We looked into the following commands:
+
+    --volume: To mount a volume.
+    --workdir: To start a container in the specified directory.
+    --env: To provide environment variables to store values.
+    login: To login into DockerHub.
+    push: To push the image to DockerHub.
+
+You can use the shorthand run options as well. Find the options below:
+Docker | Shorthand
+------- | -------
+--volume  | -v
+--workdir  | -w
+--env  | -e
 
 </details>
