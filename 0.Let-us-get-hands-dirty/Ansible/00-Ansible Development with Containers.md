@@ -27,7 +27,7 @@ You can play with the pre-configured terminal below.
   > docker --version
 
 It will display the current version of Docker installed.
-  
+
 </details>
 
 <details>
@@ -71,17 +71,70 @@ RUN is used to execute commands that build up the Docker image. Each RUN command
 
 We have reviewed the contents of the basic Dockerfile. As you go along in the course, you’ll update the Dockerfile as you require new tools and packages.
   
+  In this lesson, we learned how to build, run, and manage a container using the following commands:
+
+    build: To build an image from a Dockerfile.
+    -t flag: To provide an image and tag name, used alongside the build command.
+    run: To run a container from a pre-built image.
+    ps: To display the running containers.
+    -a or --all flag: To display all the containers. Used along with the ps command.
+    -it: To run containers in an interactive terminal. Used along with the run command.
+    --rm: To remove the container once it stops.
+
+```
+# build the ansible image n run container
+
+# Build an image from the Dockerfile with the tag -> ansible:latest
+docker build -t ansible:latest .
+
+# Display the images
+docker images
+
+# Run the Container
+docker run ansible
+
+# Display the running containers
+docker ps
+
+#Display all the containers
+docker ps --all
+
+# Run the Container in an Interactive terminal
+docker run -it ansible
+
+# Within the container, check if ansible is installed
+ansible --version
+
+# Exit the container's interactive terminal
+exit
+
+# Start a container that is currently in the exited state 
+# Replace the <container-id> with the actual one
+docker start --attach <container-id>
+
+# Destroy the container after it exits
+docker run -it --rm ansible
+```
 </details>
 
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Variables, Volumes, and DockerHub</summary>
 <br>
-This is how you dropdown.
+
+  ![](20220516140139.png)  
+  ![](20220516140218.png)  
+  ![](20220516140238.png)  
+  ![](20220516140331.png)  
+  ![](20220516140355.png)  
+  ![](20220516140418.png)  
+  ![](20220516140442.png)  
+  
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Testing image paste</summary>
 <br>
-This is how you dropdown.
+
+
 </details>

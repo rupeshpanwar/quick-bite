@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../CKA"
+		},
+		{
+			"path": "../../CKS"
+		},
+		{
+			"path": "../../DevSecOps"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
