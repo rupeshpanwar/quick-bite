@@ -28,15 +28,15 @@ sudo -i
 # not necessary if created using the browser interface
 gcloud compute instances create cks-master --zone=asia-southeast1-a \
 --machine-type=e2-medium \
---image=ubuntu-1804-bionic-v20201014 \
+--image=ubuntu-2004-focal-v20220419 \
 --image-project=ubuntu-os-cloud \
 --boot-disk-size=50GB
 
 # CREATE cks-worker VM using gcloud command
 # not necessary if created using the browser interface
-gcloud compute instances create cks-worker --zone=asia-southeast1-a \
+gcloud compute instances create cks-worker1 --zone=asia-southeast1-b \
 --machine-type=e2-medium \
---image=ubuntu-1804-bionic-v20201014 \
+--image=ubuntu-2004-focal-v20220419 \
 --image-project=ubuntu-os-cloud \
 --boot-disk-size=50GB
 
@@ -61,3 +61,16 @@ gcloud compute firewall-rules create nodeports --allow tcp:30000-40000
 # start n stop instance
 gcloud compute instances start vm-name
 gcloud compute instances stop vm-name
+
+
+# install helm
+
+    7  wget https://get.helm.sh/helm-v3.9.0-rc.1-linux-amd64.tar.gz
+    8  ls
+    9  tar -xzvf helm-v3.9.0-rc.1-linux-amd64.tar.gz 
+   10  mv linux-amd64/helm /usr/local/bin/helm
+   11  helm
+
+   # install kube-scan 
+   kubectl apply -f https://raw.githubusercontent.com/sidd-harth/kubernetes-devops-security/main/kube-scan.yaml
+   
