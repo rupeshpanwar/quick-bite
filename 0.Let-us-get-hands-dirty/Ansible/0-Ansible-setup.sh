@@ -57,7 +57,7 @@ docker run -it --rm --volume "$(pwd)":/ansible ansible
 exit
 
 # Start a container in the specified work directory -- ansible
-docker run -it --rm --volume "$(pwd)":/ansible --workdir /ansible ansible
+docker run -it --rm --volume "$(pwd)":/ansible --workdir /ansible rupeshpanwar/ansible
 
 # exit the container
 exit
