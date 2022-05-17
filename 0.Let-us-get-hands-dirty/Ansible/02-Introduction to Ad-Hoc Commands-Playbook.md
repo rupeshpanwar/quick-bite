@@ -49,9 +49,56 @@ ad-hoc commands, idempotency, Ansible commands, and modules. The following are t
 </details>
 
 <details>
-<summary>How do I dropdown?</summary>
+<summary>Create a Playbook</summary>
 <br>
-This is how you dropdown.
+
+![](images/20220516165403.png)  
+![](images/20220516165434.png)  
+![](images/20220516165503.png)  
+![](images/20220516165534.png)  
+![](images/20220516165619.png)  
+
+```
+---
+- hosts: localhost 1
+  tasks: 2
+  - name: create a directory 3
+    file:
+      path: /ansible/playbooks
+      state: directory
+```
+
+```
+---
+- hosts: webservers 
+        tasks:
+        - name: deploy code to webservers 
+                deployment:
+                        path: {{ filepath }}
+                        state: present
+- hosts: dbserver
+        tasks:
+        - name: update database schema 
+          updatedbschema:
+                host: {{ dbhost }}
+                state: present
+- hosts: webservers
+        tasks:
+        - name: check app status page 
+                deployment:
+                        statuspathurl: {{ url }}
+                        state: present
+```
+
+```
+---
+- hosts: all
+
+  tasks:
+  - name: run ping
+    ping:
+```
+
 </details>
 
 <details>
