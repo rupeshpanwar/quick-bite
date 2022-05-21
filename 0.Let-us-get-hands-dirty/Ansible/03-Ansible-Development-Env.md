@@ -567,5 +567,6 @@ By default, Ansible will opt for ssh keys. You can choose to use a username and 
 
 > apt install -y sshpass
 
-
+![](i/20220519095815.png)  
+![](i/20220519095840.png)  
 </details>

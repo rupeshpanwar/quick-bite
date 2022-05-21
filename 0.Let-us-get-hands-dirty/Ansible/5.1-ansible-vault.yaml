@@ -1,0 +1,69 @@
+# Encrypt linux.yml
+ansible-vault encrypt group_vars/linux.yml
+
+# View encrypted contents
+cat group_vars/linux.yml
+
+# Edit linux.yml with Ansible vault
+ansible-vault edit group_vars/linux.yml
+
+# Encrypt windows.yml
+ansible-vault encrypt group_vars/windows.yml
+
+# View encrypted contents
+ansible-vault view group_vars/windows.yml
+
+# Verify the variables are loading
+ansible-inventory -i hosts --list --ask-vault-pass
+
+# execute the ping_novars.yml playbook
+ansible-playbook ping_novars.yml -i hosts --ask-vault-pass
+
+# execute the win_ping_novars.yml playbook
+ansible-playbook win_ping_novars.yml -i hosts --ask-vault-pass
+
+# Decrypt files
+#Linux
+ansible-vault decrypt group_vars/linux.yml
+
+# Windows
+ansible-vault decrypt group_vars/windows.yml
+
+
+<details>
+<summary>Summary</summary>
+<br>
+
+Inventory#
+
+We started with introducing inventories, and the INI file as an inventory source. You learned how to create your first inventory and store group and host variables in it.
+Groups#
+
+We further introduced groups to keep our inventory clean and better organize the infrastructure. You learned how you could target different hosts based on the groups.
+
+You organized the host and group variables in sub-directories to keep your inventory clean as the number of variables grows. The following subdirectories were introduced:
+
+    group_vars
+    host_vars
+
+Ansible Vault#
+
+Lastly, we introduced Ansible vault to keep your secrets secure. You learned two methods to secure your secrets with Ansible Vault:
+
+    using encrypted files
+    using encrypted strings
+
+You practiced the following options with the ansible-vault command:
+Using encrypted files#
+
+    encrypt
+    edit
+    view
+    decrypt
+
+Using encrypted strings#
+
+    encrypt_string
+    debug
+
+</details>

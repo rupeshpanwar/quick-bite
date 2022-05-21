@@ -1,0 +1,27 @@
+echo -n '<Password>' | ansible-vault encrypt_string --stdin-name 'ansible_password'
+
+# ansible_password'
+# New Vault password: 
+# Confirm New Vault password: 
+# Reading plaintext input from stdin. (ctrl-d to end input)
+# ansible_password: !vault |
+#           $ANSIBLE_VAULT;1.1;AES256
+#           65303831663135653238306664343937616239306162383664373163636562323931613638663438
+#           3436393233393463313435373133313330326333356132330a363932643164393664396438666239
+#           65653864333031313733383536626263613033653936386537646236663065303262636638353936
+#           3938316238643764620a636365343136613337356232306432663437306538373931376231363464
+#           3934
+# Encryption successful
+
+# Encrypt ansible password
+echo -n '<Password>' | ansible-vault encrypt_string --stdin-name 'ansible_password'
+# OR
+ansible-vault encrypt_string --stdin-name 'ansible_password'
+
+## Replace the ansible password in linux.yml and windows.yml files.
+
+# Verify variables
+ansible-inventory -i hosts --list --ask-vault-pass
+
+# Decrypt ansible_password
+ansible all -i hosts -m debug -a "var=ansible_password" --ask-vault-pass

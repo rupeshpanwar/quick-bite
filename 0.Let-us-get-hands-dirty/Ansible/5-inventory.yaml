@@ -1,0 +1,127 @@
+mkdir group_vars
+touch group_vars/linux.yml
+---
+ansible_user: ansible
+ansible_password: <Password>
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+touch group_vars/windows.yml
+---
+ansible_user: ansible
+ansible_password: <Password> 
+ansible_winrm_server_cert_validation: ignore 
+ansible_connection: winrm
+
+
+--- hosts
+[linux] 
+vm-linuxweb001.eastus.cloudapp.azure.com 
+ec2-54-88-16-230.compute-1.amazonaws.com
+
+[windows] 
+vm-winweb001.eastus.cloudapp.azure.com 
+ec2-54-173-157-198.compute-1.amazonaws.com
+
+--- run
+# Review the contents of hosts file
+cat hosts
+
+# ping
+ansible-playbook ping_novars.yml -i hosts
+
+# win ping
+ansible-playbook win_ping_novars.yml -i hosts
+
+
+-- create host_vars dir
+mkdir host_vars
+# Replace the <LinuxHostDNSname> with the actual domain name
+touch host_vars/<LinuxHostDNSname>.yml
+
+# Replace the <LinuxHostDNSname> with the actual domain name
+# Replace the <Public IP Address> with the actual hosts IP Address
+echo "ip: <Public IP address>" > <LinuxHostDNSname>.yml
+
+
+|-- group_vars
+| |-- linux
+| |-- windows
+|-- host_vars
+| |-- LinuxHostDNSname.yml
+| |-- WindowsHostDNSname.yml
+|-- hosts
+
+
+ansible all -i hosts -m debug -a "var=ip"
+ansible-inventory -i hosts --list
+---
+  - hosts: windows
+    gather_facts: false
+  
+    tasks:
+    - name: run win_ping
+      win_ping:
+
+---
+  - hosts: linux
+    
+    tasks:
+    - name: run ping
+      ping:
+
+--- hosts
+[linux] 
+vm-linuxweb001.eastus.cloudapp.azure.com 
+ec2-54-88-16-230.compute-1.amazonaws.com
+
+[windows] 
+vm-winweb001.eastus.cloudapp.azure.com 
+ec2-54-173-157-198.compute-1.amazonaws.com
+
+--- windows group vars
+---
+ansible_user: ansible
+ansible_password: <Password> 
+ansible_winrm_server_cert_validation: ignore 
+ansible_connection: winrm
+
+--- linux group vars
+---
+ansible_user: ansible
+ansible_password: <Password>
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+# Review the hosts file
+cat hosts
+
+# Create the host_vars directory
+mkdir host_vars
+
+# Change into host_vars directory
+cd host_vars
+
+# Replace the <LinuxHostDNSname> with the actual domain name
+touch <LinuxHostDNSname>.yml
+
+# Replace the <LinuxHostDNSname> with the actual domain name
+# Replace the <Public IP Address> with the actual hosts IP Address
+echo "ip: <Public IP address>" > <LinuxHostDNSname>.yml
+
+# Replace the <WindowsHostDNSname> with the actual domain name
+touch <WindowsHostDNSname>.yml
+
+# Replace the <WindowsHostDNSname> with the actual domain name
+# Replace the <Public IP Address> with the actual hosts IP Address
+echo "ip: <Public IP address>" > <WindowsHostDNSname>.yml
+
+# Change into the parent directory
+cd ..
+
+# Directory structure
+tree
+
+# ansible all -i hosts -m debug -a "var=ip"
+ansible all -i hosts -m debug -a "var=ip"
+
+# List the hosts and the variables
+ansible-inventory -i hosts --list

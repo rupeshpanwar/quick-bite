@@ -63,3 +63,22 @@ ansible all -i <Public Ip Address>, -m ping
 
 # to run the playbook
 ansible-playbook docker-ping.yml -i inventory
+
+
+# Replace the <Public Ip Address> with the actual
+# Linux Instance or VM IP Address
+ansible all -i <Public Ip Address>, -m ping
+
+# Disable Host Key Checking
+# Replace the <Public Ip Address> with the actual 
+# Linux instance or VM IP Address
+ansible all -i <Public Ip Address>, -m ping -e "ansible_ssh_common_args='-o StrictHostKeyChecking=no'"
+
+# Replace the <Public Ip Address> with the actual 
+# Linux instance or VM IP Address and 
+# <Password> with your actual password
+ansible all -i <Public Ip Address>, -m ping -e "ansible_user=ansible ansible_password=<Password> ansible_ssh_common_args='-o StrictHostKeyChecking=no'"
+
+# Replace <Password> with your Actual Password
+# Replace <Public IP Address> with Windows Host IP Address
+ansible all -i <Public IP Address>, -m win_ping -e "ansible_user=ansible ansible_password=<Password> ansible_winrm_server_cert_validation=ignore ansible_connection=winrm"
