@@ -120,7 +120,7 @@ pipeline {
 <summary>3. Deploy NodeJs Backend service</summary>
 <br>
     
-    kubectl -n default create deploy node-app --image siddharth67/node-service:v1 
+    kubectl -n default create deploy node-app --image rupeshpanwar/node-service:v1 
     kubectl -n default expose deploy node-app --name node-service --port 5000
     kubectl get all
     
