@@ -1,4 +1,8 @@
-- configure Shared lib
+<details>
+<summary>Shared Lib</summary>
+<br>
+
+ - configure Shared lib
 
 <img width="792" alt="image" src="https://user-images.githubusercontent.com/75510135/178747533-3fb184b2-ef61-4ac1-9f41-893432749d7e.png">
 
@@ -28,3 +32,31 @@
 
 <img width="808" alt="image" src="https://user-images.githubusercontent.com/75510135/178752845-846cb4a2-27fa-4395-9a0a-b8773b1a1951.png">
 
+
+</details>
+
+
+<details>
+<summary>Using Resource Files From a Jenkins Shared Library</summary>
+<br>
+  
+ - loading resources
+  
+  <img width="808" alt="image" src="https://user-images.githubusercontent.com/75510135/178754730-dc30ff15-6573-46d7-bb72-dccb707d6687.png">
+
+- create resources in vars directory in repo
+  
+  <img width="808" alt="image" src="https://user-images.githubusercontent.com/75510135/178755495-c6160e8d-1db6-456a-a521-eb44480e1851.png">
+
+  <img width="808" alt="image" src="https://user-images.githubusercontent.com/75510135/178755728-ec14f567-e820-4fdc-b389-de644a6c5e16.png">
+
+  <img width="808" alt="image" src="https://user-images.githubusercontent.com/75510135/178755999-0f0bd47d-8a7a-4cda-b5a7-2259c2934618.png">
+
+  <img width="808" alt="image" src="https://user-images.githubusercontent.com/75510135/178756073-15a5ba26-9906-4aa0-a850-1b164b72d013.png">
+
+ - change in pipeline 
+  
+  <img width="808" alt="image" src="https://user-images.githubusercontent.com/75510135/178760812-5e4e28e5-8747-49b7-bf49-4cb5b0e35bcd.png">
+
+  
+</details> 
