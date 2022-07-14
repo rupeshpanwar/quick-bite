@@ -1,15 +1,45 @@
-- https://support.cloudbees.com/hc/en-us/articles/222446987-Prepare-Jenkins-for-Support
-- https://www.cloudbees.com/blog/enterprise-jvm-administration-and-jenkins-performance
-- https://docs.cloudbees.com/docs/admin-resources/latest/jvm-troubleshooting/
-- https://support.cloudbees.com/hc/en-us/articles/230922208-Pipeline-Best-Practices
-- https://wiki.jenkins.io/display/JENKINS/Active+Directory+plugin
-- https://go.cloudbees.com - CloudBees Support Knowledge Base
-- https://gceasy.io - Online analysis of Java GC logs
-- https://fastthread.io - Online analysis of Java thread dumps
-- https://tinyurl.com/jenkins-jvm-args - Recommended JVM settings for Jenkins
-- https://tinyurl.com/jenkins-thread-dump - How to get a thread dump from Jenkins
-- https://www.cloudbees.com/blog/enterprise-jvm-administration-and-jenkins-performance
+<details>
+<summary>Reference links</summary>
+<br>
+  
+    - https://support.cloudbees.com/hc/en-us/articles/222446987-Prepare-Jenkins-for-Support
+    - https://www.cloudbees.com/blog/enterprise-jvm-administration-and-jenkins-performance
+    - https://docs.cloudbees.com/docs/admin-resources/latest/jvm-troubleshooting/
+    - https://support.cloudbees.com/hc/en-us/articles/230922208-Pipeline-Best-Practices
+    - https://wiki.jenkins.io/display/JENKINS/Active+Directory+plugin
+    - https://go.cloudbees.com - CloudBees Support Knowledge Base
+    - https://gceasy.io - Online analysis of Java GC logs
+    - https://fastthread.io - Online analysis of Java thread dumps
+    - https://tinyurl.com/jenkins-jvm-args - Recommended JVM settings for Jenkins
+    - https://tinyurl.com/jenkins-thread-dump - How to get a thread dump from Jenkins
+    - https://www.cloudbees.com/blog/enterprise-jvm-administration-and-jenkins-performance
+  
+  Jenkins Health Advisor by CloudBees
+https://docs.cloudbees.com/docs/admin-resources/latest/plugins/cloudbees-jenkins-advisor
 
+🗞️ Jenkins Health Advisor by CloudBees
+https://plugins.jenkins.io/cloudbees-jenkins-advisor/
+
+🗞️ Support Core
+https://plugins.jenkins.io/support-core/
+
+🗞️ Generating a support bundle
+https://docs.cloudbees.com/docs/admin-resources/latest/support-bundle/
+
+🗞️ Prepare Jenkins for Support
+https://support.cloudbees.com/hc/en-us/articles/222446987-Prepare-Jenkins-for-support
+
+🗞️ Which URLs would I need to grant access to for my firewall or proxy?
+https://support.cloudbees.com/hc/en-us/articles/360028853171-Which-URLs-would-I-need-to-grant-access-to-for-my-firewall-or-proxy-
+
+🗞️ My friend, the support bundle
+https://speakerdeck.com/aheritier/my-friend-the-support-bundle
+
+✅ Arnaud on Twitter:
+https://twitter.com/aheritier
+
+
+</details>
 
 
 
@@ -121,6 +151,23 @@
 
   <img width="769" alt="image" src="https://user-images.githubusercontent.com/75510135/178961610-38f89eef-6cb6-4943-8685-2631d08602bd.png">
 
-  
+  - generate n download bundle
+  <img width="769" alt="image" src="https://user-images.githubusercontent.com/75510135/178981423-57a14e8e-126e-4cba-a5f7-0234ce0820e3.png">
+
+  - performance warning
+  <img width="769" alt="image" src="https://user-images.githubusercontent.com/75510135/178983660-342c552e-7e40-4942-ba2e-0e2c1cfdcbc2.png">
+
+  <img width="769" alt="image" src="https://user-images.githubusercontent.com/75510135/178983728-55e34c7c-3499-48be-b628-cf5630c4acb8.png">
+
+  <img width="769" alt="image" src="https://user-images.githubusercontent.com/75510135/178983810-a437be4f-baf7-4259-b03f-1aea14cf6708.png">
+
+  <img width="769" alt="image" src="https://user-images.githubusercontent.com/75510135/178983927-8a5330b0-5425-48a3-8eb9-e29d21a06c3e.png">
+
+  <img width="769" alt="image" src="https://user-images.githubusercontent.com/75510135/178984801-5ad82038-80aa-41c0-9cf9-f9b764cb6e4b.png">
+
+  <img width="769" alt="image" src="https://user-images.githubusercontent.com/75510135/178988477-18136713-79ae-4d0a-a3e8-c8ab601be70c.png">
+
+  <img width="769" alt="image" src="https://user-images.githubusercontent.com/75510135/178988432-99e03bfb-c79f-4bf5-ab31-a8eaa60527c7.png">
+
   
 </details> 
