@@ -173,3 +173,72 @@ https://twitter.com/aheritier
 
   
 </details> 
+
+
+<details>
+<summary>Backup - Performance - Best Practices</summary>
+<br>
+  
+  https://www.youtube.com/watch?v=9-DUVroz7yk
+  
+  ![image](https://user-images.githubusercontent.com/75510135/179143224-aee9f6bd-86af-48ae-866d-8c268eb8058f.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179149519-75e54f48-c7d1-4c72-880b-874ec88a1009.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179168975-a9df887d-67d7-4d7b-a8bc-96f132af4207.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179169977-14a2394d-45e7-47bb-b1bd-9209fef06cc2.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179170103-9eeb0504-6062-4684-b139-bfc8a460af78.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179170203-bc6bea0d-dc67-4201-bdac-38c20ab97a54.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179170338-c6718274-ef42-4352-a592-11dc7fa5fa9b.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179170558-6fcce3a7-9700-4fe1-972f-51de5af4d27f.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179170615-46232fad-63e6-4421-8afc-335871c9c925.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179170923-d792c030-d53d-4e82-854d-abd741e806fc.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179171000-04355cb4-1880-4a34-968b-a5a5f52decaf.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179171367-af27d034-a030-4ab9-94f8-604ad3ccc3d6.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179171498-b93cc95f-b4f3-4c2d-b7a4-2016089269a6.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179171532-0676ee5c-f8a4-4425-bb56-cd9f4cd96a7f.png)
+
+  - challenge with admin
+  ![image](https://user-images.githubusercontent.com/75510135/179172283-aa8788d2-7683-457b-b0e7-142f40ad4149.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179172567-ba7db2de-1945-4b4c-8fdd-bea7ccc1c0a9.png)
+
+  - https://docs.cloudbees.com/docs/cloudbees-ci-kb/latest/client-and-managed-masters/how-to-add-java-arguments-to-jenkins
+  
+  ![image](https://user-images.githubusercontent.com/75510135/179173307-55117472-29e6-4ef8-89d6-3cfa68beff1d.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179173697-71c05e0e-95d1-4da4-ba2c-52eefebd4c74.png)
+
+  - countdown
+  ![image](https://user-images.githubusercontent.com/75510135/179173832-e5672350-61b0-4b25-bac2-674a19c46d53.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179174181-a90e158b-cdc8-4a5e-b6ad-edd292361049.png)
+
+  - https://plugins.jenkins.io/jobConfigHistory/
+  
+  - backup
+  ![image](https://user-images.githubusercontent.com/75510135/179175063-c9397dca-0db7-4b47-9a24-c9e12caa6105.png)
+
+  ![image](https://user-images.githubusercontent.com/75510135/179175332-12f5d3ed-59d8-495a-b8af-1efb081c1f17.png)
+
+  - https://www.cloudbees.com/blog/enterprise-jvm-administration-and-jenkins-performance
+ 
+  ![image](https://user-images.githubusercontent.com/75510135/179178910-47fdd6b2-1a24-4133-b77f-9439bf562a82.png)
+
+  - real world data
+  ![image](https://user-images.githubusercontent.com/75510135/179179811-e2add4c4-ff68-433c-86a2-512f934d6359.png)
+
+  
+  
+</details> 
