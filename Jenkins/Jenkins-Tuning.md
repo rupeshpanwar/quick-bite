@@ -166,14 +166,47 @@ ulimit -u should be set to 30654 (soft) and 30654 (hard)
 </details>
 
 
-
 <details>
 <summary>Underlying caveats</summary>
 <br>
+  
+  ###   How can I prevent jenkins from starting new jobs after a restart?
+  
+  Any builds that are in the pending queue when Jenkins is restarted will remain in the queue and potentially be started after Jenkins finishes loading.
+   In order to prevent Jenkins from executing any jobs, you need to put it in "quiet down" mode when it starts up
+   Create a Groovy init script that will put Jenkins in "quiet down" mode when it starts. This solution may be required if you are suffering from a      performance issue and cannot access the Jenkins UI. 
+  Create a file named 
+  quiet-start.groovy 
+  and place it in the 
+  $JENKINS_HOME/init.groovy.d/ directory
+  
+  You may have to create this directory if it does not already exist. The file should contain the following:
 
-  Start Jenkins (service jenkins start).
+      import jenkins.model.Jenkins
 
-  ####Explanation
+      // Go into quiet mode
+      Jenkins.instance.doQuietDown()
+  
+   when Jenkins starts up you will see a red banner at the top of the page which says, "Jenkins is going to shut down," along with a similar message in the Build Queue. There will be a 'Cancel' button which an administrator can click to cancel "quiet down" mode and allow builds to resume.
+
+  
+  ###   How can I purge/clean the build queue
+  
+  To clean all pending builds from the queue, you can run the below script from the script console:
+
+   > Jenkins.instance.queue.clear()
+  
+
+  If you need to remove only some of them , you can use the below script to purge the build queue by build name.
+
+        import hudson.model.*
+        def q = Jenkins.instance.queue
+        q.items.findAll { it.task.name.startsWith('REPLACEME') }.each { q.cancel(it.task) }
+  
+  
+  
+  ### Start Jenkins (service jenkins start).
+
   
 Look at /etc/init.d/jenkins for a line similar to:
 
