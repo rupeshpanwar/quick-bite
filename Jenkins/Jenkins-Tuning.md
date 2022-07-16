@@ -160,6 +160,50 @@ ulimit -u should be set to 30654 (soft) and 30654 (hard)
   
   >  java -jar jenkins-cli.jar -noKeyAuth -s http://<Jenkins-server-public-ip>:8080/ support --usrename --password 
   
+  ### Adjust jenkins.InitReactorRunner.concurrency
+
+  During start of Jenkins, loading of jobs in parallel have a fixed number of threads by default (twice the CPU). To make Jenkins load time decrease you can use tune the System Property 
+  
+  > jenkins.InitReactorRunner.concurrency
+  
+  <img width="859" alt="image" src="https://user-images.githubusercontent.com/75510135/179344592-f3ef6dd0-4086-4333-9a23-795aa0ed5a3d.png">
+
+  #### Performance logs collection
+
+      Collect a Support Bundle
+
+      Collect the Jenkins logs since the beginning of the startup
+
+      Collect the GC logs
+  
+  ### Cleanup Large Instances
+ 
+   - https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-reference-architecture/ra-for-onprem/#_controller_sizing_guidelines
+  
+  <img width="588" alt="image" src="https://user-images.githubusercontent.com/75510135/179345222-70e19bf9-143b-40e6-be06-836629ee6882.png">
+
+  ### Analyze Performance logs
+  
+   - https://docs.cloudbees.com/docs/cloudbees-ci-kb/latest/troubleshooting-guides/how-to-analyze-startup-performance-logs
+  
+  ### Cleanup Old Builds => Log Rotation
+
+  - https://docs.cloudbees.com/docs/cloudbees-ci-kb/latest/best-practices/deleting-old-builds-best-strategy-for-cleanup-and-disk-space-management
+  
+  ### Obsolete plugins => How to determine if a plugin is in use
+
+  - https://docs.cloudbees.com/docs/admin-resources/latest/plugin-management/plugin-usage
+  
+  
+  <img width="1398" alt="image" src="https://user-images.githubusercontent.com/75510135/179345351-3e21db36-d5a8-42c1-a686-81dda35963fe.png">
+
+ ### Storage File System
+
+  - https://docs.cloudbees.com/docs/cloudbees-ci-kb/latest/client-and-managed-masters/nfs-guide
+  
+  Jenkins configuration files are stored on disk. Startup performances - and also overall performances for that matter - can be severely impacted if the storage File System holding $JENKINS_HOME is not tuned properly. If the $JENKINS_HOME does not resides in a local File System, ensure that the File System mount is tuned for performances. For NFS, please have a look at the recommendation in the article NFS Guide
+  
+  
   ### Monitoring Jenkins performance
  -  https://www.cloudbees.com/blog/apm-tools-jenkins-performance
   
@@ -202,6 +246,18 @@ ulimit -u should be set to 30654 (soft) and 30654 (hard)
         import hudson.model.*
         def q = Jenkins.instance.queue
         q.items.findAll { it.task.name.startsWith('REPLACEME') }.each { q.cancel(it.task) }
+  
+  
+  ###  Remove Custom Loggers
+  
+  They can impact the performances of your instance if they do not target a specific component or if they are specified at a high level package like for example hudson.model or hudson.security.
+  
+  - https://docs.cloudbees.com/docs/cloudbees-ci-kb/latest/client-and-managed-masters/how-do-i-create-a-logger-in-jenkins-for-troubleshooting-and-diagnostic-information
+  
+  ### Review Hook scripts
+
+  Check whether there is any post-initialization scripts under $JENKINS_HOME/init.groovy.d/ that could impact the startup of your instance. 
+  
   
   
   
