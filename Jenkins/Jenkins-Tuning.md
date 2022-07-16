@@ -107,6 +107,9 @@ ulimit -u should be set to 30654 (soft) and 30654 (hard)
       jenkins          soft    nproc           30654
       jenkins          hard    nproc           30654
   
+  
+  
+  
   ### Java Home Environment Variable
   
   It is recommended to set the JAVA_HOME environment variable in both Linux and Windows environments. The Java JDK’s bin directory should also be in the PATH environment variable. This will allow for easier access to Java JDK commands, such as jstack and jmap
@@ -119,8 +122,71 @@ ulimit -u should be set to 30654 (soft) and 30654 (hard)
    
    logout and login again, reboot, or use source /etc/profile to apply changes immediately in the  current shell
   
+  OR
+  > vi /etc/profile.d/jdk_home.sh
+
+        #!/bin/sh
+        export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0*
+        export PATH=$JAVA_HOME/bin:$PATH
+  
+  > echo $JAVA_HOME
+  
+  
+  #### Log Startup Timing Info
+  
+  - https://docs.cloudbees.com/docs/cloudbees-ci-kb/latest/troubleshooting-guides/jenkins-startup-performances
+  - https://phoenixnap.com/kb/jenkins-logs
+  
+  > vi /etc/sysconfig/jenkins  => append -Djenkins.model.Jenkins.logStartupPerformance=true"
+  
+  JENKINS_JAVA_OPTIONS="-Xmx2048m -Xms1024m -XX:MaxPermSize=1024m -Djava.awt.headless=true -Xloggc:$JENKINS_HOME/gc-%t.log -XX:NumberOfGCLogFiles=5 -XX:+UseGCLogFileRotation -XX:GCLogFileSize=20m -XX:+PrintGC -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintHeapAtGC -XX:+PrintGCCause -XX:+PrintTenuringDistribution -XX:+PrintReferenceGC -XX:+PrintAdaptiveSizePolicy -XX:+UseG1GC -XX:+ExplicitGCInvokesConcurrent -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:+UnlockDiagnosticVMOptions -XX:G1SummarizeRSetStatsPeriod=1 -Djenkins.model.Jenkins.logStartupPerformance=true"
+  
+  it is recommended to set -Djenkins.model.Jenkins.logStartupPerformance=true in your Jenkins environment to have Jenkins output additional data to the      jenkins.log, showing how much time is being spent in a specific component during startup.
+  
+  > systemctl restart jenkins
+  
+  <img width="851" alt="image" src="https://user-images.githubusercontent.com/75510135/179343537-723c93f3-3c4e-4b72-afaa-8efec7ba067d.png">
+
+  > ls -last /var/lib/jenkins/logs/tasks
+  
+  
+  ### Jenkins Admin Should Be Able To Generate A Support Bundle via jenkins-cli.jar
+  
+  Please note that Jenkins accounts must have the Overall/Read account permission to access the CLI.
+
+  The jenkins-cli.jar can be downloaded from JENKINS_URL/cli or https://www.jenkins.io/doc/book/managing/cli/
+  
+  Note# support command can be viewed by navigating to JENKINS_URL/cli/command/support
+  
+  >  java -jar jenkins-cli.jar -noKeyAuth -s http://<Jenkins-server-public-ip>:8080/ support --usrename --password 
+  
   ### Monitoring Jenkins performance
  -  https://www.cloudbees.com/blog/apm-tools-jenkins-performance
   
 </details>
 
+
+
+<details>
+<summary>Underlying caveats</summary>
+<br>
+
+  Start Jenkins (service jenkins start).
+
+  ####Explanation
+  
+Look at /etc/init.d/jenkins for a line similar to:
+
+        NAME=jenkins
+        SCRIPTNAME=/etc/init.d/$NAME
+        [ -r /etc/default/$NAME ] && . /etc/default/$NAME
+        These tell us that the Jenkins daemon will look for a file named /etc/default/jenkins. 
+ 
+If present, it .s that file.
+
+If you set $JAVA_ARGS in /etc/default/jenkins it will be substituted in the line below, located later in the /etc/init.d/jenkins file:
+
+ > $SU -l $JENKINS_USER --shell=/bin/bash -c "$DAEMON $DAEMON_ARGS -- $JAVA $JAVA_ARGS -jar $JENKINS_WAR $JENKINS_ARGS" || return 2
+  
+  
+</details>
