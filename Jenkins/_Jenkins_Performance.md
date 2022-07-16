@@ -1,3 +1,4 @@
+- https://www.serverlab.ca/tutorials/linux/administration-linux/how-to-reset-jenkins-admin-users-password/
 <details>
 <summary>Reference links</summary>
 <br>
