@@ -277,5 +277,80 @@ If you set $JAVA_ARGS in /etc/default/jenkins it will be substituted in the line
 
  > $SU -l $JENKINS_USER --shell=/bin/bash -c "$DAEMON $DAEMON_ARGS -- $JAVA $JAVA_ARGS -jar $JENKINS_WAR $JENKINS_ARGS" || return 2
   
+  ### Generating a support bundle
+  
+  - https://plugins.jenkins.io/support-core/
+  - https://docs.cloudbees.com/docs/admin-resources/latest/support-bundle/
+  
+  - http://<Jekins-server-public-ip>:8080/support/
+  
+  - Generating a support bundle from the CLI
+
+  > java -jar /path/to/jenkins-cli.jar -s http://server/ support > ./path/to/support-bundle.zip
+  
+  Logs capture
+
+  You will need to navigate to your JENKINS_HOME and capture the content of:
+
+        $JENKINS_HOME/logs
+
+        $JENKINS_HOME/slow-requests
+
+        $JENKINS_HOME/deadlocks
+  - upload support logs to https://uploads.cloudbees.com/#/
+  
+  ### Instance detail capture <jenkins_url>/script
+  
+              println '# Overview'
+            Jenkins.instance.with {
+                println '## Instance'
+                println "*Jenkins Version*: ${getVersion()}"
+                println "*Java Version*: ${System.getProperty('java.version')}"
+                Runtime.getRuntime().with {
+                    println "*Maximum memory*: ${humanReadableSize(maxMemory())}"
+                    println "*Allocated memory*: ${humanReadableSize(totalMemory())}"
+                    println "*Free memory*: ${humanReadableSize(freeMemory())}"
+                }
+                println "*Jenkins URL*: ${JenkinsLocationConfiguration.get().getUrl()}"
+                println "*Instance ID*: ${getLegacyInstanceId()}"
+                println '\n## Plugins'
+                pluginManager.plugins.each { println("${it.getDisplayName()} (${it.getShortName()}): ${it.getVersion()}") }
+            }
+            println '\n\n\n# Properties'
+            System.getProperties()
+
+            def static humanReadableSize(long size) {
+                def measure = 'B'
+                if (size < 1024) {
+                    return "${size} ${measure}"
+                }
+                def number = size
+                if (number >= 1024) {
+                    number = number / 1024
+                    measure = 'KB'
+                    if (number >= 1024) {
+                        number = number / 1024
+                        measure = 'MB'
+                        if (number >= 1024) {
+                            number = number / 1024
+                            measure = 'GB'
+                        }
+                    }
+                }
+                return "${new java.text.DecimalFormat('#0.00').format(number)} ${measure} (${size})"
+            }
+
+   ### Thread dump capture <jenkins_url>/threadDump
+  
+  >  Go to <jenkins_url>/threadDump and copy the content into a thread1.txt file.
+
+  >  Wait a minute, refresh the page, and copy the new content into a thread2.txt file.
+
+  ### Monitoring data capture
+
+  - install javaMelody plugin , https://github.com/javamelody/javamelody/wiki
+  - Go to <jenkins_url>/monitoring
+  <img width="1439" alt="image" src="https://user-images.githubusercontent.com/75510135/179464699-f6db06f8-696e-4de7-bfee-690d3ad997b8.png">
+
   
 </details>
