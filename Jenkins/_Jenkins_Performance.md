@@ -245,3 +245,50 @@ https://twitter.com/aheritier
 
   
 </details> 
+
+
+<details>
+<summary>GC Tuning & Troubleshooting</summary>
+<br>
+  
+  <img width="685" alt="image" src="https://user-images.githubusercontent.com/75510135/180238400-e00a2ffe-b65f-44f5-a59a-8afe4f2a4ed8.png">
+
+  <img width="677" alt="image" src="https://user-images.githubusercontent.com/75510135/180238540-0c661f63-90fa-4e67-bc59-32b60c796d33.png">
+
+  <img width="682" alt="image" src="https://user-images.githubusercontent.com/75510135/180239699-8a27cd44-dd19-45f9-8ea2-c151675b9675.png">
+
+  <img width="679" alt="image" src="https://user-images.githubusercontent.com/75510135/180239820-c52c74ce-c550-449b-a4fd-d4098b0eac8b.png">
+
+  <img width="635" alt="image" src="https://user-images.githubusercontent.com/75510135/180241278-86bf97ac-9b03-4bc3-943b-e4258873b352.png">
+
+  <img width="616" alt="image" src="https://user-images.githubusercontent.com/75510135/180241547-ef96a6d6-c72d-4d45-980e-a562369ffa76.png">
+
+  <img width="670" alt="image" src="https://user-images.githubusercontent.com/75510135/180242090-19ce234c-bcbb-40c5-9e9f-8c61be3d9c34.png">
+
+  <img width="662" alt="image" src="https://user-images.githubusercontent.com/75510135/180242167-2ec7b3c4-cdc7-4740-8e71-f3aa8183a69e.png">
+
+  <img width="575" alt="image" src="https://user-images.githubusercontent.com/75510135/180242445-b8b6f429-4b76-475d-b75f-d61334835e55.png">
+
+  <img width="690" alt="image" src="https://user-images.githubusercontent.com/75510135/180243065-8a309727-0ba5-4165-8b91-a50d40a7a28f.png">
+
+  <img width="606" alt="image" src="https://user-images.githubusercontent.com/75510135/180243160-cb6322d4-3b9d-44d0-9c80-c7f353827835.png">
+
+  <img width="572" alt="image" src="https://user-images.githubusercontent.com/75510135/180243471-de8bc32a-14b1-438f-9c95-a5bf7a28a6ef.png">
+
+  <img width="577" alt="image" src="https://user-images.githubusercontent.com/75510135/180244334-a144785d-b8a9-41de-9f7d-24c455a52ff9.png">
+
+  <img width="667" alt="image" src="https://user-images.githubusercontent.com/75510135/180244522-44a5f19a-25bc-48ce-8f3a-b2950a21528c.png">
+
+  
+  <img width="669" alt="image" src="https://user-images.githubusercontent.com/75510135/180245081-0510fba1-5d78-42b8-861d-9ba3414f40dd.png">
+
+  <img width="608" alt="image" src="https://user-images.githubusercontent.com/75510135/180245181-f6daa1c9-d058-4ad7-92b4-8dcca50244c8.png">
+
+  <img width="597" alt="image" src="https://user-images.githubusercontent.com/75510135/180245586-e7e0775e-2a5b-4ec6-b9f8-4ab4a46092ee.png">
+
+  <img width="683" alt="image" src="https://user-images.githubusercontent.com/75510135/180247598-989fec27-f147-48da-bcd6-77de0d155cb3.png">
+
+  <img width="617" alt="image" src="https://user-images.githubusercontent.com/75510135/180248175-afdec291-d161-4f90-b4f6-a3c4530d6025.png">
+
+  
+</details> 
