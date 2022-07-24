@@ -1,7 +1,7 @@
 - Reference
 - https://github.com/jenkinsci/configuration-as-code-plugin
 - https://docs.google.com/presentation/d/1db0OutFJNMN1haXY_IdQoYesTSo65h2dz4nvu6nHGD4/edit#slide=id.g2ee113a618_1_21
-
+- groovy script - https://github.com/cloudbees/jenkins-scripts
 
 <details>
 <summary>Shared Lib</summary>
@@ -48,9 +48,9 @@
 * Additionally docker demo setup (which can be easily adapted for different than demo purpose): 
 * https://github.com/Praqma/praqma-jenkins-casc 
 
-Repository: https://github.com/jenkinsci/configuration-as-code-plugin
-Blogpost: https://www.praqma.com/stories/jenkins-configuration-as-code/
-Plugin site: https://wiki.jenkins.io/display/JENKINS/Configuration+as+Code+Plugin
+1. Repository: https://github.com/jenkinsci/configuration-as-code-plugin
+2. Blogpost: https://www.praqma.com/stories/jenkins-configuration-as-code/
+3. Plugin site: https://wiki.jenkins.io/display/JENKINS/Configuration+as+Code+Plugin
 
 </details>
 
