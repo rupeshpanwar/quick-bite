@@ -292,3 +292,34 @@ https://twitter.com/aheritier
 
   
 </details> 
+
+
+<details>
+<summary> G1GC Concepts and Performance Tuning </summary>
+<br>
+
+  ![](i/20220725212358.png)  
+
+  ![](i/20220725212508.png)  
+
+  ![](i/20220725212549.png)  
+
+  ![](i/20220725212621.png)  
+  ![](i/20220725212801.png)  
+
+  ![](i/20220725212951.png)  
+
+  ![](i/20220725213345.png)  
+
+  ![](i/20220725213554.png)  
+
+  - Measurement
+
+  ![](i/20220725213646.png)  
+
+  ![](i/20220725213802.png)  
+
+  ![](i/20220725213821.png)  
+
+  ![](i/20220725214219.png)    
+</details>
