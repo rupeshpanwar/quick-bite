@@ -1,3 +1,6 @@
+- monitoring scripts => https://github.com/jenkinsci/monitoring-plugin/blob/master/docs/MonitoringScripts.md
+
+
 - change Jenkins_Home dir
 ```
 systemctl stop jenkins
@@ -22,6 +25,9 @@ systemctl restart jenkins
 
 - Restart Jenkins and check directory $JENKINS_HOME/logs/
 
+- journalctl -xe
+
+
 ```
 import java.util.logging.ConsoleHandler
 import java.util.logging.FileHandler
@@ -43,3 +49,29 @@ handlerWinstone.setFormatter(new SimpleFormatter());
 loggerWinstone.addHandler (new ConsoleHandler());
 loggerWinstone.addHandler(handlerWinstone);
 ```
+
+![](i/20220725151726.png)  
+![](i/20220725151816.png)  
+
+![](i/20220725152142.png)  
+
+![](i/20220725162400.png)  
+
+![](i/20220725162553.png)  
+
+- custom logs
+
+![](i/20220725162703.png)  
+
+![](i/20220725164534.png)  
+
+![](i/20220725164619.png)  
+
+![](i/20220725164650.png)  
+
+- java stack trace
+  ![](i/20220725164750.png)  
+  ![](i/20220725164818.png)  
+  ![](i/20220725164845.png)  
+  ![](i/20220725165058.png)  
+
