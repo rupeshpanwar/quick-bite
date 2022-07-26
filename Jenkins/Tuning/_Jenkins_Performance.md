@@ -426,5 +426,112 @@ Enable GC logging, which can then be used for the next level of tuning and diagn
 <summary> java-garbage-collection-distilled </summary>
 <br>
 - https://mechanical-sympathy.blogspot.com/2013/07/java-garbage-collection-distilled.html
-- 
+  
+   3 major variables that set targets for the collectors:
+* Throughput: The amount of work done by an application as a ratio of time spent in GC. Target throughput with ‑XX:GCTimeRatio=99 ; 99 is the default equating to 1% GC time.
+* Latency: The time taken by systems in responding to events which is impacted by pauses introduced by garbage collection. Target latency for GC pauses with ‑XX:MaxGCPauseMillis=<n>.
+* Memory: The amount of memory our systems use to store state, which is often copied and moved around when being managed. The set of active objects retained by the application at any point in time is known as the Live Set. Maximum heap size –Xmx<n> is a tuning parameter for setting the heap size available to an application.
+
+Tradeoffs often play out as follows:
+* To a large extent the cost of garbage collection, as an amortized cost, can be reduced by providing the garbage collection algorithms with more memory.
+* The observed worst-case latency-inducing pauses due to garbage collecting can be reduced by containing the live set and keeping the heap size small.
+* The frequency with which pauses occur can be reduced by managing the heap and generation sizes, and by controlling the application’s object allocation rate.
+* The frequency of large pauses can be reduced by concurrently running the GC with the application, sometimes at the expense of throughput.
+* Time To Safepoint (TTSP) is an important consideration in low-latency applications. This time can be surfaced by enabling the ‑XX:+PrintGCApplicationStoppedTime flag in addition to the other GC flags.
+* Large objects (-XX:PretenureSizeThreshold=<n>) may fail to be accommodated in the young generation and thus have to be allocated in the old generation, e.g. a large array. If the threshold is set below TLAB size then objects that fit in the TLAB will not be created in the old generation. The new G1 collector handles large objects differently and will be discussed later in its own section.
+
+
+Garbage Collection Monitoring & Tuning
+
+To understand how your application and garbage collector are behaving, start your JVM with at least the following settings:
+```
+-verbose:gc
+-Xloggc:
+-XX:+PrintGCDetails
+-XX:+PrintGCDateStamps
+-XX:+PrintTenuringDistribution
+-XX:+PrintGCApplicationConcurrentTime 
+-XX:+PrintGCApplicationStoppedTime
+
+```
+
+- https://github.com/chewiebug/GCViewer
+
+</details>
+
+
+
+<details>
+<summary> Monitoring Jenkins</summary>
+<br>
+
+When Jenkins is running or has run out of RAM, it normally has a few root causes:
+
+* growth in data size requiring a bigger heap space
+* a memory leak
+* The operating system kernel running out of virtual memory
+* multiple threads need the same locks but obtain them in a different order
+
+To identify the root cause of memory leaks, it normally requires access to one of three log sources
+* the garbage collection logs,
+* a heap dump
+* a thread dump.
+
+> Open the old data management page (located at your-jenkins-url/administrativeMonitor/OldData/manage), verify that the data is not needed, and clear it
+
+* consider implementing on the JVM for Jenkins. This feature is called UseCompressedOops, a
+
+constantly check and analyze Jenkins performance by implementing configurations for:
+
+* Monitoring memory usage. This checking and monitoring RAM memory usage continuously for Jenkins master / slave node
+* Checking java memory leak
+* Adding correct java option arguments/parameters which are suggested by Jenkins official documents
+* Monitoring with the correct plugin. The monitoring plugin will help you to monitor running setup with live scaled data. This will involve, install the monitoring plugin and monitor Jenkins memory usage
+* With the plugin, add monitoring alerts for deadlock, threads, memory, and active sessions. You can add monitoring alerts to capture threshold baseline details and present it in tooling such as the ELK ‘stack’ – ElasticSearch, LogStash, Kibana, to perform a search, analysis, and visualization operations in real-time
+
+* if you are receiving high CPU alerts or are experiencing application performance degradation, this may be due to 
+* a Jenkins process being stuck in an infinite loop (normally deadlock threads), 
+* repeated full Garbage collections, 
+* or that the application has encountered an unexpected error. 
+
+If the JVM for Jenkins is using close to 100% of the CPU consumption, it will constantly have to free up processing power for different processes, which will slow it down and may render the application unreachable.
+
+PermGen is one of the primary Java memory regions and has a limited amount of memory without customization. Application of the JVM parameters
+** -Xmx and -XX:MaxPermSize** will help rectify this problem
+
+> executing the jenkinshangWithJstack.sh script while the CPU usage is high
+
+as it will deliver the outputs of top and top -H while the issue is occurring, so you can see which threads are consuming the most CPU.
+
+Excessive CPU usage can be reduced or tempered by the following actions:
+
+* Minimizing the number of builds on the master node. This meaning you want to make the Jenkins master as “free” from work as you can, leaving the CPU and memory to be used for scheduling and triggering builds on slaves only
+* Looking at the garbage collection logs to see if there’s a memory leak
+* From repeated build processes, not keeping too much of the build history. Trying to limit it
+* Making sure your Jenkins & installed plugins version, are installed with the most up to date stable releases
+* Constantly monitor CPU performance, by checking and monitoring the CPU usage for Jenkins slaves the master node. Resulting outputs can be analyzed in the ELK stack
+
+The garbage collector is an automatic memory management process.
+
+Its main goal is to identify unused objects in the heap and release the memory that they hold. Some of the GC actions can cause the Jenkins program to pause. This will mostly happen when it has a large heap (normally 4GB). In those cases, GC tuning is required to shorten the pause time. If Jenkins is processing a large heap but requires low pause times, then you should consider as a starting point, the use of the G1GC collector. It will help manage its memory usage more efficiently
+
+By default the JVM is configured to throw this error if it spends more than 98% of the total time doing GC and when after the GC only less than 2% of the heap is recovered.
+
+To manage the Garbage Collector more effectively and allow it to compact the heap on-the-go, it is suggested to apply the following configurations.
+
+* Enable GC logging
+* Enable G1GC – this is the most modern GC implementation (depending on JDK version)
+* Monitor GC behavior with plugins, services or toolings
+* Tune GC with additional flags as needed
+* Utilise the ELK stack to analyze the logging source
+* Keep monitoring and attach any key metric alerting to the logging process
+This will involve tuning the garbage collection and setting arguments on the JVM for Jenkins.
+
+To ensure you follow some best practice for securing your Jenkins instance and jobs:
+
+* Enable Jenkins’ security. Jenkins global security is the first line of defense in protecting the asset it controls. Core Jenkins supports four security realms: delegate to servlet container, Jenkins’s own user database, LDAP, and Unix user/group database
+* Consider the use of the Jenkins credentials plugin, that can provide a default internal credentials store. This can be used to store high value or privileged credentials, such as GitHub tokens
+* Configuring access control in Jenkins using a Security Realm and Authorization configuration. A Security Realm, informs the Jenkins environment, how and where to pull user (or identity) information from. Authorization configuration which informs the Jenkins environment as to which users and/or groups can access which aspects of Jenkins
+
+
 </details>
