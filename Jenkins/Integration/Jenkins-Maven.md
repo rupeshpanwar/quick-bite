@@ -32,23 +32,17 @@
 <summary>JDK Integration</summary>
 <br>
 
-    - Test JDK version
+ - Test JDK version
 
-       ![](i/20220728222539.png)  
+   ![](i/20220728222539.png)  
+   ![](i/20220728223107.png)  
+- Manage Jenkins > System Information
 
-       ![](i/20220728223107.png)  
-
-    - Manage Jenkins > System Information
-  
-       ![](i/20220728222833.png)  
-
-     - similarly check this for slave
-
-       ![](i/20220728222934.png)  
-
-       ![](i/20220728223003.png)  
-
-    - to install JDK
+   ![](i/20220728222833.png)  
+ - similarly check this for slave
+   ![](i/20220728222934.png)  
+   ![](i/20220728223003.png)  
+- to install JDK
 
       ![](i/20220728223308.png)  
 
