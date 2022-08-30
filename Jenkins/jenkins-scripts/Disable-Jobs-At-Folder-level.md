@@ -20,3 +20,36 @@ def disableChildren(items) {
   }
 }
 ```
+
+
+```
+Example that does not traverse child folders:
+
+import com.cloudbees.hudson.plugins.folder.AbstractFolder
+
+folderName="folder-a" // change value `folder-a` for the full name of the folder you want to disable all jobs in
+
+Jenkins.instance.getItemByFullName(folderName, AbstractFolder).getItems()
+    .findAll { it instanceof ParameterizedJobMixIn.ParameterizedJob || it instanceof AbstractFolder }
+    .each {
+        it.makeDisabled(true)
+        println("Disabled job: [$it.fullName]")
+    }
+null
+Example that does traverse child folders:
+
+import com.cloudbees.hudson.plugins.folder.AbstractFolder
+
+folderName="folder-a" // change value `folder-a` for the full name of the folder you want to disable all jobs in
+
+Jenkins.instance.getItemByFullName(folderName, AbstractFolder).getAllItems()
+    .findAll { it instanceof ParameterizedJobMixIn.ParameterizedJob || it instanceof AbstractFolder }
+    .each {
+        it.makeDisabled(true)
+        println("Disabled job: [$it.fullName]")
+    }
+null
+You can perform a dry run by commenting out the disable line, i,e:
+
+      //it.makeDisabled(true)
+```
