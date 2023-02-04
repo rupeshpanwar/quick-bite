@@ -273,24 +273,176 @@
   
 
 <details>
-<summary>Title</summary>
+<summary>Frontend - Create basic React App</summary>
 <br>
 
+build a frontend with React to our express and mongodb app code above in order to add users to passwords to our databases securely and test that it works
 
+  <img width="492" alt="image" src="https://user-images.githubusercontent.com/75510135/216757258-0565735d-e894-49f9-aa67-753cf5d4d1db.png">
+
+  fullstack-app $ npm install react react-dom
+  
+  fullstack-app $ npm install -g create-react-app
+  
+  <img width="683" alt="image" src="https://user-images.githubusercontent.com/75510135/216757675-76f49c2e-275a-4afb-a3b6-889fa24df3ba.png">
+
+  npx create-react-app my-app
+
+  <img width="526" alt="image" src="https://user-images.githubusercontent.com/75510135/216757863-7bd40fcc-4589-4b39-9412-65f567376984.png">
+
+  
   
 </details>
   
   
  
 <details>
-<summary>Title</summary>
+<summary>FE- Create Form-CReate Event Handler</summary>
 <br>
+  
+  <img width="663" alt="image" src="https://user-images.githubusercontent.com/75510135/216760184-f152e6e1-65cb-4ce4-a39d-ae0d371c7810.png">
+
+      import React, { useState } from "react";
+
+    const App = () => {
+      const [username, setUsername] = useState("");
+      const [password, setPassword] = useState("");
+
+      // const handleSubmit = async (event) => {
+      //   event.preventDefault();
+      //   const response = await fetch("/api/users", {
+      //     method: "POST",
+      //     headers: { "Content-Type": "application/json" },
+      //     body: JSON.stringify({ username, password }),
+      //   });
+      //   const result = await response.json();
+      //   if (result.error) {
+      //     console.error(result.error);
+      //   } else {
+      //     console.log("User added successfully");
+      //   }
+      // };
+
+      const handleUserNameChange = (event) => {
+        setUsername(event.target.value)
+        console.log(username)
+      }
+
+      const handlePasswordChange = (event) => {
+        setPassword(event.target.value)
+      }
+
+      return (
+        //onSubmit={handleSubmit}
+        <div className="App">
+          <h1>Welcome to Game!!!</h1>
+        <form >
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={handleUserNameChange}
+          />
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          <button type="submit">Add User</button>
+        </form>
+        </div>
+      );
+    };
+
+    export default App;
+
 
 
   
 </details>
   
   
+
+<details>
+<summary>Form Submit- send username n password to database</summary>
+<br>
+
+  <img width="621" alt="image" src="https://user-images.githubusercontent.com/75510135/216767979-8da0dae1-cc25-4022-8491-e910724d5922.png">
+
+  <img width="531" alt="image" src="https://user-images.githubusercontent.com/75510135/216768079-de864d80-74de-4121-8163-1ebf0b961eb7.png">
+  
+  <img width="553" alt="image" src="https://user-images.githubusercontent.com/75510135/216772680-9ec570f4-2170-48d3-b2c9-275c628482a1.png">
+
+  <img width="558" alt="image" src="https://user-images.githubusercontent.com/75510135/216772705-3494e9e1-c144-454d-8b4e-5e09f23c6822.png">
+
+  <img width="583" alt="image" src="https://user-images.githubusercontent.com/75510135/216772712-b3cde1ac-99b7-4188-828a-697fd47fd566.png">
+
+  <img width="562" alt="image" src="https://user-images.githubusercontent.com/75510135/216772726-835d08a1-83ab-424f-8dc5-5f43bf419362.png">
+
+          const express = require('express');
+        const app = express();
+
+        const mongoose = require('mongoose');
+        const cors = require('cors');
+
+        app.use(cors());
+        app.use(express.json());
+
+
+        const uri = 'mongodb+srv://dbadmin:yehtohonahetha@cluster0.4kv2mjn.mongodb.net/?retryWrites=true&w=majority'
+
+          function connectToMongoDB() {
+          try {
+             mongoose.connect(uri, {
+              useNewUrlParser: true,
+              useUnifiedTopology: true
+            });
+          } catch (error) {
+            console.error("Error connecting to MongoDB:", error);
+          }
+        }
+
+         connectToMongoDB();
+
+          // create a model
+
+
+          const userSchema = new mongoose.Schema({
+            username: String,
+            password: String
+          });
+
+        const User = mongoose.model('User', userSchema);
+
+
+        app.get('/', (req, res) => {
+            res.send('Hello World!');
+        });
+
+        // POST endpoint to add a new user
+        app.post('/', async (req, res) => {
+            try {
+              const {username, password} = req.body;
+              const user = new User({username, password});
+              const result = await user.save();
+              res.send({ message: 'User added successfully', result });
+            } catch (error) {
+              res.status(500).send({ error: error.message });
+            }
+          });
+
+
+        app.listen(3000, () => {
+            console.log('Server listening on port 3000');
+        });
+  
+  
+</details>
+  
+
 
 <details>
 <summary>Title</summary>
@@ -300,6 +452,14 @@
   
 </details>
   
+  
+  
+<details>
+<summary>Title</summary>
+<br>
 
 
+  
+</details>
+  
 
