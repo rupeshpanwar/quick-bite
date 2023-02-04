@@ -237,6 +237,33 @@
     });
 
   
+  <img width="690" alt="image" src="https://user-images.githubusercontent.com/75510135/216756249-f28df47b-60a5-4550-8573-608193160ee9.png">
+
+  <img width="683" alt="image" src="https://user-images.githubusercontent.com/75510135/216756266-c44eff5b-540e-4cad-9a89-70254a78fb5a.png">
+  
+  
+      const mongoose = require("mongoose");
+      const Schema = mongoose.Schema;
+
+      const userSchema = new Schema({
+        username: { type: String, required: true },
+        password: { type: String, required: true }
+      });
+
+      const User = mongoose.model("User", userSchema);
+
+      const newUser = new User({
+        username: "john",
+        password: "password"
+      });
+
+      newUser.save((error) => {
+        if (error) {
+          console.error(error);
+        } else {
+          console.log("User saved successfully");
+        }
+      });
 
   
  
