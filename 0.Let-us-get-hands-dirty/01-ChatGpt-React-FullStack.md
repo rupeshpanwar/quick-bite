@@ -211,6 +211,34 @@
           And that's it! You now have your Express server connected to your MongoDB database using Mongoose. You can use Mongoose to perform CRUD                 operations on your database, validate data, and more.
   
 
+         Alternatively => chatgpt => write async function to connect mongodb via mongoose library
+  
+
+      const mongoose = require('mongoose');
+
+      async function connectToMongoDB() {
+        try {
+          await mongoose.connect('mongodb://<username>:<password>@<cluster>.mongodb.net/<database>', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+          });
+          console.log("Connected to MongoDB");
+        } catch (error) {
+          console.error("Error connecting to MongoDB:", error);
+        }
+      }
+
+      Note that you need to replace <username>, <password>, <cluster>, and <database> with the appropriate values for your database.
+
+    You can call this function in your Express app to connect to your MongoDB database. For example:
+
+      connectToMongoDB().then(() => {
+      // Your app code goes here
+    });
+
+  
+
+  
  
 </details>
 
