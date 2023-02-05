@@ -445,6 +445,42 @@ build a frontend with React to our express and mongodb app code above in order t
 
 
 <details>
+<summary>FE - Add routing </summary>
+<br>
+
+  <img width="570" alt="image" src="https://user-images.githubusercontent.com/75510135/216776439-5e1cdd29-18b3-40a4-b0f1-d3692b22e450.png">
+
+  <img width="558" alt="image" src="https://user-images.githubusercontent.com/75510135/216776773-84b14168-0f21-49e0-bd22-60c732ea9e3b.png">
+
+  <img width="574" alt="image" src="https://user-images.githubusercontent.com/75510135/216777207-1606eabd-3f16-4ca3-bafc-0eb4ca4f26a7.png">
+
+  <img width="481" alt="image" src="https://user-images.githubusercontent.com/75510135/216777805-6abe27ca-782a-4e21-8353-eca404cfc9d3.png">
+
+  <img width="489" alt="image" src="https://user-images.githubusercontent.com/75510135/216777791-7616c089-8130-4728-816e-bfee0f2dfda4.png">
+
+  
+  
+</details>
+  
+  
+  
+<details>
+<summary>Routing to Welcome Page</summary>
+<br>
+
+    <img width="627" alt="image" src="https://user-images.githubusercontent.com/75510135/216799741-eae2a2da-7c20-4e38-8bca-04631f5e8b30.png">
+
+  
+  <img width="564" alt="image" src="https://user-images.githubusercontent.com/75510135/216799750-d79fed89-40bd-444b-a981-563f7bff2c34.png">
+
+  <img width="574" alt="image" src="https://user-images.githubusercontent.com/75510135/216799758-4587ff52-4376-4e60-92a6-7016f4429134.png">
+
+  
+  
+</details>
+  
+
+<details>
 <summary>Title</summary>
 <br>
 
@@ -462,4 +498,5 @@ build a frontend with React to our express and mongodb app code above in order t
   
 </details>
   
-
+  
+  
