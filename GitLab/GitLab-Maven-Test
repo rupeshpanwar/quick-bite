@@ -1,1 +1,38 @@
+https://www.youtube.com/watch?v=nrs-DjTRwkk
+https://www.youtube.com/watch?v=_yxL7BG9qpk
+https://www.youtube.com/watch?v=T5BHpvC5PL8
 
+https://gitlab.com/ShowMeYourCodeYouTube/java-sorting-algorithms
+https://github.com/darinpope/jenkins-example-cucumber
+
+image: maven:3-jdk-11
+
+stages:
+  - build
+  - test
+  - analysis
+
+build:
+  stage: build
+  script:
+    - mvn clean package -DskipTests
+  artifacts:
+    paths:
+      - target/*.jar
+
+test:
+  stage: test
+  script:
+    - mvn verify
+    - cat target/site/jacoco/index.html | grep -o '<tfoot>.*</tfoot>'
+  artifacts:
+    when: always
+    reports:
+      junit: target/surefire-reports/TEST-*.xml
+
+analyze-source-code:
+  stage: analysis
+  script:
+    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+
+  
