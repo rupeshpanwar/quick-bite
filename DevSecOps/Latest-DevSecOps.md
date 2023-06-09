@@ -225,8 +225,120 @@ CMD ["java", "-XX:MaxMetaspaceSize=128m", "-Xloggc:logs/gc_%p_%t.log", "-Xmx256m
 </details>
 
 <details>
+<summary>Jenkins-EKS-Deployment</summary>
+<br>
+  
+```
+	deployment.yml
+	
+	apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asgbuggy-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asgbuggy
+  template:
+    metadata:
+      labels:
+        app: asgbuggy
+    spec:
+      containers:
+      - name: asgbuggy
+        image: 145988340565.dkr.ecr.us-west-2.amazonaws.com/asg
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: asgbuggy
+    k8s-app: asgbuggy
+  name: asgbuggy
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  type: LoadBalancer
+  selector:
+    app: asgbuggy
+	
+	Jenkinnsfile
+	
+	pipeline {
+  agent any
+  tools { 
+        maven 'Maven_3_5_2'  
+    }
+   stages{
+    stage('CompileandRunSonarAnalysis') {
+            steps {	
+		sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=asgbuggywebapp -Dsonar.organization=asgbuggywebapp -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=932558e169d66a8f1d1adf470b908a46156f5844'
+			}
+    }
+
+	stage('RunSCAAnalysisUsingSnyk') {
+            steps {		
+				withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
+					sh 'mvn snyk:test -fn'
+				}
+			}
+    }
+
+	stage('Build') { 
+            steps { 
+               withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
+                 script{
+                 app =  docker.build("asg")
+                 }
+               }
+            }
+    }
+
+	stage('Push') {
+            steps {
+                script{
+                    docker.withRegistry('https://145988340565.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:aws-credentials') {
+                    app.push("latest")
+                    }
+                }
+            }
+    	}
+	   
+	stage('Kubernetes Deployment of ASG Bugg Web Application') {
+	   steps {
+	      withKubeConfig([credentialsId: 'kubelogin']) {
+		  sh('kubectl delete all --all -n devsecops')
+		  sh ('kubectl apply -f deployment.yaml --namespace=devsecops')
+		}
+	      }
+   	}
+
+  }
+}
+```
+ 
+</details>
+
+<details>
 <summary>Introduction</summary>
 <br>
   
  
 </details>
+
+
+<details>
+<summary>Introduction</summary>
+<br>
+  
+ 
+</details>
+
