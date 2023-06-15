@@ -1,0 +1,27 @@
+---
+- name: Install and configure Nginx
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: Install Nginx package
+      apt:
+        name: nginx
+        state: present
+
+    - name: Copy Nginx configuration file
+      copy:
+        src: files/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+
+#ansible-playbook -i inventory.ini nginx.yml

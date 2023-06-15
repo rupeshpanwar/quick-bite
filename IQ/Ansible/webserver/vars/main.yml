@@ -1,0 +1,6 @@
+
+# vars file for webserver
+---
+http_port: 80
+https_port: 443
+app_name: myapp

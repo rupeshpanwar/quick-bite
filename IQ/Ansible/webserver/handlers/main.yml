@@ -1,0 +1,13 @@
+---
+# handlers file for webserver
+- name: Handler to restart the service
+  service:
+    name: myservice
+    state: restarted
+  listen: Restart Service
+
+- name: Handler to reload Nginx
+  service:
+    name: nginx
+    state: reloaded
+  listen: Reload Nginx

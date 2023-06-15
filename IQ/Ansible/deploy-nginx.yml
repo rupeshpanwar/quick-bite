@@ -1,0 +1,10 @@
+---
+- name: Webserver playbook
+  hosts: web_servers
+  become: true
+  vars:
+    http_port: 80
+    https_port: 443
+    app_name: myapp
+  roles:
+    - webserver
