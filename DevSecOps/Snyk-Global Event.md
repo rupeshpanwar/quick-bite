@@ -1,4 +1,4 @@
- 
+  
 <details>
 <summary>Introduction</summary>
 <br>
@@ -84,7 +84,20 @@
 
 
 <details>
-<summary>Introduction</summary>
+<summary> GraphQL- Vulnerability </summary>
 <br>
-  
+
+   ![image](https://github.com/rupeshpanwar/quick-bite/assets/75510135/7c551c03-dd0c-4a5d-b97e-9828dda49a97)
+
+   ![image](https://github.com/rupeshpanwar/quick-bite/assets/75510135/3bec3741-feab-4594-8b4d-f6283ef48df1)
+
+   ![image](https://github.com/rupeshpanwar/quick-bite/assets/75510135/1289b854-6b56-40e3-b64a-0d538937a0f9)
+
+   ![image](https://github.com/rupeshpanwar/quick-bite/assets/75510135/db8acd49-af9c-437b-94b4-765167472f09)
+
+   ![image](https://github.com/rupeshpanwar/quick-bite/assets/75510135/d4d78975-b6fc-4fc8-9759-86dcc90f16d1)
+
+   ![image](https://github.com/rupeshpanwar/quick-bite/assets/75510135/907d878c-852f-44a8-abf7-b439711c902e)
+
+   
 </details>
