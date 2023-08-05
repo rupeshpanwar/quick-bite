@@ -350,7 +350,7 @@ pipeline {
 <summary>Installation</summary>
 <br>
 
-	<img width="909" alt="image" src="https://user-images.githubusercontent.com/75510135/168459751-f3fcc44b-5399-40c9-8b7e-96c80c8e73e5.png">
+ <img width="909" alt="image" src="https://user-images.githubusercontent.com/75510135/168459751-f3fcc44b-5399-40c9-8b7e-96c80c8e73e5.png">
 
 	```
 	curl -Ls https://istio.io/downloadIstio | ISTIO_VERSION=1.9.0 sh -
@@ -359,22 +359,22 @@ pipeline {
 	istioctl install --set profile=demo -y && kubectl apply -f samples/addons
 	```
 	
-	- below components get created
-	<img width="851" alt="image" src="https://user-images.githubusercontent.com/75510135/168459781-0d010cb4-8f6a-4999-b744-009ad1e98157.png">
+- below components get created
+<img width="851" alt="image" src="https://user-images.githubusercontent.com/75510135/168459781-0d010cb4-8f6a-4999-b744-009ad1e98157.png">
 
-	<img width="618" alt="image" src="https://user-images.githubusercontent.com/75510135/168459810-e4b29678-f0be-4c93-830d-e5c6c209b4df.png">
+<img width="618" alt="image" src="https://user-images.githubusercontent.com/75510135/168459810-e4b29678-f0be-4c93-830d-e5c6c209b4df.png">
 
-	<img width="410" alt="image" src="https://user-images.githubusercontent.com/75510135/168459828-12bf9f4a-fc71-4af7-b2f1-a77a983cc837.png">
+<img width="410" alt="image" src="https://user-images.githubusercontent.com/75510135/168459828-12bf9f4a-fc71-4af7-b2f1-a77a983cc837.png">
 
-	<img width="1006" alt="image" src="https://user-images.githubusercontent.com/75510135/168460165-8021414b-04a5-4134-b62d-0e9916ff4e37.png">
+<img width="1006" alt="image" src="https://user-images.githubusercontent.com/75510135/168460165-8021414b-04a5-4134-b62d-0e9916ff4e37.png">
 
-	<img width="1006" alt="image" src="https://user-images.githubusercontent.com/75510135/168460201-9a8a6fdd-67d8-4bfb-8c0e-2115676a2af0.png">
+<img width="1006" alt="image" src="https://user-images.githubusercontent.com/75510135/168460201-9a8a6fdd-67d8-4bfb-8c0e-2115676a2af0.png">
 
-	- edit Kaili service from ClusterIP to NodePort
-	<img width="929" alt="image" src="https://user-images.githubusercontent.com/75510135/168460338-d00f1dda-73ac-47df-bbaf-0c9aa3a2fddc.png">
+- edit Kaili service from ClusterIP to NodePort
+<img width="929" alt="image" src="https://user-images.githubusercontent.com/75510135/168460338-d00f1dda-73ac-47df-bbaf-0c9aa3a2fddc.png">
 
-	- access Kaili dashboard
-	<img width="1238" alt="image" src="https://user-images.githubusercontent.com/75510135/168460355-39415f44-4dea-4e35-8477-bbb2a5ae422b.png">
+- access Kaili dashboard
+<img width="1238" alt="image" src="https://user-images.githubusercontent.com/75510135/168460355-39415f44-4dea-4e35-8477-bbb2a5ae422b.png">
 
 	
 	
